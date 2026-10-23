@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n";
+
 export type CaseStudyImage = {
   src: string;
   alt: string;
@@ -19,14 +21,26 @@ export type CaseStudy = {
   subtitle: string;
   metaTitle: string;
   metaDescription: string;
-  intro?: string;
   sections: CaseStudySection[];
 };
 
 const ASSET = "https://cdn.prod.website-files.com/697fa75c9246c7e0901d6165";
 
-export const banerCaseStudy: CaseStudy = {
-  slug: "baner-configurator",
+const IMAGES = {
+  flowchart: { src: `${ASSET}/69827ab36f3bc6a16bad1b7f_Flowchart_1.png`, width: 1600, height: 1000 },
+  ds1: { src: `${ASSET}/698146762251005c447c657e_DS_view_2.png`, width: 1600, height: 1000 },
+  ds2: { src: `${ASSET}/6981467508114fb8590224b2_DS_view_1.png`, width: 1600, height: 1000 },
+  flow1: { src: `${ASSET}/6981c138868dd10a444a2412_Flow_1_1.png`, width: 1600, height: 1000 },
+  errorPrev: { src: `${ASSET}/6981d2e72cb06aeff72d6e91_Error_prevention_2.png`, width: 1600, height: 1000 },
+  banerList: { src: `${ASSET}/6981daf90f1843a906b824a1_Baner_list.png`, width: 1600, height: 1000 },
+  form1: { src: `${ASSET}/6982863f4da9a2fa271b8d2f_Form_%40.png`, width: 1600, height: 1000 },
+  form2: { src: `${ASSET}/6981e9e81717a1e543906356_Main%20list.png`, width: 1600, height: 1000 },
+  scenarios: { src: `${ASSET}/6981dd3ccc15f64048a0a762_Scenarios.png`, width: 1600, height: 1000 },
+  docs: { src: `${ASSET}/6981ed3bc033922ef31bd396_Documentation.png`, width: 1600, height: 1000 },
+};
+
+const banerCaseStudyEn: CaseStudy = {
+  slug: "banner-configurator",
   number: "01",
   title: "BANNER",
   subtitle: "Configuration interface",
@@ -67,14 +81,7 @@ export const banerCaseStudy: CaseStudy = {
         "Operational issues were translated into a clearer system structure by defining behaviors across different situations.",
         "Identifying clear states, valid transitions, and configuration rules reduced developer dependency and increased predictability for users.",
       ],
-      images: [
-        {
-          src: `${ASSET}/69827ab36f3bc6a16bad1b7f_Flowchart_1.png`,
-          alt: "Flowchart mapping banner system states and valid transitions",
-          width: 1600,
-          height: 1000,
-        },
-      ],
+      images: [{ ...IMAGES.flowchart, alt: "Flowchart mapping banner system states and valid transitions" }],
     },
     {
       heading: "Designing within the Design System",
@@ -83,18 +90,8 @@ export const banerCaseStudy: CaseStudy = {
         "The solution became a natural system extension, maintaining consistency and predictable behavior for dynamic content management.",
       ],
       images: [
-        {
-          src: `${ASSET}/698146762251005c447c657e_DS_view_2.png`,
-          alt: "Design System component variants used by the banner configurator",
-          width: 1600,
-          height: 1000,
-        },
-        {
-          src: `${ASSET}/6981467508114fb8590224b2_DS_view_1.png`,
-          alt: "Additional Design System components extended for new scenarios",
-          width: 1600,
-          height: 1000,
-        },
+        { ...IMAGES.ds1, alt: "Design System component variants used by the banner configurator" },
+        { ...IMAGES.ds2, alt: "Additional Design System components extended for new scenarios" },
       ],
     },
     {
@@ -103,14 +100,7 @@ export const banerCaseStudy: CaseStudy = {
         "Flows defined system behavior rather than serving as visual screen maps, showing relationships between user actions, banner states, and product consequences.",
         "Diagrams included conditions, constraints, and exceptions, helping developers understand what is allowed or blocked in specific contexts.",
       ],
-      images: [
-        {
-          src: `${ASSET}/6981c138868dd10a444a2412_Flow_1_1.png`,
-          alt: "Interaction flow diagram with conditional branches and constraints",
-          width: 1600,
-          height: 1000,
-        },
-      ],
+      images: [{ ...IMAGES.flow1, alt: "Interaction flow diagram with conditional branches and constraints" }],
     },
     {
       heading: "Error prevention & operational safety",
@@ -118,14 +108,7 @@ export const banerCaseStudy: CaseStudy = {
         "The interface prioritized mistake reduction through additional confirmation for critical actions, blocking active element removal, and clearly distinguishing deactivation from deletion.",
         "Form validation detected incorrect data (URL structure, field length, file format) before system-level changes — preventing rather than just handling errors.",
       ],
-      images: [
-        {
-          src: `${ASSET}/6981d2e72cb06aeff72d6e91_Error_prevention_2.png`,
-          alt: "Error prevention patterns: blocking destructive actions and inline validation",
-          width: 1600,
-          height: 1000,
-        },
-      ],
+      images: [{ ...IMAGES.errorPrev, alt: "Error prevention patterns: blocking destructive actions and inline validation" }],
     },
     {
       heading: "System interface layers",
@@ -138,14 +121,7 @@ export const banerCaseStudy: CaseStudy = {
       paragraphs: [
         "The list view functions as a control panel, displaying all banners, their states, and usage context to support informed operational decisions.",
       ],
-      images: [
-        {
-          src: `${ASSET}/6981daf90f1843a906b824a1_Baner_list.png`,
-          alt: "Banner list view with status, scope and usage context columns",
-          width: 1600,
-          height: 1000,
-        },
-      ],
+      images: [{ ...IMAGES.banerList, alt: "Banner list view with status, scope and usage context columns" }],
     },
     {
       heading: "Configuration form — rule definition",
@@ -153,18 +129,8 @@ export const banerCaseStudy: CaseStudy = {
         "The form defines banner operation parameters within system-defined constraints, functioning as a rules interface rather than a content creator.",
       ],
       images: [
-        {
-          src: `${ASSET}/6982863f4da9a2fa271b8d2f_Form_%40.png`,
-          alt: "Banner configuration form with field validation and constraint hints",
-          width: 1600,
-          height: 1000,
-        },
-        {
-          src: `${ASSET}/6981e9e81717a1e543906356_Main%20list.png`,
-          alt: "Form context within the configurator hub overview",
-          width: 1600,
-          height: 1000,
-        },
+        { ...IMAGES.form1, alt: "Banner configuration form with field validation and constraint hints" },
+        { ...IMAGES.form2, alt: "Form context within the configurator hub overview" },
       ],
     },
     {
@@ -179,14 +145,7 @@ export const banerCaseStudy: CaseStudy = {
         "Supporting content variants required considering multiple UI behavior scenarios, showing consequences of configuration decisions, not only visual variations.",
         "Scenarios presented different active element sets and layout impacts, predicting system reactions before implementation while serving as a team communication tool.",
       ],
-      images: [
-        {
-          src: `${ASSET}/6981dd3ccc15f64048a0a762_Scenarios.png`,
-          alt: "Scenario matrix illustrating different active elements and their layout impact",
-          width: 1600,
-          height: 1000,
-        },
-      ],
+      images: [{ ...IMAGES.scenarios, alt: "Scenario matrix illustrating different active elements and their layout impact" }],
     },
     {
       heading: "Design documentation",
@@ -194,14 +153,7 @@ export const banerCaseStudy: CaseStudy = {
         "Documentation covered scenarios, states, dependencies, and edge cases in Figma as the development source of truth.",
         "It addressed system behavior and logic alongside layouts — essential for rules-based rather than visual-structure-only implementation.",
       ],
-      images: [
-        {
-          src: `${ASSET}/6981ed3bc033922ef31bd396_Documentation.png`,
-          alt: "Figma documentation page covering states, dependencies and edge cases",
-          width: 1600,
-          height: 1000,
-        },
-      ],
+      images: [{ ...IMAGES.docs, alt: "Figma documentation page covering states, dependencies and edge cases" }],
     },
     {
       heading: "Takeaways",
@@ -219,4 +171,138 @@ export const banerCaseStudy: CaseStudy = {
   ],
 };
 
-export const caseStudies: CaseStudy[] = [banerCaseStudy];
+const banerCaseStudyPl: CaseStudy = {
+  slug: "banner-configurator",
+  number: "01",
+  title: "BANNER",
+  subtitle: "Interfejs konfiguracyjny",
+  metaTitle: "Interfejs konfiguracji banerów — case study UX",
+  metaDescription:
+    "Case study UX interfejsu konfiguracji banerów: przełożenie potrzeb biznesowych na reguły systemowe, bezpieczne stany i kontrolowane zachowanie UI.",
+  sections: [
+    {
+      heading: "Kontekst",
+      paragraphs: [
+        "Zespół biznesowy potrzebował możliwości samodzielnego zarządzania banerami promocyjnymi na listingach ofert. Wcześniej każda zmiana wymagała zaangażowania dewelopera, co spowalniało operacje.",
+        "Banery działały w krytycznych obszarach produktu i musiały respektować istniejącą architekturę konfiguratora, Design System oraz ograniczenia SEO i wydajności.",
+      ],
+    },
+    {
+      heading: "Wyzwanie",
+      paragraphs: [
+        "Wyzwanie projektowe: stworzyć interfejs, który pozwoli użytkownikom bez technicznego przygotowania sterować dynamicznymi elementami UI — bez naruszania reguł systemu.",
+        "Rozwiązania musiały godzić szybkość biznesową, bezpieczeństwo operacyjne, integrację z istniejącą architekturą oraz zgodność z Design Systemem, SEO i wydajnością.",
+      ],
+    },
+    {
+      heading: "Praca w ramach ograniczeń",
+      paragraphs: [
+        "Interfejs musiał wpisać się w istniejący hub konfiguratora, korzystać z aktualnego Design Systemu i nie generować dodatkowej pracy po stronie developerów. Każde rozwiązanie wymagało przeglądu pod kątem SEO i wydajności listingów.",
+      ],
+    },
+    {
+      heading: "Rozumienie kontekstu operacyjnego",
+      paragraphs: [
+        "Analiza zarządzania banerami ujawniła, że główny problem nie leżał w warstwie wizualnej, lecz w braku kontroli i jasnego podziału odpowiedzialności.",
+        "Nie istniał żaden centralny przegląd, stany systemu były niezdefiniowane, nie było mechanizmów zapobiegania błędom, a każda zmiana wymagała udziału dewelopera.",
+      ],
+    },
+    {
+      heading: "Od zadań do logiki systemu",
+      paragraphs: [
+        "Problemy operacyjne przełożono na klarowniejszą strukturę systemu, definiując zachowania w różnych sytuacjach.",
+        "Określenie jasnych stanów, poprawnych przejść i reguł konfiguracyjnych zmniejszyło zależność od developerów i zwiększyło przewidywalność systemu dla użytkowników.",
+      ],
+      images: [{ ...IMAGES.flowchart, alt: "Flowchart mapujący stany systemu banerów i poprawne przejścia między nimi" }],
+    },
+    {
+      heading: "Projektowanie w ramach Design Systemu",
+      paragraphs: [
+        "Projekt od początku opierał się na istniejącym Design Systemie, rozszerzając go o nowe warianty dla scenariuszy, których system dotąd nie obsługiwał.",
+        "Rozwiązanie stało się naturalnym rozszerzeniem systemu — utrzymując spójność i przewidywalne zachowanie przy zarządzaniu dynamiczną treścią.",
+      ],
+      images: [
+        { ...IMAGES.ds1, alt: "Warianty komponentów Design Systemu użyte w konfiguratorze banerów" },
+        { ...IMAGES.ds2, alt: "Dodatkowe komponenty Design Systemu rozszerzone na nowe scenariusze" },
+      ],
+    },
+    {
+      heading: "Flowcharty jako definicja systemu",
+      paragraphs: [
+        "Diagramy definiowały zachowanie systemu, a nie tylko mapowały ekrany — pokazywały zależności między akcjami użytkownika, stanami banerów i konsekwencjami produktowymi.",
+        "Diagramy uwzględniały warunki, ograniczenia i wyjątki, pomagając developerom zrozumieć, co jest dozwolone, a co zablokowane w danym kontekście.",
+      ],
+      images: [{ ...IMAGES.flow1, alt: "Diagram przepływu interakcji z rozgałęzieniami warunkowymi i ograniczeniami" }],
+    },
+    {
+      heading: "Zapobieganie błędom i bezpieczeństwo operacyjne",
+      paragraphs: [
+        "Interfejs priorytetowo traktował redukcję błędów: dodatkowe potwierdzenie dla krytycznych akcji, blokowanie usuwania aktywnych elementów i wyraźne odróżnienie dezaktywacji od kasowania.",
+        "Walidacja formularza wykrywała nieprawidłowe dane (struktura URL, długość pola, format pliku) przed wprowadzeniem zmian na poziomie systemu — zapobiegając błędom, nie tylko je obsługując.",
+      ],
+      images: [{ ...IMAGES.errorPrev, alt: "Wzorce zapobiegania błędom: blokowanie destrukcyjnych akcji i walidacja inline" }],
+    },
+    {
+      heading: "Warstwy interfejsu systemu",
+      paragraphs: [
+        "Interfejs składa się z połączonych warstw obsługujących różne etapy procesu zarządzania — zamiast jednego zunifikowanego widoku.",
+      ],
+    },
+    {
+      heading: "Lista banerów — przegląd systemu",
+      paragraphs: [
+        "Widok listy pełni funkcję panelu kontrolnego: wyświetla wszystkie banery, ich stany i kontekst użycia — umożliwiając podejmowanie świadomych decyzji operacyjnych.",
+      ],
+      images: [{ ...IMAGES.banerList, alt: "Widok listy banerów z kolumnami statusu, zakresu i kontekstu użycia" }],
+    },
+    {
+      heading: "Formularz konfiguracyjny — definiowanie reguł",
+      paragraphs: [
+        "Formularz określa parametry działania banerów w ramach ograniczeń zdefiniowanych przez system — pełni funkcję interfejsu reguł, nie edytora treści.",
+      ],
+      images: [
+        { ...IMAGES.form1, alt: "Formularz konfiguracji banera z walidacją pól i podpowiedziami ograniczeń" },
+        { ...IMAGES.form2, alt: "Formularz w kontekście ogólnego widoku huba konfiguratora" },
+      ],
+    },
+    {
+      heading: "Podgląd — informacja zwrotna systemu",
+      paragraphs: [
+        "Warstwa podglądu dostarcza informacji zwrotnej: pokazuje, jak konfiguracja wpływa na rzeczywiste zachowanie UI w produkcie, redukując niepewność i niepożądane efekty.",
+      ],
+    },
+    {
+      heading: "Scenariusze — konsekwencje konfiguracji",
+      paragraphs: [
+        "Obsługa wariantów treści wymagała uwzględnienia wielu scenariuszy zachowania UI — pokazując konsekwencje decyzji konfiguracyjnych, a nie tylko wariacje wizualne.",
+        "Scenariusze prezentowały różne zestawy aktywnych elementów i ich wpływ na layout — pozwalając przewidzieć reakcje systemu przed implementacją i służąc jako narzędzie komunikacji w zespole.",
+      ],
+      images: [{ ...IMAGES.scenarios, alt: "Macierz scenariuszy ilustrująca różne zestawy aktywnych elementów i ich wpływ na layout" }],
+    },
+    {
+      heading: "Dokumentacja projektowa",
+      paragraphs: [
+        "Dokumentacja w Figmie obejmowała scenariusze, stany, zależności i edge cases — stanowiąc źródło prawdy dla dewelopmentu.",
+        "Dokumentowała zachowanie i logikę systemu równolegle z layoutami — co jest kluczowe przy implementacji opartej na regułach, a nie tylko strukturze wizualnej.",
+      ],
+      images: [{ ...IMAGES.docs, alt: "Strona dokumentacji w Figmie obejmująca stany, zależności i edge cases" }],
+    },
+    {
+      heading: "Wnioski",
+      paragraphs: [
+        "Narzędzia operacyjne wymagają projektowania reguł i ograniczeń — nie tylko ekranów.",
+        "Największa wartość leżała w przełożeniu potrzeb biznesowych na modele systemowe — umożliwiając użytkownikom samodzielną pracę przy jednoczesnej ochronie jakości produktu.",
+      ],
+      bullets: [
+        "UI działa jako warstwa kontrolna nad logiką systemu.",
+        "Walidacja danych i reguły tworzą fundament rozwiązania.",
+        "Ograniczenia systemowe umożliwiają poprawne działanie użytkownika.",
+        "Praca z Design Systemem zwiększa spójność i przewidywalność.",
+      ],
+    },
+  ],
+};
+
+export function getBanerCaseStudy(locale: Locale): CaseStudy {
+  return locale === "pl" ? banerCaseStudyPl : banerCaseStudyEn;
+}

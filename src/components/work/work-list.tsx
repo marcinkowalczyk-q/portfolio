@@ -1,21 +1,18 @@
-import { projects } from "@/lib/projects";
+import type { T } from "@/i18n";
+import type { Project } from "@/lib/projects";
 import ProjectCard from "./project-card";
 
-export default function WorkList() {
+type Props = { projects: Project[]; t: T };
+
+export default function WorkList({ projects, t }: Props) {
   return (
-    <section
-      id="work"
-      aria-labelledby="work-heading"
-      className="mx-auto max-w-6xl px-6 md:px-10"
-    >
+    <section id="work" aria-labelledby="work-heading">
       <h2 id="work-heading" className="sr-only">
         Selected work
       </h2>
-      <div>
-        {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
+      {projects.map((project) => (
+        <ProjectCard key={project.id} project={project} t={t} />
+      ))}
     </section>
   );
 }

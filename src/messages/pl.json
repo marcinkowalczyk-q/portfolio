@@ -1,0 +1,34 @@
+{
+  "nav.work": "Projekty",
+  "nav.about": "O mnie",
+  "nav.langPl": "PL",
+  "nav.langEn": "ENG",
+
+  "hero.eyebrow": "UX / UI Designer",
+  "hero.tagline": "Złożone produkty cyfrowe | Produkt i technologia | E-commerce",
+  "hero.bio": "Cześć, jestem Marcin! Projektuję złożone produkty cyfrowe i pomagam zamieniać skomplikowane problemy w przejrzyste rozwiązania.",
+
+  "about.eyebrow": "O mnie",
+  "about.heading": "Projektuję złożone systemy — od początku do końca.",
+  "about.para1": "Projektuję doświadczenia użytkowników dla złożonych produktów cyfrowych, skupiając się na rozwiązywaniu realnych problemów użytkowników i organizacji. Moja praca leży na styku UX, produktu i technologii — tam, gdzie rozwiązania muszą być realistyczne, skalowalne i wykonalne.",
+  "about.para2": "Specjalizuję się w strukturyzowaniu złożonych procesów, pracy z danymi i bliskiej współpracy z zespołami produktowymi i developerskimi. Najlepiej działam w niejednoznacznych środowiskach, gdzie kierunek nie jest oczywisty, a rozwiązania wyłaniają się przez eksplorację, hipotezy, iterację i walidację.",
+  "about.para3": "Szczególnie interesuje mnie zastosowanie AI w projektowaniu produktów — zwłaszcza w obszarze wspomagania decyzji, personalizacji i automatyzacji.",
+  "about.linkedin": "Mój profil LinkedIn",
+
+  "project.viewCaseStudy": "Zobacz case study →",
+  "project.mobilePrototype": "Prototyp mobilny ↗",
+  "project.desktopPrototype": "Prototyp desktopowy ↗",
+  "project.caseStudyInProgress": "Case study w przygotowaniu",
+  "project.statusNote": "Wybrane prototypy interaktywne dostępne w oficjalnej dokumentacji projektowej administracji.",
+
+  "cs.backToWork": "← Powrót do projektów",
+  "cs.label": "CASE STUDY",
+  "cs.meta.year": "Rok",
+  "cs.meta.role": "Rola",
+  "cs.meta.scope": "Zakres",
+  "cs.meta.team": "Zespół",
+  "cs.meta.designSystem": "Design System",
+  "cs.meta.status": "Status",
+
+  "footer.copy": "© 2026"
+}

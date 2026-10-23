@@ -23,7 +23,7 @@ src/
 │   ├── page.tsx               # home: nav + hero + work + footer
 │   ├── globals.css            # Tailwind import + design tokens (@theme)
 │   ├── about/page.tsx
-│   └── baner-configurator/page.tsx
+│   └── banner-configurator/page.tsx
 ├── components/
 │   ├── layout/                # nav.tsx, footer.tsx
 │   ├── hero/                  # hero.tsx
@@ -35,7 +35,7 @@ src/
     └── case-studies.ts        # case study content (Banner)
 ```
 
-Route is intentionally `/baner-configurator` (Polish spelling) to match the existing Webflow URL — change it later if the typo bothers you.
+Route is `/banner-configurator`. The old Webflow URL was `/baner-configurator` (one `n`); add a redirect if the old URL needs to keep working.
 
 ## Conventions
 
@@ -91,7 +91,7 @@ Route is intentionally `/baner-configurator` (Polish spelling) to match the exis
 - Run dev server, verify look-and-feel, capture issues
 - Replace remote Webflow CDN images with local files in `public/` (user will do this)
 - Consider: dedicated case study route for `panel-e-doreczenia` once content is ready
-- Consider: cleanup of the `/baner-configurator` URL (typo — drop one `n` if SEO impact is acceptable)
+- Consider: redirect from the old Webflow URL `/baner-configurator` → `/banner-configurator`
 - Lighthouse pass (target: 90+ across all metrics)
 
 ## Common commands

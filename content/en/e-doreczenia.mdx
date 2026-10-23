@@ -1,0 +1,129 @@
+---
+slug: e-doreczenia
+locale: en
+title: e-Delivery
+titleNote: (e-Doręczenia)
+eyebrow: Public digital service / Centralny Ośrodek Informatyki
+lede: A public mailbox service for communication with government offices, where even simple user actions can have formal consequences. My work focused mainly on the mailboxes dashboard, role and permission models, and settings, turning complex system logic into a clear and usable interface.
+heroImage: /images/e-doreczenia/hero.png
+card:
+  number: "02"
+  category: Public digital service
+  summary: A public digital service for legally binding communication with government institutions. I worked on translating complex mailbox logic, roles, permissions, and settings into a clear interface within the mObywatel ecosystem.
+  image: /images/edor.png
+meta:
+  year: "2023"
+  role: UX/UI Designer
+  scope:
+    - "Mailboxes dashboard: choosing the context between personal, business, shared mailboxes, and the coexistence of e-Delivery and ePUAP"
+    - "Roles and permissions: user, role, folder, and action models available within a mailbox"
+    - "Mailbox settings: notifications, subscriptions, and configuration at the individual mailbox level"
+  team: Collaboration with UX designers, business and system analysts, researchers, content designers, and development teams
+  designSystem: Initially based on custom UI solutions, later adapted to the style and patterns of mObywatel
+  status: Shipped to production
+figma:
+  desktop: "2004:938"
+  mobile: "2070:446"
+---
+
+## Context
+
+e-Delivery is a public digital service that enables legally binding electronic communication between citizens, companies, and public institutions.
+
+The service was designed to work as a digital equivalent of a registered letter with confirmation of receipt, while also using patterns familiar to users from email inboxes and the mObywatel ecosystem.
+
+## Challenge
+
+The biggest challenge was translating the complex logic of mailboxes, roles, and access permissions into an interface that users could understand without knowing the legal and system rules behind the service.
+
+The product had to help users understand which context they were acting in, which mailbox they had access to, what permissions they had, and what consequences their actions could have.
+
+## Working within constraints
+
+The project was developed as part of a public digital service, with constraints resulting from legal requirements, accessibility standards, integration with ePUAP, and the mObywatel ecosystem.
+
+During the project, the design direction also changed: the initial, more custom UI solutions had to be adapted to the style and patterns of mObywatel, while still preserving the complex logic of areas such as permissions, roles, and mailbox settings.
+
+---
+
+## Understanding the context of a public service
+
+The key problem was not the message inbox itself, but the control layer around it: selecting the right mailbox, recognizing the user’s role, accessing specific features, and understanding the consequences of performed actions.
+
+e-Delivery had to feel familiar, but it operated according to the rules of formal communication with public institutions, where message status, access, and permissions have real meaning.
+
+---
+
+## From a simple inbox to a complex access model
+
+At the interface level, e-Delivery could look like a regular message inbox. But behind simple user actions, there was much more complex logic: multiple mailbox types, different roles, delegated access, folders, settings, and the coexistence of e-Delivery and ePUAP.
+
+My work was not about defining this logic from scratch, but about understanding it together with analysts and translating it into the structure of the interface: users, mailboxes, roles, resources, and available actions. As a result, individual screens could follow one consistent service model instead of working as separate, disconnected views.
+
+![Dependency diagram linking users, mailboxes, roles, resources and available actions](/images/e-doreczenia/dependency-diagram.png)
+
+## Adapting to the mObywatel interface language
+
+The project required translating complex e-Delivery views into the interface language familiar from the mObywatel web ecosystem.
+
+It was not just about the visual layer. Views such as the dashboard, roles, permissions, and settings had to preserve their own system logic, while still looking and working consistently with other public services.
+
+**mObywatel**
+
+![mObywatel web interface used as the visual reference](/images/e-doreczenia/mobywatel-reference.png)
+
+**e-Delivery**
+
+![e-Delivery mailbox view adapted to mObywatel patterns](/images/e-doreczenia/inbox.png)
+
+## Dashboard as a way to choose mailbox context
+
+The dashboard served as an entry point to different communication contexts: personal, business, and shared mailboxes, as well as areas connected with e-Delivery and ePUAP. The goal was to make it clear which mailbox the user was using, on whose behalf they were acting, and what actions were available.
+
+![Mailboxes dashboard on desktop listing personal, business and shared mailboxes](/images/e-doreczenia/dashboard-desktop.png)
+![Mailboxes dashboard on a phone](/images/e-doreczenia/dashboard-mobile.png)
+
+## Permissions model as system logic
+
+In the permissions area, the most important part was understanding the relationship between the user, role, folder, and available actions. This logic was largely defined by the system, so the design work was about translating it into the interface structure rather than creating the rules from scratch.
+
+In practice, this meant breaking down a complex access model into elements that users could understand more easily: who has access, in which role, to which parts of the mailbox, and what they can do there. As a result, the permissions area could work as a control tool, not just a list of technical settings.
+
+![Folder configuration screen in the permissions section](/images/e-doreczenia/permissions-folder.png)
+
+**Folder configuration in the permissions section.** The folder was treated as a mailbox resource, so the system required defining which roles had access to reading and managing messages.
+
+## Managing users and access
+
+Mailbox access was not just a simple invitation to a shared tool. The user details view had to clearly show who had access, what their access status was, and which permissions came from their assigned role.
+
+![User details view with access status and role-based permissions](/images/e-doreczenia/user-details.png)
+
+## Mailbox settings as a security layer
+
+In e-Delivery, notifications were not just a minor user preference. They helped make sure users would not miss important correspondence assigned to a specific mailbox.
+
+![Mailbox notification settings](/images/e-doreczenia/notification-settings.png)
+
+## System interface layers
+
+e-Delivery was not a single simple flow, but a set of connected spaces that together formed the mailbox management layer. The dashboard helped users choose the right context, the mailbox supported everyday work with messages, permissions defined access, and settings controlled how the mailbox worked beyond the inbox itself.
+
+This structure mattered because users did not act in isolation. Every action depended on the mailbox context, role, access level, and configuration. That is why designing these areas required thinking about the interface as one connected system, not as a set of separate screens.
+
+![Mailbox management layer: screen 1 of 4](/images/e-doreczenia/layers-1.png)
+![Mailbox management layer: screen 2 of 4](/images/e-doreczenia/layers-2.png)
+![Mailbox management layer: screen 3 of 4](/images/e-doreczenia/layers-3.png)
+![Mailbox management layer: screen 4 of 4](/images/e-doreczenia/layers-4.png)
+
+---
+
+## Key takeaways
+
+Working on e-Delivery showed me that in complex public services, clarity often does not come from individual screens, but from the logic those screens need to represent.
+
+The biggest design value was translating predefined system rules, roles, and access dependencies into an interface that allowed users to act safely and intuitively within the right mailbox context.
+
+- Familiar patterns lower the entry barrier, but they are not enough to explain the formal logic of the service.
+- The roles and permissions model needs to be designed as a system of dependencies, not as a single screen.
+- Collaboration with analysts was crucial, because UI decisions were driven by legal and system logic.

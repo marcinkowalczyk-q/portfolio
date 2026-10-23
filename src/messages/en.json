@@ -1,0 +1,34 @@
+{
+  "nav.work": "Work",
+  "nav.about": "About",
+  "nav.langPl": "PL",
+  "nav.langEn": "ENG",
+
+  "hero.eyebrow": "UX / UI Designer",
+  "hero.tagline": "Complex Digital Products | Product & Technology",
+  "hero.bio": "Hi, I’m Marcin. I design complex digital products and help turn complicated problems into clear solutions.",
+
+  "about.eyebrow": "About",
+  "about.heading": "Designing complex systems, end-to-end.",
+  "about.para1": "I design user experiences for complex digital products, focusing on solving real problems for users and organizations. My work sits at the intersection of UX, product, and technology, where solutions need to be realistic, scalable, and feasible to implement.",
+  "about.para2": "My focus is on structuring complex processes, working with data, and collaborating closely with product and development teams. I'm most effective in ambiguous environments, where direction is not obvious and solutions emerge through exploration, hypotheses, iteration, and validation.",
+  "about.para3": "I'm particularly interested in applying artificial intelligence to product design, especially in decision support, personalization, and automation.",
+  "about.linkedin": "My LinkedIn profile",
+
+  "project.viewCaseStudy": "View case study →",
+  "project.mobilePrototype": "Mobile prototype ↗",
+  "project.desktopPrototype": "Desktop prototype ↗",
+  "project.caseStudyInProgress": "Case study in progress",
+  "project.statusNote": "Selected interactive prototypes available via official government design documentation.",
+
+  "cs.backToWork": "← Back to work",
+  "cs.label": "CASE STUDY",
+  "cs.meta.year": "Year",
+  "cs.meta.role": "Role",
+  "cs.meta.scope": "Scope",
+  "cs.meta.team": "Team",
+  "cs.meta.designSystem": "Design System",
+  "cs.meta.status": "Status",
+
+  "footer.copy": "© 2026"
+}

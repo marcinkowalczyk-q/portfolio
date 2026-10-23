@@ -1,0 +1,132 @@
+---
+slug: banner-configurator
+locale: en
+title: Dynamic Content Configurator
+eyebrow: Configurator for Wakacje.pl
+lede: An operational interface that lets business teams manage promotional banners in the listing on their own — without developer support, within the rules of the existing system.
+heroImage: /images/banner-configurator/hero.png
+card:
+  number: "01"
+  category: Configurator
+  summary: Operational interface for managing promotional banners within a production system. The project focused on translating business needs into system rules, safe states, and controlled UI behavior.
+  image: /images/configurator.png
+meta:
+  year: "2026"
+  role: Solo Product Designer
+  team: Worked with PO, devs, business stakeholders, UX writer
+  designSystem: Existing (DS Team), extended with new components
+  status: Shipped to production
+figma:
+  desktop: "2004:602"
+  mobile: "2004:750"
+---
+
+## Context
+
+Business team needed independent management of promotional banners within offer listings. Previously, changes required developer support, slowing operations.
+
+Banners operated in critical product areas and had to respect existing configurator architecture, Design System, and SEO/performance constraints.
+
+## Challenge
+
+Create an interface enabling non-technical users to control dynamic UI elements without violating system rules.
+
+Solutions required balancing business speed, operational safety, existing architecture integration, and DS/SEO/performance compliance.
+
+## Working within constraints
+
+The interface had to integrate into the existing configurator hub, leverage the current Design System, and avoid additional developer burden. All solutions required SEO and listing performance review.
+
+---
+
+## Understanding the operational context
+
+Analysis of banner management revealed the core issue wasn't visual design but lack of control and clear responsibility.
+
+No central overview existed, system states were undefined, mistake-prevention mechanisms were absent, and all changes required developer involvement.
+
+---
+
+## From tasks to system logic
+
+Operational issues were translated into a clearer system structure by defining behaviors across different situations.
+
+Identifying clear states, valid transitions, and configuration rules reduced developer dependency and increased predictability for users.
+
+![Diagram mapping banner states, valid transitions and configuration rules](/images/banner-configurator/system-logic.png)
+
+## Designing within the Design System
+
+The project used the existing Design System from inception, extending it with new variants for unsupported scenarios.
+
+The solution became a natural system extension, maintaining consistency and predictable behavior for dynamic content management.
+
+![Design System components used in the configurator](/images/banner-configurator/design-system-1.png)
+![New component variants added to the Design System for the configurator](/images/banner-configurator/design-system-2.png)
+
+## Interaction flows as system definition
+
+Flows defined system behavior rather than serving as visual screen maps, showing relationships between user actions, banner states, and product consequences.
+
+Diagrams included conditions, constraints, and exceptions, helping developers understand what is allowed or blocked in specific contexts.
+
+![Interaction flow diagram with conditions, constraints and exceptions](/images/banner-configurator/interaction-flows.png)
+
+## Error prevention & operational safety
+
+The interface prioritized mistake reduction through additional confirmation for critical actions, blocking active element removal, and clearly distinguishing deactivation from deletion.
+
+Form validation detected incorrect data before system-level changes — preventing rather than just handling errors.
+
+![Confirmation dialogs and validation states that prevent unsafe changes](/images/banner-configurator/error-prevention.png)
+
+## System interface layers
+
+The interface comprises connected layers supporting different stages of the management process rather than a single unified view.
+
+### Banner List (system overview)
+
+The list view acts as a control panel for the system. Users can see all banners, their states and usage context, which supports informed operational decisions. This view enables system control, not only content browsing.
+
+![Banner list showing every banner with its state and usage context](/images/banner-configurator/banner-list.png)
+
+### Configuration Form (rule definition)
+
+The form is used to define how the banner should work. Users set parameters and content, but always within constraints defined by the system logic. The form is not a content creator, but an interface for defining rules.
+
+![Banner configuration form with parameters and content fields](/images/banner-configurator/configuration-form.png)
+
+### Preview (system feedback)
+
+The preview acts as a feedback layer. It allows users to see how the configuration will affect the actual UI behavior in the product, reducing uncertainty and the risk of unwanted results.
+
+![Live preview of a configured banner inside the offer listing](/images/banner-configurator/preview.png)
+
+## Scenarios (behavior outcomes)
+
+Supporting content variants required considering multiple UI behavior scenarios, showing consequences of configuration decisions, not only visual variations.
+
+Scenarios presented different active element sets and layout impacts, predicting system reactions before implementation while serving as a team communication tool.
+
+![Listing layouts for different sets of active banners](/images/banner-configurator/scenarios.png)
+
+## Design documentation
+
+Documentation covered scenarios, states, dependencies, and edge cases in Figma as the development source of truth.
+
+It addressed system behavior and logic alongside layouts — essential for rules-based rather than visual-structure-only implementation.
+
+![Figma documentation of states, dependencies and edge cases](/images/banner-configurator/documentation.png)
+
+---
+
+## Key takeaways
+
+Operational tools require designing rules and constraints more than screens alone.
+
+The greatest value came from translating business needs into system models — enabling independent user work while protecting product quality.
+
+- UI acts as a control layer over system logic.
+- Data validation and rules form the solution foundation.
+- System constraints enable correct user action.
+- Design System work increases consistency and predictability.

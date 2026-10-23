@@ -1,0 +1,128 @@
+---
+slug: e-doreczenia
+locale: pl
+title: e-Doręczenia
+eyebrow: Usługa publiczna / Centralny Ośrodek Informatyki
+lede: Projekt publicznej skrzynki do komunikacji z urzędami, w której zwykłe akcje użytkownika mogą mieć formalne konsekwencje. Pracowałem głównie nad dashboardem skrzynek, modelem ról i uprawnień oraz ustawieniami, przekładając złożoną logikę systemową na czytelny interfejs.
+heroImage: /images/e-doreczenia/hero.png
+card:
+  number: "02"
+  category: Publiczna usługa cyfrowa
+  summary: "Publiczna usługa cyfrowa do prawnie wiążącej komunikacji z urzędami. Case study skupia się na warstwie zarządzania skrzynkami: kontekstach skrzynek, rolach, uprawnieniach i ustawieniach w ekosystemie mObywatela."
+  image: /images/edor.png
+meta:
+  year: "2023"
+  role: UX/UI Designer
+  scope:
+    - "Dashboard skrzynek (wybór kontekstu: skrzynka osobista, służbowa, udostępniona oraz współistnienie e-Doręczeń i ePUAP)"
+    - "Role i uprawnienia (model użytkowników, ról, folderów i akcji możliwych do wykonania w skrzynce)"
+    - "Ustawienia skrzynki (powiadomienia, subskrypcje i konfiguracja na poziomie konkretnej skrzynki)"
+  team: Współpraca z projektantami UX, analitykami biznesowo systemowymi, badaczami, content designerami i zespołami developerskimi
+  designSystem: Początkowo własne rozwiązania UI, później dostosowanie do stylistyki i wzorców mObywatela
+  status: Wdrożone produkcyjnie
+figma:
+  desktop: "2004:2539"
+  mobile: "2004:2700"
+---
+
+## Kontekst
+
+e-Doręczenia to publiczna usługa cyfrowa umożliwiająca prawnie wiążącą komunikację elektroniczną między obywatelami, firmami i instytucjami publicznymi.
+
+Usługa miała działać jak cyfrowy odpowiednik listu poleconego z potwierdzeniem odbioru, ale jednocześnie korzystać ze wzorców znanych użytkownikom ze skrzynek mailowych i ekosystemu mObywatela.
+
+## Wyzwanie projektowe
+
+Największym wyzwaniem było przełożenie złożonej logiki skrzynek, ról i dostępów na interfejs, który użytkownik może zrozumieć bez znajomości zasad prawnych i systemowych stojących za usługą.
+
+Projekt musiał pomagać użytkownikom rozpoznać, w jakim kontekście działają, do której skrzynki mają dostęp, jakie mają uprawnienia i jakie konsekwencje mogą mieć wykonywane akcje.
+
+## Projektowanie w ramach ograniczeń
+
+Projekt rozwijał się w ramach publicznej usługi cyfrowej, z ograniczeniami wynikającymi z wymogów prawnych, dostępności, integracji z ePUAP oraz ekosystemem mObywatela.
+
+W trakcie prac zmienił się też kierunek projektowy: początkowe, bardziej własne rozwiązania UI trzeba było dostosować do stylistyki i wzorców mObywatela, zachowując jednocześnie złożoną logikę obszarów takich jak uprawnienia, role i ustawienia skrzynki.
+
+---
+
+## Zrozumienie kontekstu usługi publicznej
+
+Kluczowym problemem nie była sama skrzynka wiadomości, ale warstwa kontroli wokół niej: wybór właściwej skrzynki, rozpoznanie roli użytkownika, dostęp do funkcji oraz konsekwencje wykonywanych akcji.
+
+e-Doręczenia musiały wyglądać znajomo, ale działały według zasad formalnej komunikacji z urzędami, gdzie status wiadomości, dostęp i uprawnienia mają realne znaczenie.
+
+---
+
+## Od prostego inboxa do złożonego modelu dostępu
+
+Na poziomie interfejsu e-Doręczenia mogły wyglądać jak zwykła skrzynka wiadomości. Jednak za prostymi akcjami użytkownika stała dużo bardziej złożona logika: wiele typów skrzynek, różne role, dostęp delegowany, foldery, ustawienia oraz współistnienie e-Doręczeń i ePUAP.
+
+Moja praca nie polegała na definiowaniu tej logiki od zera, ale na zrozumieniu jej razem z analitykami i przełożeniu na strukturę interfejsu: użytkowników, skrzynki, role, zasoby i dostępne akcje. Dzięki temu poszczególne ekrany mogły wynikać z jednego modelu działania usługi, zamiast funkcjonować jako odseparowane widoki.
+
+![Schemat zależności między użytkownikami, skrzynkami, rolami, zasobami i dostępnymi akcjami](/images/e-doreczenia/dependency-diagram.png)
+
+## Dostosowanie do języka interfejsu mObywatela
+
+Projekt wymagał dopasowania złożonych widoków e-Doręczeń do języka interfejsu znanego z webowego ekosystemu mObywatela.
+
+Nie chodziło wyłącznie o warstwę wizualną. Widoki takie jak dashboard, role, uprawnienia i ustawienia musiały zachować własną logikę systemową, a jednocześnie wyglądać i działać spójnie z pozostałymi usługami publicznymi.
+
+**mObywatel**
+
+![Webowy interfejs mObywatela użyty jako punkt odniesienia](/images/e-doreczenia/mobywatel-reference.png)
+
+**e-Doręczenia**
+
+![Widok skrzynki e-Doręczeń dostosowany do wzorców mObywatela](/images/e-doreczenia/inbox.png)
+
+## Dashboard jako wybór kontekstu skrzynki
+
+Dashboard pełnił rolę punktu wejścia do różnych kontekstów komunikacji: skrzynki osobistej, służbowej, udostępnionej oraz obszarów powiązanych z e-Doręczeniami i ePUAP. Celem było szybkie pokazanie, z jakiej skrzynki użytkownik korzysta, w czyim imieniu działa i jakie akcje są dostępne.
+
+![Dashboard skrzynek na desktopie z listą skrzynek osobistych, służbowych i udostępnionych](/images/e-doreczenia/dashboard-desktop.png)
+![Dashboard skrzynek na telefonie](/images/e-doreczenia/dashboard-mobile.png)
+
+## Model uprawnień jako logika systemu
+
+W obszarze uprawnień najważniejsze było zrozumienie relacji między użytkownikiem, rolą, folderem i akcjami możliwymi do wykonania. Ta logika była w dużej mierze narzucona systemowo, więc projektowanie polegało na przełożeniu jej na strukturę interfejsu, a nie na wymyślaniu zasad od zera.
+
+W praktyce oznaczało to rozdzielenie złożonego modelu dostępu na elementy, które użytkownik mógł łatwiej przeanalizować: kto ma dostęp, w jakiej roli, do których części skrzynki i co może w nich zrobić. Dzięki temu obszar uprawnień mógł działać jako narzędzie kontroli, a nie tylko lista technicznych ustawień.
+
+![Ekran konfiguracji folderu w sekcji uprawnień](/images/e-doreczenia/permissions-folder.png)
+
+**Konfiguracja folderu w sekcji uprawnień.** Folder był traktowany jako zasób skrzynki, dlatego system wymagał określenia, które role mają dostęp do czytania i zarządzania wiadomościami.
+
+## Zarządzanie użytkownikami i dostępem
+
+Dostęp do skrzynki nie działał jak zwykłe zaproszenie do współdzielonego narzędzia. Widok szczegółów użytkownika musiał jasno pokazywać, kto ma dostęp, jaki jest status tego dostępu i jakie uprawnienia wynikają z przypisanej roli.
+
+![Widok szczegółów użytkownika ze statusem dostępu i uprawnieniami wynikającymi z roli](/images/e-doreczenia/user-details.png)
+
+## Ustawienia skrzynki jako warstwa bezpieczeństwa
+
+W e-Doręczeniach powiadomienia nie były drobną preferencją użytkownika. Pomagały budować pewność, że użytkownik nie przegapi ważnej korespondencji przypisanej do konkretnej skrzynki.
+
+![Ustawienia powiadomień skrzynki](/images/e-doreczenia/notification-settings.png)
+
+## Warstwy interfejsu systemowego
+
+e-Doręczenia nie były jednym prostym flow, ale zestawem powiązanych przestrzeni, które wspólnie tworzyły warstwę zarządzania skrzynką. Dashboard pomagał wybrać właściwy kontekst, skrzynka obsługiwała codzienną pracę z wiadomościami, uprawnienia definiowały dostęp, a ustawienia kontrolowały sposób działania skrzynki poza samym inboxem.
+
+Ta struktura była ważna, bo użytkownik nie wykonywał działań w próżni. Każda akcja zależała od kontekstu skrzynki, roli, zakresu dostępu i konfiguracji. Dlatego projektowanie tych obszarów wymagało myślenia o interfejsie jako o połączonym systemie, a nie zestawie osobnych ekranów.
+
+![Warstwa zarządzania skrzynką: ekran 1 z 4](/images/e-doreczenia/layers-1.png)
+![Warstwa zarządzania skrzynką: ekran 2 z 4](/images/e-doreczenia/layers-2.png)
+![Warstwa zarządzania skrzynką: ekran 3 z 4](/images/e-doreczenia/layers-3.png)
+![Warstwa zarządzania skrzynką: ekran 4 z 4](/images/e-doreczenia/layers-4.png)
+
+---
+
+## Kluczowe wnioski
+
+Praca nad e-Doręczeniami pokazała mi, że w złożonych usługach publicznych największa trudność często nie leży w pojedynczych ekranach, ale w logice, którą te ekrany muszą reprezentować.
+
+Największą wartością projektową było przełożenie narzuconych zasad systemowych, ról i zależności dostępu na interfejs, który pozwala użytkownikom bezpiecznie i intuicyjnie działać w odpowiednim kontekście skrzynki.
+
+- Znane wzorce zmniejszają próg wejścia, ale nie wystarczają do wyjaśnienia formalnej logiki usługi.
+- Model ról i uprawnień musi być projektowany jako system zależności, nie pojedynczy ekran.
+- Współpraca z analitykami była kluczowa, bo decyzje UI wynikały z logiki prawnej i systemowej.

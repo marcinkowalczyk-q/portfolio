@@ -1,0 +1,130 @@
+---
+slug: banner-configurator
+locale: pl
+title: Dynamic Content Configurator
+eyebrow: Konfigurator dla Wakacje.pl
+lede: Interfejs operacyjny umożliwiający zespołom biznesowym samodzielne zarządzanie bannerami promocyjnymi bez angażowania developerów i bez naruszania zasad istniejącego systemu.
+heroImage: /images/banner-configurator/hero.png
+card:
+  number: "01"
+  category: Narzędzie konfiguracyjne dla Wakacje.pl
+  summary: Interfejs operacyjny do zarządzania bannerami promocyjnymi w systemie produkcyjnym. Projekt polegał na przełożeniu potrzeb biznesowych na reguły systemowe, bezpieczne stany i kontrolowane zachowanie interfejsu.
+  image: /images/configurator.png
+meta:
+  year: "2026"
+  role: Product Designer
+  team: Współpraca z PO, developerami, UX Writerem, interesariuszami biznesowymi oraz przyszłymi użytkownikami narzędzia po stronie wewnętrznych zespołów operacyjnych
+  designSystem: Istniejący Design System, rozszerzony o nowe komponenty i warianty
+  status: Wdrożone produkcyjnie
+figma:
+  desktop: "2004:2232"
+  mobile: "2004:2380"
+---
+
+## Kontekst
+
+Zespół biznesowy potrzebował samodzielnie zarządzać bannerami promocyjnymi na listingu ofert. Wcześniej każda zmiana wymagała wsparcia developerów, co spowalniało działania operacyjne.
+
+Bannery pojawiały się w kluczowych miejscach produktu i musiały działać w ramach istniejącej architektury konfiguratorów, Design Systemu oraz ograniczeń SEO i wydajnościowych.
+
+## Wyzwanie projektowe
+
+Zaprojektować interfejs, który pozwoli użytkownikom nietechnicznym kontrolować dynamiczne elementy UI bez naruszania zasad działania systemu.
+
+Rozwiązanie musiało łączyć szybkość pracy biznesu, bezpieczeństwo operacyjne, integrację z istniejącą architekturą oraz wymagania Design Systemu, SEO i wydajności.
+
+## Projektowanie w ramach ograniczeń
+
+Interfejs musiał zostać zintegrowany z istniejącym hubem konfiguratorów, korzystać z obecnego Design Systemu i nie generować dodatkowego obciążenia developerskiego.
+
+Każde rozwiązanie wymagało uwzględnienia wpływu na SEO, listing ofert oraz wydajność produktu.
+
+---
+
+## Zrozumienie kontekstu działania systemu
+
+Analiza sposobu zarządzania bannerami pokazała, że głównym problemem nie był wygląd interfejsu, ale brak kontroli i jasno określonej odpowiedzialności.
+
+Nie istniał centralny widok bannerów, stany systemu nie były zdefiniowane, brakowało mechanizmów zapobiegania błędom, a każda zmiana wymagała zaangażowania developera.
+
+---
+
+## Od zadań do logiki systemu
+
+Problemy operacyjne zostały przełożone na bardziej uporządkowaną strukturę systemu poprzez zdefiniowanie jego zachowania w różnych sytuacjach.
+
+Schemat pomagał opisać flow, punkty styku między elementami systemu oraz konsekwencje poszczególnych akcji użytkownika. To było kluczowe, bo narzędzie miało umożliwiać samodzielną konfigurację bannerów przez biznes, bez udziału developera.
+
+![Schemat stanów bannera, dozwolonych przejść i reguł konfiguracji](/images/banner-configurator/system-logic.png)
+
+## Projektowanie w ramach Design Systemu
+
+Projekt korzystał z istniejącego Design Systemu, ale wymagał rozszerzenia go o nowe warianty i stany dla scenariuszy, których wcześniej nie obsługiwał. Dzięki temu konfigurator mógł zachować spójność z resztą produktu, mimo że wprowadzał nowe reguły, zależności i bardziej złożone scenariusze zarządzania treścią.
+
+![Komponenty Design Systemu użyte w konfiguratorze](/images/banner-configurator/design-system-1.png)
+![Nowe warianty komponentów dodane do Design Systemu na potrzeby konfiguratora](/images/banner-configurator/design-system-2.png)
+
+## Flow interakcji jako opis logiki systemu
+
+Flow nie służyły jedynie jako mapa ekranów. Opisywały zachowanie systemu, pokazując zależności między akcjami użytkownika, stanami bannera i konsekwencjami dla produktu.
+
+Diagramy uwzględniały warunki, ograniczenia i wyjątki, dzięki czemu zespół developerski mógł łatwiej zrozumieć, co jest dozwolone lub blokowane w konkretnych kontekstach.
+
+![Diagram flow interakcji z warunkami, ograniczeniami i wyjątkami](/images/banner-configurator/interaction-flows.png)
+
+## Zapobieganie błędom i bezpieczeństwo operacyjne
+
+Interfejs ograniczał ryzyko błędnych zmian przez dodatkowe potwierdzenia dla krytycznych akcji, blokowanie usuwania aktywnych elementów oraz jasne rozróżnienie między wyłączeniem a usunięciem.
+
+Walidacja formularza wykrywała błędne dane przed zapisaniem zmian w systemie. Celem było nie tylko obsłużenie błędów, ale przede wszystkim zapobieganie im, zanim wpłyną na działanie produktu.
+
+![Okna potwierdzeń i stany walidacji chroniące przed niebezpiecznymi zmianami](/images/banner-configurator/error-prevention.png)
+
+## Warstwy interfejsu systemowego
+
+Interfejs został zaprojektowany jako zestaw powiązanych warstw wspierających różne etapy zarządzania, zamiast jednego, złożonego widoku.
+
+### Lista bannerów (przegląd systemu)
+
+Widok listy pełni rolę panelu kontroli systemu. Użytkownik widzi wszystkie bannery, ich stany oraz kontekst użycia, co wspiera podejmowanie decyzji operacyjnych. To nie jest tylko lista treści, ale narzędzie do zarządzania systemem.
+
+![Lista bannerów ze stanem i kontekstem użycia każdego z nich](/images/banner-configurator/banner-list.png)
+
+### Formularz konfiguracji (definiowanie reguł)
+
+Formularz służy do określenia zasad działania bannera. Użytkownik definiuje parametry i treść, ale zawsze w ramach ograniczeń wynikających z logiki systemu. To nie jest kreator treści, lecz interfejs do definiowania reguł.
+
+![Formularz konfiguracji bannera z polami parametrów i treści](/images/banner-configurator/configuration-form.png)
+
+### Podgląd (informacja zwrotna systemu)
+
+Podgląd pełni rolę warstwy informacji zwrotnej. Pozwala zobaczyć, jak konfiguracja wpłynie na rzeczywiste zachowanie interfejsu w produkcie, zmniejszając niepewność i ryzyko niepożądanych efektów.
+
+![Podgląd skonfigurowanego bannera na listingu ofert](/images/banner-configurator/preview.png)
+
+## Scenariusze (zachowanie systemu)
+
+Różne warianty treści wpływały nie tylko na wygląd bannera, ale też na jego zachowanie w systemie. Scenariusze pomagały zobaczyć, jakie będą efekty konfiguracji w praktyce i przewidzieć reakcję interfejsu jeszcze przed wdrożeniem.
+
+![Układy listingu dla różnych zestawów aktywnych bannerów](/images/banner-configurator/scenarios.png)
+
+## Dokumentacja projektowa
+
+Dokumentacja w Figmie obejmowała scenariusze, stany, zależności i przypadki brzegowe, dzięki czemu mogła pełnić rolę źródła wiedzy dla zespołu developerskiego.
+
+Opisywała nie tylko układy ekranów, ale też zachowanie i logikę systemu, co było kluczowe przy wdrożeniu narzędzia opartego na regułach konfiguracji.
+
+![Dokumentacja w Figmie: stany, zależności i przypadki brzegowe](/images/banner-configurator/documentation.png)
+
+---
+
+## Kluczowe wnioski
+
+Narzędzia operacyjne wymagają projektowania reguł i ograniczeń, a nie tylko samych ekranów.
+
+Największą wartością projektu było przełożenie potrzeb biznesowych na model systemowy, który pozwala użytkownikom działać samodzielnie, a jednocześnie chroni jakość produktu.
+
+- Interfejs nie tylko prezentuje dane, ale aktywnie kontroluje dostępne działania i ich konsekwencje.
+- Walidacje i reguły są fundamentem bezpiecznego rozwiązania.
+- Ograniczenia systemowe pomagają prowadzić użytkownika do poprawnych działań.
+- Praca z Design Systemem zwiększa spójność i przewidywalność produktu.

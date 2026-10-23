@@ -1,95 +1,121 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
+import type { T } from "@/i18n";
 
-type Props = { project: Project };
+type Props = { project: Project; t: T };
 
-export default function ProjectCard({ project }: Props) {
-  return (
-    <article
-      aria-labelledby={`project-${project.id}-title`}
-      className="grid gap-8 border-t border-[var(--color-border)] py-16 md:grid-cols-12 md:gap-12 md:py-24"
-    >
-      <header className="md:col-span-5">
-        <p className="text-sm font-medium tracking-[0.2em] text-[var(--color-fg-muted)]">
-          {project.number} / {project.category.toUpperCase()}
+export default function ProjectCard({ project, t }: Props) {
+  const textCol = (
+    <div className="md:w-[460px] md:shrink-0">
+      <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-fg-muted)]">
+        {project.number} / {project.category.toUpperCase()}
+      </p>
+      <h2
+        id={`project-${project.id}-title`}
+        className="mt-2 text-[32px] leading-[1.2] tracking-tight text-[var(--color-fg)] md:text-[40px] md:leading-[48px]"
+      >
+        {project.title}
+      </h2>
+      <p className="mt-5 text-base leading-relaxed text-[var(--color-fg-muted)]">
+        {project.description}
+      </p>
+
+      {project.status && (
+        <p className="mt-6 text-sm font-medium text-[var(--color-fg)]">
+          {project.status}
         </p>
-        <h2
-          id={`project-${project.id}-title`}
-          className="mt-4 text-3xl tracking-tight text-[var(--color-fg)] md:text-4xl"
-        >
-          {project.title}
-        </h2>
-        <p className="mt-6 text-base leading-relaxed text-[var(--color-fg-muted)] md:text-lg">
-          {project.description}
+      )}
+      {project.statusNote && (
+        <p className="mt-2 text-sm text-[var(--color-fg-muted)]">
+          {project.statusNote}
         </p>
+      )}
 
-        {project.status && (
-          <p className="mt-6 text-sm font-medium text-[var(--color-fg)]">
-            {project.status}
-          </p>
-        )}
-        {project.statusNote && (
-          <p className="mt-2 text-sm text-[var(--color-fg-muted)]">
-            {project.statusNote}
-          </p>
-        )}
-
-        <div className="mt-8 flex flex-wrap gap-4">
-          {project.primaryLink && (
-            <Link
-              href={project.primaryLink.href}
-              className="inline-flex items-center gap-2 border-b border-[var(--color-fg)] pb-1 text-sm font-medium text-[var(--color-fg)] transition-opacity hover:opacity-70"
-            >
-              {project.primaryLink.label}
-              <span aria-hidden="true">&rarr;</span>
-            </Link>
-          )}
-          {project.secondaryLinks?.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`${link.label} (opens in a new tab)`}
-              className="inline-flex items-center gap-2 border-b border-[var(--color-fg-muted)] pb-1 text-sm text-[var(--color-fg-muted)] transition-colors hover:text-[var(--color-fg)] hover:border-[var(--color-fg)]"
-            >
-              {link.label}
-              <span aria-hidden="true">↗</span>
-            </a>
-          ))}
-        </div>
-      </header>
-
-      <div className="md:col-span-7">
-        {project.primaryLink ? (
+      <div className="mt-8 flex flex-wrap gap-4">
+        {project.primaryLink && (
           <Link
             href={project.primaryLink.href}
-            aria-label={`Open ${project.title} case study`}
-            className="block overflow-hidden rounded-md bg-[var(--color-surface-2)]"
+            className="inline-flex items-center rounded-[6px] border border-[var(--color-fg-subtle)] px-[18px] py-[10px] text-sm font-medium text-[var(--color-fg)] transition-opacity hover:opacity-70"
           >
-            <ProjectImage project={project} />
+            {project.primaryLink.label}
           </Link>
-        ) : (
-          <div className="overflow-hidden rounded-md bg-[var(--color-surface-2)]">
-            <ProjectImage project={project} />
-          </div>
         )}
+        {project.secondaryLinks?.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${link.label} (opens in a new tab)`}
+            className="inline-flex items-center rounded-[6px] border border-[var(--color-fg-subtle)] px-[18px] py-[10px] text-sm font-medium text-[var(--color-fg)] transition-opacity hover:opacity-70"
+          >
+            {link.label}
+          </a>
+        ))}
       </div>
-    </article>
+    </div>
   );
-}
 
-function ProjectImage({ project }: Props) {
-  return (
+  const imageContent = project.primaryLink ? (
+    <Link
+      href={project.primaryLink.href}
+      aria-label={`Open ${project.title} case study`}
+      className="block"
+    >
+      <Image
+        src={project.image.src}
+        alt={project.image.alt}
+        width={project.image.width}
+        height={project.image.height}
+        className="h-auto w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
+        sizes={project.featured ? "889px" : "(min-width: 768px) 55vw, 100vw"}
+        priority={project.number === "01"}
+      />
+    </Link>
+  ) : (
     <Image
       src={project.image.src}
       alt={project.image.alt}
       width={project.image.width}
       height={project.image.height}
-      className="h-auto w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
-      sizes="(min-width: 768px) 60vw, 100vw"
-      priority={project.number === "01"}
+      className="h-auto w-full object-contain"
+      sizes="(min-width: 768px) 55vw, 100vw"
     />
+  );
+
+  if (project.featured) {
+    return (
+      <article
+        aria-labelledby={`project-${project.id}-title`}
+        className="w-full bg-[var(--color-bg-featured)] py-24"
+      >
+        <div className="mx-auto flex max-w-[1180px] flex-col gap-8 px-6 md:flex-row md:items-center md:gap-12 md:px-0">
+          {textCol}
+          <div className="md:flex-1">{imageContent}</div>
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <article
+      aria-labelledby={`project-${project.id}-title`}
+      className="py-24"
+    >
+      <div className="mx-auto flex max-w-[1180px] flex-col gap-8 px-6 md:flex-row md:items-center md:gap-12 md:px-0">
+        {project.imageFirst ? (
+          <>
+            <div className="md:flex-1">{imageContent}</div>
+            {textCol}
+          </>
+        ) : (
+          <>
+            {textCol}
+            <div className="md:flex-1">{imageContent}</div>
+          </>
+        )}
+      </div>
+    </article>
   );
 }
