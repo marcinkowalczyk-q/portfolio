@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Inter, Kadwa } from "next/font/google";
+import { Inter, Bitter } from "next/font/google";
 import "../globals.css";
 import { isValidLocale, defaultLocale, type Locale } from "@/i18n";
 
+// Both are variable fonts, so no weight list is needed
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400", "500"],
   display: "swap",
 });
 
-const kadwa = Kadwa({
-  variable: "--font-kadwa",
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const bitter = Bitter({
+  variable: "--font-bitter",
+  subsets: ["latin", "latin-ext"],
   display: "swap",
 });
 
@@ -52,7 +51,7 @@ export default async function LocaleLayout({
   const locale: Locale = isValidLocale(rawLocale) ? rawLocale : defaultLocale;
 
   return (
-    <html lang={locale} className={`${inter.variable} ${kadwa.variable} h-full antialiased`}>
+    <html lang={locale} className={`${inter.variable} ${bitter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

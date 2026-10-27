@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
+/* Tokens — source of truth: DESIGN.md */
 @theme {
   /* Colors */
   --color-bg: #ffffff;
   --color-fg: #151515;
+  --color-fg-primary: #202226;
+  --color-fg-secondary: #4b5160;
+  --color-fg-tertiary: #676f83; /* was #80889b — failed 4.5:1 */
+  --color-border: #dbdbdb;
+  --color-border-subtle: #e5e9f2;
+  --color-divider: #cbd3e4;
+  --color-control-border: #80889b; /* ≥3:1 on white and surface */
+  --color-surface: #fafbfd;
+  --color-surface-muted: #f6f8fa;
+  --color-surface-toggle: #f2f4f9;
+  --color-project-configurator: #e2e8ed;
+  --color-project-edelivery: #f2f9ff;
+  --color-focus: #151515;
+
+  /* Legacy aliases used by current components — remove when they are rebuilt */
   --color-fg-hero: #202226;
   --color-fg-muted: #4b5160;
-  --color-fg-subtle: #80889b;
-  --color-border: #dbdbdb;
-  --color-border-nav: #e1e5ef;
-  --color-divider: #c3c7d2;
-  --color-surface: #fafafa;
+  --color-fg-subtle: #676f83;
+  --color-border-nav: #e5e9f2;
   --color-surface-2: #f3f3f3;
-  --color-surface-footer: rgba(237, 240, 247, 0.3);
-  --color-accent: #a6b4d7;
-  --color-accent-toggle: rgba(166, 180, 215, 0.15);
-  --color-accent-featured: rgba(166, 180, 215, 0.06);
+  --color-surface-footer: #fafbfd;
   --color-bg-featured: rgba(166, 180, 215, 0.12);
+  --color-accent-toggle: #f2f4f9;
 
   /* Fonts */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-kadwa), Georgia, serif;
+  --font-serif: var(--font-bitter), Georgia, serif;
+
+  /* Type scale (mobile `-sm` below md) */
+  --text-display: 4rem;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.01em;
+  --text-display--font-weight: 500;
+  --text-display-sm: 3rem;
+  --text-display-sm--line-height: 1.2;
+  --text-display-sm--letter-spacing: -0.01em;
+  --text-display-sm--font-weight: 500;
+
+  --text-h1: 2.5rem;
+  --text-h1--line-height: 1.2;
+  --text-h1--letter-spacing: -0.01em;
+  --text-h1--font-weight: 500;
+  --text-h1-sm: 2rem;
+  --text-h1-sm--line-height: 1.25;
+  --text-h1-sm--letter-spacing: -0.01em;
+  --text-h1-sm--font-weight: 500;
+
+  --text-h2: 2rem;
+  --text-h2--line-height: 1.5;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h2--font-weight: 500;
+  --text-h2-sm: 1.5rem;
+  --text-h2-sm--line-height: 1.5;
+  --text-h2-sm--letter-spacing: -0.01em;
+  --text-h2-sm--font-weight: 500;
+
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.4;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 500;
+
+  --text-label-lg: 1.125rem;
+  --text-label-lg--line-height: 1.67;
+  --text-label-lg--letter-spacing: -0.01em;
+  --text-label-lg--font-weight: 500;
+  --text-label: 1rem;
+  --text-label--line-height: 1.875;
+  --text-label--letter-spacing: -0.01em;
+  --text-label--font-weight: 500;
+  --text-label-sm: 0.875rem;
+  --text-label-sm--line-height: 1.7;
+  --text-label-sm--letter-spacing: -0.01em;
+  --text-label-sm--font-weight: 500;
+
+  --text-lede: 1.5rem;
+  --text-lede--line-height: 1.5;
+  --text-lede--font-weight: 300;
+  --text-lede-sm: 1.125rem;
+  --text-lede-sm--line-height: 1.5;
+  --text-lede-sm--font-weight: 300;
+
+  --text-body: 1rem;
+  --text-body--line-height: 1.6;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.6;
+
+  --text-nav: 0.875rem;
+  --text-nav--line-height: 1.3;
+  --text-nav--letter-spacing: -0.01em;
+  --text-nav--font-weight: 500;
+
+  --text-eyebrow: 0.75rem;
+  --text-eyebrow--line-height: 1.5;
+  --text-eyebrow--letter-spacing: 0.2em;
+
+  --text-small: 0.8125rem;
+  --text-small--line-height: 1.5;
+
+  /* Layout */
+  --container-text: 46.25rem; /* 740px */
+  --container-figure: 49.375rem; /* 790px */
+  --container-wide: 61.25rem; /* 980px */
+  --container-content: 63.375rem; /* 1014px */
+  --container-page: 71.25rem; /* 1140px */
+  --spacing-section: 5.625rem; /* 90px desktop section gap */
+  --radius-card: 0.75rem; /* 12px meta card */
 }
 
 :root {
@@ -36,7 +126,7 @@ html {
 
 body {
   background: var(--color-bg);
-  color: var(--color-fg-muted);
+  color: var(--color-fg-secondary);
   font-family: var(--font-sans);
   font-feature-settings: "ss01", "cv11";
 }
@@ -47,9 +137,9 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--color-fg);
+  color: var(--color-fg-primary);
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 
@@ -59,7 +149,7 @@ a {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-fg);
+  outline: 2px solid var(--color-focus);
   outline-offset: 3px;
   border-radius: 2px;
 }

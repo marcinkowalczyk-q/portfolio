@@ -9,7 +9,7 @@ Refactor of the existing Webflow portfolio (`https://portfolio-marcin-kowalczyk.
 - **Next.js 16.2.4** (App Router, React 19, Turbopack build) — note: scaffolded as the latest, but App Router conventions match Next 15
 - **TypeScript** — `strict: true`
 - **Tailwind CSS v4** — config lives in `src/app/globals.css` via the `@theme` directive (no `tailwind.config.ts` in v4)
-- **next/font** — Inter Tight (single family used by Webflow source)
+- **next/font** — Inter (body) + Bitter (headings), both variable
 - **next/image** — all images, with `remotePatterns` for `cdn.prod.website-files.com`
 - ESLint (next defaults), no test setup yet
 - Deploy target: Vercel (zero config)
@@ -52,17 +52,9 @@ Route is `/banner-configurator`. The old Webflow URL was `/baner-configurator` (
 
 - Commit directly to the current branch unless I ask for a new one.
 
-## Design tokens (extracted from Webflow CSS)
+## Design system
 
-| Token | Value | Use |
-|---|---|---|
-| `--color-bg` | `#ffffff` | Page background |
-| `--color-fg` | `#151515` | Headings, strong text |
-| `--color-fg-muted` | `#707070` | Body copy |
-| `--color-fg-subtle` | `#838383` | Tertiary text |
-| `--color-border` | `#dbdbdb` | Dividers |
-| `--color-surface` | `#fafafa` | Subtle surfaces |
-| `--color-surface-2` | `#f3f3f3` | Image backdrops |
+See **DESIGN.md**: typography scale, colours (WCAG 2.2 AA audited), spacing, layout, components and the base component list. Tokens live in `src/app/globals.css` `@theme`; DESIGN.md is their source of truth.
 
 ## Improvements over Webflow source
 
@@ -72,7 +64,7 @@ Route is `/banner-configurator`. The old Webflow URL was `/baner-configurator` (
 - External links carry `rel="noopener noreferrer"` and `aria-label` indicating new tab
 - Visible focus ring (`:focus-visible`) on all interactive elements
 - Metadata API: title template, description, OG/Twitter tags
-- `next/font` for Inter Tight (no extra `<link>` request to Google)
+- `next/font` for Inter + Bitter (no extra `<link>` request to Google)
 - `next/image` for everything (auto srcset / lazy loading)
 
 ## Status
@@ -80,7 +72,7 @@ Route is `/banner-configurator`. The old Webflow URL was `/baner-configurator` (
 ### Done
 - Project scaffolded (Next.js 16, Tailwind v4, TS strict)
 - Design tokens in `globals.css`
-- Inter Tight via `next/font`
+- Inter + Bitter via `next/font`
 - Homepage: nav, hero, work list, two project cards, footer
 - About page with portrait + bio + LinkedIn
 - Banner Configurator case study (15 sections, 11 figures)
