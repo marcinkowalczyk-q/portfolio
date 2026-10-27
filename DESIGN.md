@@ -149,7 +149,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | **Hero** | Centred stack: eyebrow → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile) → lede (`lede`, max 680px). |
 | **Project card** | Text column (eyebrow with bold number "01", `h1` title, `body` summary, CTA) + visual. Desktop: 460px text + 672px visual, sides alternate, first card on `surface`. Mobile: stacked, text first. |
 | **CTA (secondary button)** | 1px `control-border`, 6px radius, 10/18px padding, Inter 500 14px, `fg`, arrow "→" as part of the label. |
-| **Case study header** | Project-tinted background, eyebrow + `h1` + lede in a 460px column. Visual on the right (see Changes). |
+| **Case study header** | Project-tinted background, eyebrow + `h1` + lede in a 460px column. Visual on the right (see Changes). When the frontmatter has `prototypes` (e-Delivery: desktop + mobile Axure URLs), show them below the lede as external `TextLink`s: "Zobacz prototyp w Axure" / "View the Axure prototype", with a desktop / mobile qualifier when there are two. Labels go in `src/messages/*.json`. |
 | **Meta card** | 1px `divider` border, 12px radius, 12/16px padding; rows of label (112px, `label`) + value (`body`). Scope renders as a bullet list. |
 | **Intro row** | Label (160px, `label-lg`) + text (752px). Stacks on mobile. |
 | **Section** | `h2` + paragraphs (+ lists) + figure(s), inside `container-text`; figures widen to `container-figure` / `container-wide`. Dividers (`divider`, 740px) between topic groups. |
@@ -230,7 +230,7 @@ No implementation yet; this is the build list. "Existing" means a file in `src/c
 | 13 | `ProjectCard` | Homepage card | Reads `card:` frontmatter, alternating layout, uses `BrowserFrame` | existing `work/project-card.tsx` |
 | 14 | `ProjectList` | Ordered cards | Order: e-Delivery, Configurator; numbering by position | existing `work/work-list.tsx` |
 | 15 | `HowIWork` | Process strip | `h2` + 3–4 items, responsive grid | new |
-| 16 | `CaseStudyHeader` | Case study top | Tinted bg per project, eyebrow, `h1`, lede, `BrowserFrame` | existing `case-study/case-study-header.tsx` |
+| 16 | `CaseStudyHeader` | Case study top | Tinted bg per project, eyebrow, `h1`, lede, `BrowserFrame`, optional Axure prototype links from frontmatter `prototypes` | existing `case-study/case-study-header.tsx` |
 | 17 | `MetaList` | Year / role / scope / team / DS / status | `<dl>`, labels from `cs.meta.*`, scope as `<ul>` | new |
 | 18 | `IntroRow` | Context / Challenge / Constraints | Label + text, stacks on mobile | new |
 | 19 | `CaseStudySection` | H2 block | Wraps MDX section, container widths | existing `case-study/case-study-section.tsx` |
