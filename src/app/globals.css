@@ -7,7 +7,7 @@
   --color-fg: #151515;
   --color-fg-primary: #202226;
   --color-fg-secondary: #4b5160;
-  --color-fg-tertiary: #676f83; /* was #80889b — failed 4.5:1 */
+  --color-fg-tertiary: #60687a; /* was #80889b — failed 4.5:1; ≥4.52:1 on every background */
   --color-border: #dbdbdb;
   --color-border-subtle: #e5e9f2;
   --color-divider: #cbd3e4;
@@ -22,7 +22,7 @@
   /* Legacy aliases used by current components — remove when they are rebuilt */
   --color-fg-hero: #202226;
   --color-fg-muted: #4b5160;
-  --color-fg-subtle: #676f83;
+  --color-fg-subtle: #60687a;
   --color-border-nav: #e5e9f2;
   --color-surface-2: #f3f3f3;
   --color-surface-footer: #fafbfd;

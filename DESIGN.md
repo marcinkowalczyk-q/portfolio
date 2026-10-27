@@ -57,7 +57,7 @@ Rules:
 | `--color-fg` | `#151515` | Strongest text, nav, CTA label, focus ring | — |
 | `--color-fg-primary` | `#202226` | Headings | — |
 | `--color-fg-secondary` | `#4b5160` | Body copy | — |
-| `--color-fg-tertiary` | `#676f83` | Meta, captions, inactive toggle, footer © | **was `#80889b`** (contrast) |
+| `--color-fg-tertiary` | `#60687a` | Meta, captions, inactive toggle, footer © | **was `#80889b`** (contrast) |
 | `--color-border` | `#dbdbdb` | Image frames, footer top border | — |
 | `--color-border-subtle` | `#e5e9f2` | Nav bottom border | merged `rgba(203,211,228,.5)` and `#e4e7f0` |
 | `--color-divider` | `#cbd3e4` | Section dividers, meta card border | merged `#c3c7d2` (hero divider) |
@@ -84,20 +84,20 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | `#707070` title suffix (24px, large) | 4.95 ✅ | 4.78 ✅ | 4.76 ✅ | 4.49 ✅ | 4.01 ✅ | 4.66 ✅ | 4.65 ✅ |
 | **`#80889b` fg/tertiary** | **3.55 ❌** | **3.43 ❌** | **3.42 ❌** | **3.22 ❌** | **2.87 ❌** | **3.34 ❌** | **3.34 ❌** |
 | **`#838383` old code `fg-subtle`** | **3.79 ❌** | **3.66 ❌** | **3.65 ❌** | **3.44 ❌** | **3.07 ❌** | **3.57 ❌** | **3.56 ❌** |
+| `#60687a` **new fg-tertiary** | 5.59 ✅ | 5.40 ✅ | 5.37 ✅ | 5.07 ✅ | 4.52 ✅ | 5.26 ✅ | 5.25 ✅ |
 
 **Failing pairs actually in the design**
 
 | Element | Pair | Ratio | Needs | Fix |
 |---|---|---|---|---|
-| Inactive language toggle ("PL"), 12px | `#80889b` on toggle `#f2f4f9` | 3.22 | 4.5 | `#676f83` → **4.56** |
-| Footer "© 2026", 13px | `#80889b` on footer `#fafafd` | 3.42 | 4.5 | `#676f83` → **4.84** |
-| Any tertiary text on white (meta, captions) | `#80889b` on `#fff` | 3.55 | 4.5 | `#676f83` → **5.03** |
-| Legacy `--color-fg-subtle` in code | `#838383` on `#fff` | 3.79 | 4.5 | replaced by `#676f83` (closest same-hue grey would be `#767676` → 4.54) |
+| Inactive language toggle ("PL"), 12px | `#80889b` on toggle `#f2f4f9` | 3.22 | 4.5 | `#60687a` → **5.07** |
+| Footer "© 2026", 13px | `#80889b` on footer `#fafafd` | 3.42 | 4.5 | `#60687a` → **5.37** |
+| Any tertiary text on white (meta, captions) | `#80889b` on `#fff` | 3.55 | 4.5 | `#60687a` → **5.59** |
+| Legacy `--color-fg-subtle` in code | `#838383` on `#fff` | 3.79 | 4.5 | replaced by `#60687a` → **5.59** |
 | CTA button outline | `rgba(128,136,155,.8)` = `#99a0af` on card `#fafbfd` | 2.54 | 3.0 | `#80889b` solid → **3.43** (3.55 on white) |
 | CTA button outline (PL variant) | `rgba(128,136,155,.5)` = `#c0c3cd` on white | 1.76 | 3.0 | same, `#80889b` |
 
-`#676f83` is the closest darker step of `#80889b` (same hue and saturation, lower lightness) that passes 4.5:1 on every background tertiary text is used on.
-**Restriction:** on the Configurator header `#e2e8ed` it reaches only 4.07, so put tertiary text there in `fg-secondary` instead. For a tertiary that passes on *every* background, use `#60687a` (≥ 4.52 everywhere).
+`#60687a` is the closest darker step of `#80889b` (same hue and saturation, lower lightness) that passes 4.5:1 on **every** background in the system, including the darkest one (Configurator header `#e2e8ed`, 4.52). One value, no per-background exceptions.
 
 **Non-text elements.** These are decorative, so 1.4.11 doesn't apply, and they are kept as they are:
 
@@ -161,7 +161,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 ## 5. Changes from Figma
 
 ### 5.1 Accessible contrast
-All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#676f83`, CTA outline → solid `#80889b`.
+All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#60687a`, CTA outline → solid `#80889b`.
 
 ### 5.2 Project visuals: browser frame instead of device mockups
 - Tilted monitor, laptop and phone mockups are replaced by **flat screenshots in a minimal browser frame**: a 28px toolbar on `surface-muted` with three 8px dots in `divider`, an optional fake URL in `text-small fg-tertiary`, a 1px `border` frame and 6px radius.
@@ -179,8 +179,9 @@ Card numbers follow the display order. The featured `surface` background goes on
 
 ### 5.5 "Jak pracuję / How I work" strip
 - Placed before the footer, on `surface`, inside `container-page`.
-- A section `h2` ("Jak pracuję" / "How I work"), then **3–4 points** in a grid (1 column mobile, 2 at `md`, 4 at `lg`). Each point has a short title (`h3`) and one or two sentences of `body`.
-- The copy is **to be written**. Draft themes taken from existing content: understanding the system before the screens; designing rules, states and edge cases; working closely with analysts and developers; validating with users and checking the implementation. It goes in `content/{pl,en}/how-i-work.mdx` (frontmatter list), not in JSON.
+- A section `h2` ("Jak pracuję" / "How I work"), then the points in a grid (1 column mobile, 2 at `md`, 4 at `lg`). Each point has a short title (`h3`) and one or two sentences of `body`.
+- **4 points**, each a bold lead (rendered as the `h3`) followed by one sentence: Research and data · Collaboration · Accessibility · Implementation quality.
+- Copy lives in `src/messages/{pl,en}.json` under `howIWork.*` (short UI strings, so not MDX).
 
 ### 5.6 Footer
 Two rows inside `container-page`:

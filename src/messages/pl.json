@@ -30,5 +30,15 @@
   "cs.meta.designSystem": "Design System",
   "cs.meta.status": "Status",
 
+  "howIWork.heading": "Jak pracuję",
+  "howIWork.1.lead": "Badania i dane.",
+  "howIWork.1.text": "Współtworzę scenariusze badań, przygotowuję prototypy i obserwuję sesje. Sam analizuję dane z GA i Clarity.",
+  "howIWork.2.lead": "Współpraca.",
+  "howIWork.2.text": "Zaczynam od warsztatu z interesariuszami, a wykonalność rozwiązań na bieżąco uzgadniam z deweloperami.",
+  "howIWork.3.lead": "Dostępność.",
+  "howIWork.3.text": "Projektuję zgodnie z WCAG: kontrasty, typografia, czytelne stany i focus.",
+  "howIWork.4.lead": "Jakość wdrożenia.",
+  "howIWork.4.text": "Sprawdzam wdrożenie na środowisku testowym pod kątem zgodności z projektem, design systemem i scenariuszami.",
+
   "footer.copy": "© 2026"
 }

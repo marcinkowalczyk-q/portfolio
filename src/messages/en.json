@@ -30,5 +30,15 @@
   "cs.meta.designSystem": "Design System",
   "cs.meta.status": "Status",
 
+  "howIWork.heading": "How I work",
+  "howIWork.1.lead": "Research and data.",
+  "howIWork.1.text": "I co-create research scenarios, build prototypes and observe sessions. I analyse GA and Clarity data myself.",
+  "howIWork.2.lead": "Collaboration.",
+  "howIWork.2.text": "I start with a stakeholder workshop and check feasibility with developers throughout the project.",
+  "howIWork.3.lead": "Accessibility.",
+  "howIWork.3.text": "I design to WCAG: contrast, typography, clear states and focus.",
+  "howIWork.4.lead": "Implementation quality.",
+  "howIWork.4.text": "I review builds on staging against the design, the design system and the user scenarios.",
+
   "footer.copy": "© 2026"
 }

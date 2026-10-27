@@ -56,9 +56,10 @@ Desktop frames are treated as canonical copy. Places where mobile copy differs a
 
 | Copy | Location |
 |---|---|
-| Nav, language toggle, hero (eyebrow, tagline, lede), CTA labels, case study meta labels, About eyebrow, LinkedIn label, footer | `src/messages/{pl,en}.json` |
+| Nav, language toggle, hero (eyebrow, tagline, lede), CTA labels, case study meta labels, "How I work" strip, About eyebrow, LinkedIn label, footer | `src/messages/{pl,en}.json` |
 | Case study title, eyebrow, lede, meta values, project-card summary, full body | `content/{pl,en}/banner-configurator.mdx`, `content/{pl,en}/e-doreczenia.mdx` (frontmatter + body) |
 | About H1 + paragraphs + LinkedIn URL | `content/{pl,en}/about.mdx` |
+| Accessibility statement | `content/{pl,en}/accessibility.mdx` |
 | Images | `content/assets.md` (planned paths match the MDX) |
 
 The project-card copy (category + summary) is stored in each case study's frontmatter under `card:`, so the homepage card and the case study read from the same file.
