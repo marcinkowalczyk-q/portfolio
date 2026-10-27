@@ -48,6 +48,10 @@ Route is `/banner-configurator`. The old Webflow URL was `/baner-configurator` (
 - Page content lives in `src/lib/*.ts` as typed data — components stay presentational
 - Tokens in `globals.css` `@theme`: colors `--color-*`, fonts `--font-*`. Use them via `var(--color-fg)` etc.
 
+## Git
+
+- Commit directly to the current branch unless I ask for a new one.
+
 ## Design tokens (extracted from Webflow CSS)
 
 | Token | Value | Use |
