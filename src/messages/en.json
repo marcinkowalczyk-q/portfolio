@@ -40,5 +40,6 @@
   "howIWork.4.lead": "Implementation quality.",
   "howIWork.4.text": "I review builds on staging against the design, the design system and the user scenarios.",
 
+  "footer.credit": "Designed and coded by Marcin Kowalczyk",
   "footer.copy": "© 2026"
 }
