@@ -26,10 +26,17 @@ export default function CaseStudyHeader({ frontmatter: fm, t }: Props) {
     <header className={`relative overflow-hidden ${TINTS[fm.slug] ?? "bg-[var(--color-surface)]"}`}>
       <Container size="content" className="pt-12 lg:flex lg:min-h-[463px] lg:items-center lg:pt-0">
         <div className="max-w-[460px]">
-          <Eyebrow>{fm.eyebrow}</Eyebrow>
+          {/* Figma lets a long eyebrow run past the 460px column on desktop */}
+          <Eyebrow className="lg:whitespace-nowrap">{fm.eyebrow}</Eyebrow>
           <h1 className="mt-2 text-h1-sm text-[var(--color-fg)] md:text-h1">
             {fm.title}
-            {fm.titleNote && <span className="text-[var(--color-fg-secondary)]"> {fm.titleNote}</span>}
+            {/* Own line on mobile, as in Figma; never split at the hyphen */}
+            {fm.titleNote && (
+              <span className="block text-h2-sm whitespace-nowrap text-[var(--color-fg-tertiary)] md:inline">
+                {" "}
+                {fm.titleNote}
+              </span>
+            )}
           </h1>
           <p className="mt-5 text-body text-[var(--color-fg-secondary)]">{fm.lede}</p>
           {prototypes.length > 0 && (

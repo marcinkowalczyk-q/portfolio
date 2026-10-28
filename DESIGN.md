@@ -188,7 +188,7 @@ Two rows inside `container-page`:
 - **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn, **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)"). The CV link renders only when `public/cv/` contains a PDF; the size is read from the file at build time.
 - **Meta:** "Designed and coded by Marcin Kowalczyk" + a link to the GitHub repo · **Accessibility statement** link · © year.
 - External links carry `rel="noopener noreferrer"` and announce "opens in a new tab".
-- Still to supply: the CV file and the accessibility statement page (route `/[locale]/accessibility`, called "Deklaracja dostępności" in PL). Email and repo URL are in `src/lib/site.ts`.
+- Still to supply: the CV file. The accessibility statement lives at `/[locale]/accessibility` ("Deklaracja dostępności" in PL). Email and repo URL are in `src/lib/site.ts`.
 
 ### 5.7 Case study images: click to enlarge
 - Every case study image is a button ("Enlarge image: {alt}") that opens a **lightbox**:
@@ -234,10 +234,10 @@ The build list. "existing" means a file in `src/components` to refactor; "done" 
 | 18 | `IntroRow` | Context / Challenge / Constraints | Label + text, stacks on mobile | done `case-study/intro-row.tsx` |
 | 19 | `CaseStudySection` | H2 block | Wraps MDX section, container widths | done `case-study/case-study-section.tsx` |
 | 20 | `Figure` | Image + caption | Required alt (build error if empty), opens `Lightbox` | done `case-study/figure.tsx` |
-| 21 | `FigureGroup` | Pairs, 2×2 grids, labelled comparisons, image + text rows | Stacks on mobile, shared lightbox gallery | done `case-study/figure-group.tsx` (single, pair, row; 2×2 grid and labelled comparison come with e-Delivery) |
+| 21 | `FigureGroup` | Pairs, 2×2 grids, labelled comparisons, image + text rows | Stacks on mobile, shared lightbox gallery | done `case-study/figure-group.tsx` (single, pair / 2×2, row, panel, overlay) |
 | 22 | `Lightbox` | Enlarged image | `<dialog>`, focus trap, Esc, return focus, ←/→, reduced motion | done `case-study/lightbox.tsx` (client) |
-| 23 | `Portrait` / `AboutContent` | About page | Portrait with alt, MDX body | existing `about/about-content.tsx` |
+| 23 | `Portrait` / `AboutContent` | About page | Portrait with alt, MDX body | done `about/about-content.tsx` |
 | 24 | `MdxComponents` | MDX → components map | `h2`, `h3`, `p`, `ul`, `img`→`Figure`, `hr`→`Divider`, `strong` | done `case-study/mdx-components.tsx` |
-| 25 | `AccessibilityStatement` page | Required statement | Route `/[locale]/accessibility`, linked from footer | new |
+| 25 | `AccessibilityStatement` page | Required statement | Route `/[locale]/accessibility`, linked from footer | done `app/[locale]/accessibility/page.tsx` |
 
-Supporting non-component work: the MDX content loader `src/lib/content.ts` (`gray-matter`) reads `content/{locale}/*.mdx` frontmatter. Bodies compile with `next-mdx-remote` (`src/lib/mdx.ts`); `src/lib/remark-case-study.ts` turns plain markdown into the template: `##` blocks before the first `---` become intro rows, later `##` blocks become sections, image-only paragraphs become figure groups (1 image = single, 2 = pair), and a `###` block with one image becomes an image + text row. Image sizes are read from `public/` at build time (`src/lib/image-size.ts`).
+Supporting non-component work: the MDX content loader `src/lib/content.ts` (`gray-matter`) reads `content/{locale}/*.mdx` frontmatter. Bodies compile with `next-mdx-remote` (`src/lib/mdx.ts`); `src/lib/remark-case-study.ts` turns plain markdown into the template: `##` blocks before the first `---` become intro rows, later `##` blocks become sections, image-only paragraphs become figure groups (1 image = single, 2 = pair), a `###` block with one image becomes an image + text row, and a `**Label**` paragraph before an image becomes a labelled figure (two in a row form a comparison pair). Layouts markdown can't express use an explicit wrapper: `<FigureGroup variant="panel">` (diagram on `surface-muted`) or `<FigureGroup variant="overlay">` (desktop shot + phone). A caption goes in the image title: `![alt](src "**Lead.** Rest")`. Image sizes are read from `public/` at build time (`src/lib/image-size.ts`).

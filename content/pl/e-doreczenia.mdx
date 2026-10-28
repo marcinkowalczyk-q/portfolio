@@ -5,6 +5,7 @@ title: e-Doręczenia
 eyebrow: Usługa publiczna / Centralny Ośrodek Informatyki
 lede: Projekt publicznej skrzynki do komunikacji z urzędami, w której zwykłe akcje użytkownika mogą mieć formalne konsekwencje. Pracowałem głównie nad dashboardem skrzynek, modelem ról i uprawnień oraz ustawieniami, przekładając złożoną logikę systemową na czytelny interfejs.
 heroImage: /images/e-doreczenia/hero.png
+heroAlt: Skrzynka e-Doręczeń na laptopie i telefonie, w interfejsie mObywatela
 card:
   category: Publiczna usługa cyfrowa
   summary: "Publiczna usługa cyfrowa do prawnie wiążącej komunikacji z urzędami. Case study skupia się na warstwie zarządzania skrzynkami: kontekstach skrzynek, rolach, uprawnieniach i ustawieniach w ekosystemie mObywatela."
@@ -61,7 +62,11 @@ Na poziomie interfejsu e-Doręczenia mogły wyglądać jak zwykła skrzynka wiad
 
 Moja praca nie polegała na definiowaniu tej logiki od zera, ale na zrozumieniu jej razem z analitykami i przełożeniu na strukturę interfejsu: użytkowników, skrzynki, role, zasoby i dostępne akcje. Dzięki temu poszczególne ekrany mogły wynikać z jednego modelu działania usługi, zamiast funkcjonować jako odseparowane widoki.
 
-![Schemat zależności między użytkownikami, skrzynkami, rolami, zasobami i dostępnymi akcjami](/images/e-doreczenia/dependency-diagram.png)
+<FigureGroup variant="panel">
+
+![Uproszczony model zależności w e-Doręczeniach: użytkownik (obywatel, pracownik, osoba z dostępem) korzysta ze skrzynki (osobista, służbowa, udostępniona), która ma przypisaną rolę (właściciel, administrator, użytkownik), dającą dostęp do elementów skrzynki (wiadomości, foldery, ustawienia) i pozwalającą je czytać, wysyłać i nimi zarządzać](/images/e-doreczenia/dependency-diagram.png)
+
+</FigureGroup>
 
 ## Dostosowanie do języka interfejsu mObywatela
 
@@ -71,18 +76,22 @@ Nie chodziło wyłącznie o warstwę wizualną. Widoki takie jak dashboard, role
 
 **mObywatel**
 
-![Webowy interfejs mObywatela użyty jako punkt odniesienia](/images/e-doreczenia/mobywatel-reference.png)
+![Strona „Twoje dane” w mObywatelu z niebieską nawigacją boczną i listą rejestrów państwowych](/images/e-doreczenia/mobywatel-reference.png)
 
 **e-Doręczenia**
 
-![Widok skrzynki e-Doręczeń dostosowany do wzorców mObywatela](/images/e-doreczenia/inbox.png)
+![Strona uprawnień skrzynki e-Doręczeń w tym samym układzie mObywatela: nawigacja boczna, nagłówek skrzynki i lista użytkowników](/images/e-doreczenia/inbox.png)
 
 ## Dashboard jako wybór kontekstu skrzynki
 
 Dashboard pełnił rolę punktu wejścia do różnych kontekstów komunikacji: skrzynki osobistej, służbowej, udostępnionej oraz obszarów powiązanych z e-Doręczeniami i ePUAP. Celem było szybkie pokazanie, z jakiej skrzynki użytkownik korzysta, w czyim imieniu działa i jakie akcje są dostępne.
 
-![Dashboard skrzynek na desktopie z listą skrzynek osobistych, służbowych i udostępnionych](/images/e-doreczenia/dashboard-desktop.png)
-![Dashboard skrzynek na telefonie](/images/e-doreczenia/dashboard-mobile.png)
+<FigureGroup variant="overlay">
+
+![Dashboard skrzynek na desktopie: karta skrzynki osobistej i karty skrzynek służbowych, każda ze statusem i przyciskiem przejścia lub aktywacji](/images/e-doreczenia/dashboard-desktop.png)
+![Ten sam dashboard skrzynek na telefonie, ze zwijanymi sekcjami skrzynek osobistych i służbowych](/images/e-doreczenia/dashboard-mobile.png)
+
+</FigureGroup>
 
 ## Model uprawnień jako logika systemu
 
@@ -90,21 +99,19 @@ W obszarze uprawnień najważniejsze było zrozumienie relacji między użytkown
 
 W praktyce oznaczało to rozdzielenie złożonego modelu dostępu na elementy, które użytkownik mógł łatwiej przeanalizować: kto ma dostęp, w jakiej roli, do których części skrzynki i co może w nich zrobić. Dzięki temu obszar uprawnień mógł działać jako narzędzie kontroli, a nie tylko lista technicznych ustawień.
 
-![Ekran konfiguracji folderu w sekcji uprawnień](/images/e-doreczenia/permissions-folder.png)
-
-**Konfiguracja folderu w sekcji uprawnień.** Folder był traktowany jako zasób skrzynki, dlatego system wymagał określenia, które role mają dostęp do czytania i zarządzania wiadomościami.
+![Formularz „Dodaj folder”: nazwa folderu, etykieta techniczna i tabela przypisująca rolom uprawnienia do czytania i zarządzania wiadomościami](/images/e-doreczenia/permissions-folder.png "**Konfiguracja folderu w sekcji uprawnień.** Folder był traktowany jako zasób skrzynki, dlatego system wymagał określenia, które role mają dostęp do czytania i zarządzania wiadomościami.")
 
 ## Zarządzanie użytkownikami i dostępem
 
 Dostęp do skrzynki nie działał jak zwykłe zaproszenie do współdzielonego narzędzia. Widok szczegółów użytkownika musiał jasno pokazywać, kto ma dostęp, jaki jest status tego dostępu i jakie uprawnienia wynikają z przypisanej roli.
 
-![Widok szczegółów użytkownika ze statusem dostępu i uprawnieniami wynikającymi z roli](/images/e-doreczenia/user-details.png)
+![Lista użytkowników skrzynki z imieniem i nazwiskiem, numerem PESEL, rolą i statusem dostępu (aktywny, zaproszony, nieaktywny), z filtrami roli i statusu](/images/e-doreczenia/user-details.png)
 
 ## Ustawienia skrzynki jako warstwa bezpieczeństwa
 
 W e-Doręczeniach powiadomienia nie były drobną preferencją użytkownika. Pomagały budować pewność, że użytkownik nie przegapi ważnej korespondencji przypisanej do konkretnej skrzynki.
 
-![Ustawienia powiadomień skrzynki](/images/e-doreczenia/notification-settings.png)
+![Ustawienia skrzynki, zakładka Powiadomienia: formularz adresu e-mail, na który przychodzą powiadomienia z e-Doręczeń](/images/e-doreczenia/notification-settings.png)
 
 ## Warstwy interfejsu systemowego
 
@@ -112,10 +119,10 @@ e-Doręczenia nie były jednym prostym flow, ale zestawem powiązanych przestrze
 
 Ta struktura była ważna, bo użytkownik nie wykonywał działań w próżni. Każda akcja zależała od kontekstu skrzynki, roli, zakresu dostępu i konfiguracji. Dlatego projektowanie tych obszarów wymagało myślenia o interfejsie jako o połączonym systemie, a nie zestawie osobnych ekranów.
 
-![Warstwa zarządzania skrzynką: ekran 1 z 4](/images/e-doreczenia/layers-1.png)
-![Warstwa zarządzania skrzynką: ekran 2 z 4](/images/e-doreczenia/layers-2.png)
-![Warstwa zarządzania skrzynką: ekran 3 z 4](/images/e-doreczenia/layers-3.png)
-![Warstwa zarządzania skrzynką: ekran 4 z 4](/images/e-doreczenia/layers-4.png)
+![Widok skrzynki: nawigacja po folderach i lista odebranych wiadomości z nadawcą, tematem, kanałem i datą](/images/e-doreczenia/layers-1.png)
+![Dashboard z listą skrzynek osobistych i służbowych](/images/e-doreczenia/layers-2.png)
+![Formularz nowej wiadomości z odbiorcą, tematem, treścią i załącznikami](/images/e-doreczenia/layers-3.png)
+![Przegląd uprawnień skrzynki: Twoje dane, dane skrzynki i osoby zarządzające skrzynką](/images/e-doreczenia/layers-4.png)
 
 ## Dostępność i współpraca
 

@@ -6,6 +6,8 @@ type Props = {
   alt: string;
   // Optional; a leading **bold sentence** is rendered as a lead-in
   caption?: string;
+  // Short label above the image, e.g. one side of a comparison
+  label?: string;
   sizes?: string;
   enlargeLabel: string;
 };
@@ -15,13 +17,13 @@ function Caption({ text }: { text: string }) {
   if (!match) return <>{text}</>;
   return (
     <>
-      <strong className="font-semibold text-[var(--color-fg-primary)]">{match[1]}</strong> {match[2]}
+      <strong className="font-bold">{match[1]}</strong> {match[2]}
     </>
   );
 }
 
 // The button is picked up by the section's Lightbox (event delegation, no client JS here)
-export default function Figure({ src, alt, caption, sizes = "100vw", enlargeLabel }: Props) {
+export default function Figure({ src, alt, caption, label, sizes = "100vw", enlargeLabel }: Props) {
   if (!alt?.trim()) {
     throw new Error(`Figure ${src}: alt text is required (decorative images aren't allowed in case studies)`);
   }
@@ -29,6 +31,9 @@ export default function Figure({ src, alt, caption, sizes = "100vw", enlargeLabe
 
   return (
     <figure className="w-full">
+      {label && (
+        <figcaption className="mb-4 text-body font-semibold text-[var(--color-fg)]">{label}</figcaption>
+      )}
       <button
         type="button"
         data-lightbox=""
@@ -42,8 +47,8 @@ export default function Figure({ src, alt, caption, sizes = "100vw", enlargeLabe
       >
         <Image src={src} alt={alt} width={width} height={height} sizes={sizes} className="h-auto w-full rounded-md" />
       </button>
-      {caption && (
-        <figcaption className="mt-3 text-body-sm text-[var(--color-fg-tertiary)]">
+      {caption && !label && (
+        <figcaption className="mt-3.5 text-body-sm text-[var(--color-fg-secondary)]">
           <Caption text={caption} />
         </figcaption>
       )}

@@ -44,6 +44,15 @@ export type CaseStudyCard = {
   image: string;
 };
 
+export type AboutFrontmatter = {
+  title: string;
+  portrait: string;
+  portraitAlt: string;
+  linkedinUrl: string;
+};
+
+export type PageFrontmatter = { title: string };
+
 export type Entry<F> = { frontmatter: F; body: string };
 
 export function getEntry<F = Record<string, unknown>>(
@@ -89,4 +98,16 @@ export function getCaseStudyCard(locale: Locale, slug: string): CaseStudyCard {
     summary: fm.card.summary,
     image: fm.card.image,
   };
+}
+
+export function getAbout(locale: Locale): Entry<AboutFrontmatter> {
+  const entry = getEntry<AboutFrontmatter>(locale, "about");
+  assertFields(`${locale}/about`, entry.frontmatter, ["title", "portrait", "portraitAlt", "linkedinUrl"]);
+  return entry;
+}
+
+export function getPage(locale: Locale, slug: string): Entry<PageFrontmatter> {
+  const entry = getEntry<PageFrontmatter>(locale, slug);
+  assertFields(`${locale}/${slug}`, entry.frontmatter, ["title"]);
+  return entry;
 }

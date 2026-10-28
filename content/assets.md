@@ -3,9 +3,26 @@
 Images and illustrations in the Figma page `Porfolio` (file `CGhui9MPfrGTTYfZwj7Ukx`), with node IDs for export.
 EN and PL frames use the same images, so each row is one file with four placements.
 
-- **Planned path** is the path the MDX files already point to. Nothing in it is exported yet. The only files in `public/images/` today are `configurator.png` and `edor.png`.
+- **Planned path** is the path the MDX files point to. Case study and About images are exported from the EN desktop nodes at 2x (exporting the node keeps the crops).
 - To export a node: in Figma, select the node ID and use Export, or call `get_screenshot` / `download_assets` on that node.
 - A "crop" note means Figma shows only part of the image (the fill is scaled past the frame). Export the frame, not the raw fill, to get the visible crop.
+
+> **Masked images: do not re-export from Figma without masking again.**
+> The Figma frames contain personal data of private persons (PESEL numbers and `AE:PL-…` e-Delivery addresses). In the files below every such value is covered with a background-coloured box and `•••••••••••` dots, so it still reads as a filled field. A fresh export from Figma brings the real values back. Mask it again before it is committed, and never commit an unmasked version (it would stay in git history).
+>
+> | File | Masked |
+> |---|---|
+> | `e-doreczenia/hero.png` | AE address on the phone and on the laptop screen |
+> | `e-doreczenia/inbox.png` | AE address, 3 PESEL numbers (cut off at the right edge) |
+> | `e-doreczenia/user-details.png` | AE address, 3 PESEL numbers |
+> | `e-doreczenia/layers-4.png` | 2 AE addresses, 2 PESEL numbers |
+> | `e-doreczenia/layers-1.png`, `layers-3.png`, `notification-settings.png` | AE address |
+> | `e-doreczenia/dashboard-mobile.png` | AE addresses of the personal and the business mailbox |
+> | `edor.png` (homepage card) | AE address on the phone and on the laptop screen (same mockup as `hero.png`, ~1/3 size) |
+>
+> The other e-Doręczenia images and the Configurator images contain no PESEL or AE addresses (checked with OCR at 3x, including every width `next/image` serves).
+>
+> After replacing any of these files, clear the image optimiser cache (`.next/cache/images` and `.next/dev/cache/images`) and restart the dev server: `next/image` keeps resized copies per width and keeps serving the old ones. Keep the alpha channel when editing (`edor.png` has a transparent background).
 
 ## Homepage
 

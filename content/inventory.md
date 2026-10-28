@@ -77,7 +77,6 @@ Keys checked and unchanged (they already match Figma): `nav.work`, `nav.about`, 
 
 ### Pending cleanup (needs code changes, so not done yet)
 
-- `about.heading`, `about.para1–3` in the JSON still hold the **old** About copy. The new copy is only in `content/*/about.mdx`. Delete these keys when `about-content.tsx` reads from MDX. They're still there because deleting them now would break the typecheck.
 - `project.caseStudyInProgress`, `project.statusNote`, `project.mobilePrototype`, `project.desktopPrototype`, `cs.backToWork`, `cs.label` don't appear anywhere in Figma. Either drop them or add them to the design.
 
 ## Copy issues found in Figma

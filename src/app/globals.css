@@ -19,11 +19,6 @@
   --color-project-edelivery: #f2f9ff;
   --color-focus: #151515;
 
-  /* Legacy aliases used by current components — remove when they are rebuilt */
-  --color-fg-muted: #4b5160;
-  --color-fg-subtle: #60687a;
-  --color-surface-2: #f3f3f3;
-
   /* Fonts */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-bitter), Georgia, serif;

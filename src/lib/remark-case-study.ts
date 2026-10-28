@@ -6,16 +6,26 @@ import type { MdxJsxAttribute, MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 // - every later `## X` block               → <CaseStudySection heading="X">
 // - a paragraph that holds only images     → <FigureGroup> of <Figure>s (1 = single, 2+ = pair)
 // - `### X` + text + one image paragraph   → <FigureGroup variant="row"> (image beside text)
+// - a `**Label**` paragraph + one image     → <Figure label="Label">; consecutive ones form a pair
+// - an explicit <FigureGroup variant="…">  → its images become <Figure>s sized for that variant
 // `---` stays a thematic break and renders as a divider.
 
 // Rendered widths per layout, for next/image `sizes`
 const SIZES = {
-  single: "(min-width: 768px) 790px, 100vw",
-  pair: "(min-width: 768px) 474px, 100vw",
-  row: "(min-width: 1024px) 500px, 100vw",
+  single: ["(min-width: 768px) 790px, 100vw"],
+  pair: ["(min-width: 768px) 474px, 100vw"],
+  row: ["(min-width: 1024px) 500px, 100vw"],
+  panel: ["(min-width: 768px) 726px, 100vw"],
+  // Desktop screenshot, then the phone laid over it
+  overlay: ["(min-width: 768px) 644px, 82vw", "(min-width: 768px) 299px, 38vw"],
 } as const;
 
 type Variant = keyof typeof SIZES;
+
+function sizesFor(variant: Variant, index: number): string {
+  const list: readonly string[] = SIZES[variant];
+  return list[Math.min(index, list.length - 1)];
+}
 
 function attr(name: string, value: string): MdxJsxAttribute {
   return { type: "mdxJsxAttribute", name, value };
@@ -43,15 +53,30 @@ function slugify(text: string): string {
     .replace(/^-|-$/g, "");
 }
 
-function imagesOnly(node: RootContent): Image[] | null {
-  if (node.type !== "paragraph") return null;
+function imagesOnly(node: RootContent | undefined): Image[] | null {
+  if (!node || node.type !== "paragraph") return null;
   const kids = (node as Paragraph).children.filter((c) => !(c.type === "text" && c.value.trim() === ""));
   if (kids.length === 0 || !kids.every((c) => c.type === "image")) return null;
   return kids as Image[];
 }
 
-function figure(image: Image, variant: Variant): MdxJsxFlowElement {
-  return jsx("Figure", { src: image.url, alt: image.alt ?? "", caption: image.title ?? undefined, sizes: SIZES[variant] }, []);
+function figure(image: Image, variant: Variant, index = 0, label?: string): MdxJsxFlowElement {
+  return jsx(
+    "Figure",
+    { src: image.url, alt: image.alt ?? "", caption: image.title ?? undefined, label, sizes: sizesFor(variant, index) },
+    []
+  );
+}
+
+// A paragraph that is only bold text, e.g. **mObywatel**
+function labelText(node: RootContent | undefined): string | null {
+  if (!node || node.type !== "paragraph") return null;
+  const kids = (node as Paragraph).children;
+  return kids.length === 1 && kids[0].type === "strong" ? toText(kids[0]) : null;
+}
+
+function isFigureGroup(node: RootContent): node is MdxJsxFlowElement {
+  return node.type === "mdxJsxFlowElement" && (node as MdxJsxFlowElement).name === "FigureGroup";
 }
 
 function isHeading(node: RootContent, depth: number): node is Heading {
@@ -76,10 +101,30 @@ function shapeSection(nodes: RootContent[]): RootContent[] {
       }
     }
 
+    if (isFigureGroup(node)) {
+      const variantAttr = node.attributes.find((a) => a.type === "mdxJsxAttribute" && a.name === "variant");
+      const variant = (typeof variantAttr?.value === "string" ? variantAttr.value : "single") as Variant;
+      const imgs = (node.children as RootContent[]).flatMap((child) => imagesOnly(child) ?? []);
+      node.children = imgs.map((img, index) => figure(img, variant, index)) as MdxJsxFlowElement["children"];
+      out.push(node);
+      continue;
+    }
+
+    if (labelText(node) !== null && imagesOnly(nodes[i + 1])?.length === 1) {
+      const labelled: MdxJsxFlowElement[] = [];
+      while (labelText(nodes[i]) !== null && imagesOnly(nodes[i + 1])?.length === 1) {
+        labelled.push(figure(imagesOnly(nodes[i + 1])![0], "pair", 0, labelText(nodes[i])!));
+        i += 2;
+      }
+      i--;
+      out.push(jsx("FigureGroup", { variant: labelled.length > 1 ? "pair" : "single" }, labelled));
+      continue;
+    }
+
     const images = imagesOnly(node);
     if (images) {
       const variant: Variant = images.length > 1 ? "pair" : "single";
-      out.push(jsx("FigureGroup", { variant }, images.map((img) => figure(img, variant))));
+      out.push(jsx("FigureGroup", { variant }, images.map((img, index) => figure(img, variant, index))));
       continue;
     }
 

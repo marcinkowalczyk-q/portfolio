@@ -22,8 +22,10 @@ src/
 │   ├── layout.tsx             # root layout, font, default metadata
 │   ├── page.tsx               # home: nav + hero + work + footer
 │   ├── globals.css            # Tailwind import + design tokens (@theme)
-│   ├── about/page.tsx
-│   └── banner-configurator/page.tsx
+│   ├── about/page.tsx         # from content/{locale}/about.mdx
+│   ├── accessibility/page.tsx # from content/{locale}/accessibility.mdx
+│   ├── banner-configurator/page.tsx
+│   └── e-doreczenia/page.tsx  # both case studies render via CaseStudyPage
 ├── components/
 │   ├── ui/                    # container, eyebrow, link-button, text-link, icon, divider
 │   ├── layout/                # skip-link, site-header, nav-links, language-switch, site-footer
@@ -31,10 +33,10 @@ src/
 │   ├── work/                  # project-list.tsx, project-card.tsx
 │   ├── how-i-work/            # how-i-work.tsx
 │   ├── about/                 # about-content.tsx
-│   └── case-study/            # header, meta-list, intro-row, section, figure, figure-group, lightbox, mdx-components
+│   └── case-study/            # case-study-page, header, meta-list, intro-row, section, figure, figure-group, lightbox, mdx-components
 └── lib/
     ├── content.ts             # MDX frontmatter loader (content/{locale}/*.mdx)
-    ├── mdx.ts                 # compiles case study bodies (next-mdx-remote, RSC)
+    ├── mdx.ts                 # compiles MDX bodies (next-mdx-remote, RSC): case studies + prose
     ├── remark-case-study.ts   # markdown → IntroRow / CaseStudySection / FigureGroup
     ├── image-size.ts          # intrinsic image size from public/
     └── site.ts                # email, LinkedIn, repo URL
@@ -79,21 +81,22 @@ See **DESIGN.md**: typography scale, colours (WCAG 2.2 AA audited), spacing, lay
 - Design tokens in `globals.css`
 - Inter + Bitter via `next/font`
 - Homepage: nav, hero, work list, two project cards, footer
-- About page with portrait + bio + LinkedIn
+- About page from `content/{pl,en}/about.mdx` (portrait exported from Figma)
+- e-Doręczenia case study (`/[locale]/e-doreczenia`) with Axure prototype links
+- Accessibility statement (`/[locale]/accessibility`)
 - Case study template (DESIGN.md components 16–22, 24) rendered from MDX
 - Banner Configurator case study from `content/{pl,en}/banner-configurator.mdx`, images exported from Figma at 2x into `public/images/banner-configurator/`
 - Metadata + OG tags on every route
 - `next.config.ts` with `remotePatterns` for Webflow CDN
-- Production build passes (3 static routes)
+- Production build passes (5 routes × 2 locales, all static)
 
 ### In progress
-- Day 2 Part A (template + Configurator) awaiting review; Part B (e-Doręczenia, About from MDX, accessibility statement) next
+- Day 2 Part B (e-Doręczenia, About, accessibility statement) awaiting review
 
 ### Next
 - Run dev server, verify look-and-feel, capture issues
-- Replace remote Webflow CDN images with local files in `public/` (user will do this)
-- Consider: dedicated case study route for `panel-e-doreczenia` once content is ready
-- Consider: redirect from the old Webflow URL `/baner-configurator` → `/banner-configurator`
+- Accessibility statement: fill in the "[publication date]" placeholder
+- Drop `remotePatterns` for the Webflow CDN once nothing references it
 - Lighthouse pass (target: 90+ across all metrics)
 
 ## Common commands
