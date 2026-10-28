@@ -1,11 +1,16 @@
 {
+  "a11y.skipLink": "Przejdź do treści",
+  "a11y.newTab": "otwiera się w nowej karcie",
+
+  "nav.label": "Główna",
+  "nav.langLabel": "Język",
   "nav.work": "Projekty",
   "nav.about": "O mnie",
   "nav.langPl": "PL",
   "nav.langEn": "ENG",
 
-  "hero.eyebrow": "UX / UI Designer",
-  "hero.tagline": "Złożone produkty cyfrowe | Produkt i technologia | E-commerce",
+  "hero.eyebrow": "UX / Product Designer",
+  "hero.tagline": "Złożone produkty cyfrowe | Produkt i technologia",
   "hero.bio": "Cześć, jestem Marcin! Projektuję złożone produkty cyfrowe i pomagam zamieniać skomplikowane problemy w przejrzyste rozwiązania.",
 
   "about.eyebrow": "O mnie",
@@ -16,10 +21,7 @@
   "about.linkedin": "Mój profil LinkedIn",
 
   "project.viewCaseStudy": "Zobacz case study →",
-  "project.mobilePrototype": "Prototyp mobilny ↗",
-  "project.desktopPrototype": "Prototyp desktopowy ↗",
-  "project.caseStudyInProgress": "Case study w przygotowaniu",
-  "project.statusNote": "Wybrane prototypy interaktywne dostępne w oficjalnej dokumentacji projektowej administracji.",
+  "project.workHeading": "Wybrane projekty",
 
   "cs.backToWork": "← Powrót do projektów",
   "cs.label": "CASE STUDY",
@@ -40,6 +42,10 @@
   "howIWork.4.lead": "Jakość wdrożenia.",
   "howIWork.4.text": "Sprawdzam wdrożenie na środowisku testowym pod kątem zgodności z projektem, design systemem i scenariuszami.",
 
+  "footer.contactHeading": "Kontakt",
+  "footer.linkedin": "LinkedIn",
+  "footer.cv": "CV (PDF, {size})",
+  "footer.accessibility": "Deklaracja dostępności",
   "footer.credit": "Projekt i kod: Marcin Kowalczyk",
   "footer.copy": "© 2026"
 }

@@ -1,10 +1,15 @@
 {
+  "a11y.skipLink": "Skip to content",
+  "a11y.newTab": "opens in a new tab",
+
+  "nav.label": "Main",
+  "nav.langLabel": "Language",
   "nav.work": "Work",
   "nav.about": "About",
   "nav.langPl": "PL",
   "nav.langEn": "ENG",
 
-  "hero.eyebrow": "UX / UI Designer",
+  "hero.eyebrow": "UX / Product Designer",
   "hero.tagline": "Complex Digital Products | Product & Technology",
   "hero.bio": "Hi, I’m Marcin. I design complex digital products and help turn complicated problems into clear solutions.",
 
@@ -16,10 +21,7 @@
   "about.linkedin": "My LinkedIn profile",
 
   "project.viewCaseStudy": "View case study →",
-  "project.mobilePrototype": "Mobile prototype ↗",
-  "project.desktopPrototype": "Desktop prototype ↗",
-  "project.caseStudyInProgress": "Case study in progress",
-  "project.statusNote": "Selected interactive prototypes available via official government design documentation.",
+  "project.workHeading": "Selected work",
 
   "cs.backToWork": "← Back to work",
   "cs.label": "CASE STUDY",
@@ -40,6 +42,10 @@
   "howIWork.4.lead": "Implementation quality.",
   "howIWork.4.text": "I review builds on staging against the design, the design system and the user scenarios.",
 
+  "footer.contactHeading": "Contact",
+  "footer.linkedin": "LinkedIn",
+  "footer.cv": "CV (PDF, {size})",
+  "footer.accessibility": "Accessibility statement",
   "footer.credit": "Designed and coded by Marcin Kowalczyk",
   "footer.copy": "© 2026"
 }

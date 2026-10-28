@@ -104,6 +104,7 @@
   --container-wide: 61.25rem; /* 980px */
   --container-content: 63.375rem; /* 1014px */
   --container-page: 71.25rem; /* 1140px */
+  --container-cards: 73.75rem; /* 1180px: 460 text + 48 gap + 672 image */
   --spacing-section: 5.625rem; /* 90px desktop section gap */
   --radius-card: 0.75rem; /* 12px meta card */
 }

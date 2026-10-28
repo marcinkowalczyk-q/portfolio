@@ -25,14 +25,17 @@ src/
 │   ├── about/page.tsx
 │   └── banner-configurator/page.tsx
 ├── components/
-│   ├── layout/                # nav.tsx, footer.tsx
+│   ├── ui/                    # container, eyebrow, link-button, text-link, icon, divider
+│   ├── layout/                # skip-link, site-header, nav-links, language-switch, site-footer
 │   ├── hero/                  # hero.tsx
-│   ├── work/                  # work-list.tsx, project-card.tsx
+│   ├── work/                  # project-list.tsx, project-card.tsx
+│   ├── how-i-work/            # how-i-work.tsx
 │   ├── about/                 # about-content.tsx
 │   └── case-study/            # case-study-header / -section / -figure
 └── lib/
-    ├── projects.ts            # homepage project list (data)
-    └── case-studies.ts        # case study content (Banner)
+    ├── content.ts             # MDX frontmatter loader (content/{locale}/*.mdx)
+    ├── site.ts                # email, LinkedIn, repo URL
+    └── case-studies.ts        # legacy Banner copy; replaced by MDX with the case study page
 ```
 
 Route is `/banner-configurator`. The old Webflow URL was `/baner-configurator` (one `n`); add a redirect if the old URL needs to keep working.

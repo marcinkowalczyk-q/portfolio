@@ -63,7 +63,7 @@ Rules:
 | `--color-divider` | `#cbd3e4` | Section dividers, meta card border | merged `#c3c7d2` (hero divider) |
 | `--color-control-border` | `#80889b` | CTA / button outline | **was `rgba(128,136,155,.8)`** (non-text contrast) |
 | `--color-surface` | `#fafbfd` | Featured card, footer, How I work strip | merged `#fafbfd`, `rgba(166,180,215,.06)`, `rgba(237,240,247,.3)` (identical once composited) |
-| `--color-surface-muted` | `#f6f8fa` | Diagram panel, browser-frame toolbar | — |
+| `--color-surface-muted` | `#f6f8fa` | Diagram panel | — |
 | `--color-surface-toggle` | `#f2f4f9` | Language toggle track | solid version of `rgba(166,180,215,.15)` |
 | `--color-project-configurator` | `#e2e8ed` | Configurator case study header | — |
 | `--color-project-edelivery` | `#f2f9ff` | e-Delivery case study header | — |
@@ -133,11 +133,12 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | `--container-figure` | 790px | Single figures |
 | `--container-wide` | 980px | Figure pairs, 2×2 grids, image + text rows |
 | `--container-content` | 1014px | Case study header, meta card |
-| `--container-page` | 1140px | Intro rows (160px label + 48px gap + text), project cards |
+| `--container-page` | 1140px | Intro rows (160px label + 48px gap + text) |
+| `--container-cards` | 1180px | Project cards (460 text + 48 gap + 672 image), How I work strip |
 
 **Breakpoints:** Tailwind defaults (`md` 768, `lg` 1024, `xl` 1280). Figma only defines 360 and 1440, so layouts switch from stacked to side-by-side at `md` and reach full width at `lg`.
 
-**Radii:** `rounded-sm` 4px (toggle segment), `rounded-md` 6px (images, buttons, browser frame), `rounded-card` 12px (meta card).
+**Radii:** `rounded-sm` 4px (toggle segment), `rounded-md` 6px (images, buttons), `rounded-card` 12px (meta card).
 
 ---
 
@@ -146,10 +147,10 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | Component | Spec |
 |---|---|
 | **Nav** | Brand (serif 600, 14/16px) on the left; links "Work / About" (`text-nav`, 32px gap); language toggle on the right (track `surface-toggle`, 2px padding, 6px radius; 14px labels; active segment white, `fg-primary`; inactive `fg-tertiary`). 1px `border-subtle` bottom border. |
-| **Hero** | Centred stack: eyebrow → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile) → lede (`lede`, `fg-primary`, max 680px). |
+| **Hero** | Centred stack: eyebrow (normal case, as in Figma) → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile) → lede (`lede`, `fg-primary`, max 680px). |
 | **Project card** | Text column (eyebrow with bold number "01", `h1` title, `body` summary, CTA) + visual. Desktop: 460px text + 672px visual, sides alternate, first card on `surface`. Mobile: stacked, text first. |
 | **CTA (secondary button)** | 1px `control-border`, 6px radius, 10/18px padding, Inter 500 14px, `fg`, arrow "→" as part of the label. |
-| **Case study header** | Project-tinted background, eyebrow + `h1` + lede in a 460px column. Visual on the right (see Changes). When the frontmatter has `prototypes` (e-Delivery: desktop + mobile Axure URLs), show them below the lede as external `TextLink`s: "Zobacz prototyp w Axure" / "View the Axure prototype", with a desktop / mobile qualifier when there are two. Labels go in `src/messages/*.json`. |
+| **Case study header** | Project-tinted background, eyebrow + `h1` + lede in a 460px column. Device mockup on the right (see 5.2). When the frontmatter has `prototypes` (e-Delivery: desktop + mobile Axure URLs), show them below the lede as external `TextLink`s: "Zobacz prototyp w Axure" / "View the Axure prototype", with a desktop / mobile qualifier when there are two. Labels go in `src/messages/*.json`. |
 | **Meta card** | 1px `divider` border, 12px radius, 12/16px padding; rows of label (112px, `label`) + value (`body`). Scope renders as a bullet list. |
 | **Intro row** | Label (160px, `label-lg`) + text (752px). Stacks on mobile. |
 | **Section** | `h2` + paragraphs (+ lists) + figure(s), inside `container-text`; figures widen to `container-figure` / `container-wide`. Dividers (`divider`, 740px) between topic groups. |
@@ -163,11 +164,10 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 ### 5.1 Accessible contrast
 All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#60687a`, CTA outline → solid `#80889b`.
 
-### 5.2 Project visuals: browser frame instead of device mockups
-- Tilted monitor, laptop and phone mockups are replaced by **flat screenshots in a minimal browser frame**: a 28px toolbar on `surface-muted` with three 8px dots in `divider`, an optional fake URL in `text-small fg-tertiary`, a 1px `border` frame and 6px radius.
-- This applies to homepage project cards and case study headers. Inside case study bodies, figures stay frameless, except screenshots of full pages, which may use the frame.
-- Frames are decorative (`aria-hidden`). The screenshot `<img>` carries the alt text.
-- Assets to export: one flat 16:10 screenshot per project (`/images/projects/{slug}.png`), replacing `configurator.png` and `edor.png`.
+### 5.2 Project visuals: device mockups (decorative)
+- Homepage project cards and case study headers keep the **device mockups** (monitor, laptop, phone) from the existing images in `public/images/`. No browser frame.
+- Mockups are decorative. On homepage cards the project title sits right next to the image, so the `<img>` has **empty alt** (`alt=""`). The image link is a mouse shortcut only (`tabIndex=-1`, `aria-hidden`); the CTA is the single keyboard / screen reader link per card. Case study headers give the mockup a **short alt** (e.g. "e-Delivery on a laptop and a phone").
+- Inside case study bodies, figures stay frameless and carry full alt text (see 5.7).
 
 ### 5.3 Hero
 - Lower height: 96px vertical padding on desktop, 64px on mobile (was 180 / 122–128).
@@ -178,17 +178,17 @@ All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#6068
 Card numbers follow the display order. The featured `surface` background goes on the first card.
 
 ### 5.5 "Jak pracuję / How I work" strip
-- Placed before the footer, on `surface`, inside `container-page`.
+- Placed before the footer, on `surface`, inside `container-cards` so it lines up with the project cards.
 - A section `h2` ("Jak pracuję" / "How I work"), then the points in a grid (1 column mobile, 2 at `md`, 4 at `lg`). Each point has a short title (`h3`) and one or two sentences of `body`.
 - **4 points**, each a bold lead (rendered as the `h3`) followed by one sentence: Research and data · Collaboration · Accessibility · Implementation quality.
 - Copy lives in `src/messages/{pl,en}.json` under `howIWork.*` (short UI strings, so not MDX).
 
 ### 5.6 Footer
 Two rows inside `container-page`:
-- **Contact:** email (shown as visible text + `mailto:` link), LinkedIn, **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)").
+- **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn, **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)"). The CV link renders only when `public/cv/` contains a PDF; the size is read from the file at build time.
 - **Meta:** "Designed and coded by Marcin Kowalczyk" + a link to the GitHub repo · **Accessibility statement** link · © year.
 - External links carry `rel="noopener noreferrer"` and announce "opens in a new tab".
-- Still to supply: the email address, the CV file, the GitHub repo URL (there's no git remote yet), and the accessibility statement page (new route `/[locale]/accessibility`, called "Deklaracja dostępności" in PL).
+- Still to supply: the CV file and the accessibility statement page (route `/[locale]/accessibility`, called "Deklaracja dostępności" in PL). Email and repo URL are in `src/lib/site.ts`.
 
 ### 5.7 Case study images: click to enlarge
 - Every case study image is a button ("Enlarge image: {alt}") that opens a **lightbox**:
@@ -211,26 +211,25 @@ No hamburger. Both links ("Work / About" and "Projekty / O mnie") and the langua
 
 ## 6. Base components to build
 
-No implementation yet; this is the build list. "Existing" means a file in `src/components` to refactor.
+The build list. "existing" means a file in `src/components` to refactor; "done" gives the file that implements it.
 
 | # | Component | Purpose | Key requirements | Status |
 |---|---|---|---|---|
-| 1 | `SkipLink` | Jump to `#main` | First in tab order, visible on focus, localized | new |
-| 2 | `Container` | Width wrapper | `size`: text / figure / wide / content / page; gutters | new |
-| 3 | `SiteHeader` (+ `NavLinks`) | Top nav | Brand, two links, current page `aria-current`, no hamburger | existing `layout/nav.tsx` |
-| 4 | `LanguageSwitch` | PL/EN toggle | Links to the same page in the other locale, `hreflang`/`lang`, active state not by colour alone | part of `nav.tsx` → split out |
-| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, CV download, credit + repo link, accessibility statement link | existing `layout/footer.tsx` |
-| 6 | `Eyebrow` | Uppercase label | CSS uppercase, optional bold number prefix | new |
-| 7 | `Button` / `LinkButton` | CTA | `control-border` outline, 6px radius, works as `<a>` or `<button>` | new (extract from `project-card.tsx`) |
-| 8 | `TextLink` | Inline / external link | Underline, external variant with icon + "(opens in a new tab)" | new |
-| 9 | `Icon` | SVG icons | LinkedIn, GitHub, external, download, close, arrows; `aria-hidden` by default | new |
-| 10 | `Divider` | Section separator | Decorative `<hr>`, width variants | new |
-| 11 | `Hero` | Homepage intro | Shorter, no background image | existing `hero/hero.tsx` |
-| 12 | `BrowserFrame` | Flat screenshot frame | Decorative chrome, image with alt, optional URL | new |
-| 13 | `ProjectCard` | Homepage card | Reads `card:` frontmatter, alternating layout, uses `BrowserFrame` | existing `work/project-card.tsx` |
-| 14 | `ProjectList` | Ordered cards | Order: e-Delivery, Configurator; numbering by position | existing `work/work-list.tsx` |
-| 15 | `HowIWork` | Process strip | `h2` + 3–4 items, responsive grid | new |
-| 16 | `CaseStudyHeader` | Case study top | Tinted bg per project, eyebrow, `h1`, lede, `BrowserFrame`, optional Axure prototype links from frontmatter `prototypes` | existing `case-study/case-study-header.tsx` |
+| 1 | `SkipLink` | Jump to `#main` | First in tab order, visible on focus, localized | done `layout/skip-link.tsx` |
+| 2 | `Container` | Width wrapper | `size`: text / figure / wide / content / page / cards; gutters | done `ui/container.tsx` |
+| 3 | `SiteHeader` (+ `NavLinks`) | Top nav | Brand, two links, current page `aria-current`, no hamburger | done `layout/site-header.tsx, nav-links.tsx` |
+| 4 | `LanguageSwitch` | PL/EN toggle | Links to the same page in the other locale, `hreflang`/`lang`, active state not by colour alone | done `layout/language-switch.tsx` |
+| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, CV download, credit + repo link, accessibility statement link | done `layout/site-footer.tsx` |
+| 6 | `Eyebrow` | Uppercase label | CSS uppercase, optional bold number prefix | done `ui/eyebrow.tsx` |
+| 7 | `Button` / `LinkButton` | CTA | `control-border` outline, 6px radius, works as `<a>` or `<button>` | done `ui/link-button.tsx` |
+| 8 | `TextLink` | Inline / external link | Underline, external variant with icon + "(opens in a new tab)" | done `ui/text-link.tsx` |
+| 9 | `Icon` | SVG icons | LinkedIn, GitHub, external, download, close, arrows; `aria-hidden` by default | done `ui/icon.tsx` |
+| 10 | `Divider` | Section separator | Decorative `<hr>`, width variants | done `ui/divider.tsx` |
+| 11 | `Hero` | Homepage intro | Shorter, no background image | done `hero/hero.tsx` |
+| 13 | `ProjectCard` | Homepage card | Reads `card:` frontmatter, alternating layout, decorative device mockup (`alt=""`) | done `work/project-card.tsx` |
+| 14 | `ProjectList` | Ordered cards | Order: e-Delivery, Configurator; numbering by position | done `work/project-list.tsx` |
+| 15 | `HowIWork` | Process strip | `h2` + 3–4 items, responsive grid | done `how-i-work/how-i-work.tsx` |
+| 16 | `CaseStudyHeader` | Case study top | Tinted bg per project, eyebrow, `h1`, lede, device mockup (short alt), optional Axure prototype links from frontmatter `prototypes` | existing `case-study/case-study-header.tsx` |
 | 17 | `MetaList` | Year / role / scope / team / DS / status | `<dl>`, labels from `cs.meta.*`, scope as `<ul>` | new |
 | 18 | `IntroRow` | Context / Challenge / Constraints | Label + text, stacks on mobile | new |
 | 19 | `CaseStudySection` | H2 block | Wraps MDX section, container widths | existing `case-study/case-study-section.tsx` |
@@ -241,4 +240,4 @@ No implementation yet; this is the build list. "Existing" means a file in `src/c
 | 24 | `MdxComponents` | MDX → components map | `h2`, `h3`, `p`, `ul`, `img`→`Figure`, `hr`→`Divider`, `strong` | new |
 | 25 | `AccessibilityStatement` page | Required statement | Route `/[locale]/accessibility`, linked from footer | new |
 
-Supporting non-component work: an MDX content loader (`src/lib/content.ts`) that reads `content/{locale}/*.mdx`, replacing the copy in `src/lib/projects.ts` and `src/lib/case-studies.ts`.
+Supporting non-component work: the MDX content loader `src/lib/content.ts` (`gray-matter`) reads `content/{locale}/*.mdx` frontmatter; the homepage cards use it and `src/lib/projects.ts` is gone. Compiling MDX bodies, and replacing `src/lib/case-studies.ts`, comes with the case study page.

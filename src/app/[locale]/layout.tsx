@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter, Bitter } from "next/font/google";
 import "../globals.css";
-import { isValidLocale, defaultLocale, type Locale } from "@/i18n";
+import { getT, isValidLocale, locales, defaultLocale, type Locale } from "@/i18n";
+import SkipLink from "@/components/layout/skip-link";
 
 // Both are variable fonts, so no weight list is needed
 const inter = Inter({
@@ -40,6 +41,10 @@ export const metadata: Metadata = {
   },
 };
 
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -52,7 +57,10 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${inter.variable} ${bitter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SkipLink label={getT(locale)["a11y.skipLink"]} />
+        {children}
+      </body>
     </html>
   );
 }

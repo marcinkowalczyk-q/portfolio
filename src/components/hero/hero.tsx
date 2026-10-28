@@ -1,4 +1,6 @@
 import type { T } from "@/i18n";
+import Eyebrow from "@/components/ui/eyebrow";
+import Divider from "@/components/ui/divider";
 
 type Props = { t: T };
 
@@ -10,9 +12,7 @@ export default function Hero({ t }: Props) {
     >
       <div className="flex flex-col items-center gap-3 pb-2">
         <div className="flex flex-col items-center gap-2">
-          <p className="text-[12px] leading-[normal] tracking-[0.2em] text-[var(--color-fg-secondary)]">
-            {t["hero.eyebrow"]}
-          </p>
+          <Eyebrow uppercase={false}>{t["hero.eyebrow"]}</Eyebrow>
           <h1
             id="hero-heading"
             className="text-display-sm text-[var(--color-fg-primary)] md:text-display"
@@ -25,10 +25,7 @@ export default function Hero({ t }: Props) {
         </p>
       </div>
 
-      <div
-        className="h-px w-[178px] bg-[var(--color-divider)] md:w-[268px]"
-        aria-hidden="true"
-      />
+      <Divider width="hero" />
 
       <p className="max-w-[680px] text-lede-sm text-[var(--color-fg-primary)] md:text-lede">
         {t["hero.bio"]}

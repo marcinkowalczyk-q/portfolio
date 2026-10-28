@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { getT, isValidLocale, defaultLocale, type Locale } from "@/i18n";
 import { getBanerCaseStudy } from "@/lib/case-studies";
-import Nav from "@/components/layout/nav";
-import Footer from "@/components/layout/footer";
+import SiteHeader from "@/components/layout/site-header";
+import SiteFooter from "@/components/layout/site-footer";
 import CaseStudyHeader from "@/components/case-study/case-study-header";
 import CaseStudySectionView from "@/components/case-study/case-study-section";
 
@@ -29,8 +29,8 @@ export default async function BanerConfiguratorPage({
 
   return (
     <>
-      <Nav locale={locale} t={t} />
-      <main id="main">
+      <SiteHeader locale={locale} t={t} />
+      <main id="main" tabIndex={-1} className="focus:outline-none">
         <CaseStudyHeader
           number={cs.number}
           title={cs.title}
@@ -44,7 +44,7 @@ export default async function BanerConfiguratorPage({
           ))}
         </article>
       </main>
-      <Footer t={t} />
+      <SiteFooter locale={locale} t={t} />
     </>
   );
 }
