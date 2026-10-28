@@ -24,7 +24,7 @@ Kadwa and Inter Tight are removed. The few Kadwa layers in Figma were accidental
 | `display` | 64 / 1.05 | −1% | serif 500 | Hero name (desktop) |
 | `display-sm` | 48 / 1.2 | −1% | serif 500 | Hero name (mobile) |
 | `h1` | 40 / 1.2 | −1% | serif 500 | Page / case study title, project card title |
-| `h1-sm` | 32 / 1.25 | −1% | serif 500 | Same, mobile |
+| `h1-sm` | 32 / 1.5 | −1% | serif 500 | Same, mobile (48px line, as in Figma mobile card and case study title) |
 | `h2` | 32 / 1.5 | −1% | serif 500 | Case study section heading |
 | `h2-sm` | 24 / 1.5 | −1% | serif 500 | Same, mobile |
 | `h3` | 20 / 1.4 | −1% | serif 500 | Sub-section (e.g. "Banner list") |
@@ -229,15 +229,15 @@ The build list. "existing" means a file in `src/components` to refactor; "done" 
 | 13 | `ProjectCard` | Homepage card | Reads `card:` frontmatter, alternating layout, decorative device mockup (`alt=""`) | done `work/project-card.tsx` |
 | 14 | `ProjectList` | Ordered cards | Order: e-Delivery, Configurator; numbering by position | done `work/project-list.tsx` |
 | 15 | `HowIWork` | Process strip | `h2` + 3–4 items, responsive grid | done `how-i-work/how-i-work.tsx` |
-| 16 | `CaseStudyHeader` | Case study top | Tinted bg per project, eyebrow, `h1`, lede, device mockup (short alt), optional Axure prototype links from frontmatter `prototypes` | existing `case-study/case-study-header.tsx` |
-| 17 | `MetaList` | Year / role / scope / team / DS / status | `<dl>`, labels from `cs.meta.*`, scope as `<ul>` | new |
-| 18 | `IntroRow` | Context / Challenge / Constraints | Label + text, stacks on mobile | new |
-| 19 | `CaseStudySection` | H2 block | Wraps MDX section, container widths | existing `case-study/case-study-section.tsx` |
-| 20 | `Figure` | Image + caption | Required alt (build error if empty), opens `Lightbox` | existing `case-study/case-study-figure.tsx` |
-| 21 | `FigureGroup` | Pairs, 2×2 grids, labelled comparisons, image + text rows | Stacks on mobile, shared lightbox gallery | new |
-| 22 | `Lightbox` | Enlarged image | `<dialog>`, focus trap, Esc, return focus, ←/→, reduced motion | new (client component) |
+| 16 | `CaseStudyHeader` | Case study top | Tinted bg per project, eyebrow, `h1`, lede, device mockup (short alt from frontmatter `heroAlt`), optional Axure prototype links from frontmatter `prototypes` | done `case-study/case-study-header.tsx` |
+| 17 | `MetaList` | Year / role / scope / team / DS / status | `<dl>`, labels from `cs.meta.*`, scope as `<ul>` | done `case-study/meta-list.tsx` |
+| 18 | `IntroRow` | Context / Challenge / Constraints | Label + text, stacks on mobile | done `case-study/intro-row.tsx` |
+| 19 | `CaseStudySection` | H2 block | Wraps MDX section, container widths | done `case-study/case-study-section.tsx` |
+| 20 | `Figure` | Image + caption | Required alt (build error if empty), opens `Lightbox` | done `case-study/figure.tsx` |
+| 21 | `FigureGroup` | Pairs, 2×2 grids, labelled comparisons, image + text rows | Stacks on mobile, shared lightbox gallery | done `case-study/figure-group.tsx` (single, pair, row; 2×2 grid and labelled comparison come with e-Delivery) |
+| 22 | `Lightbox` | Enlarged image | `<dialog>`, focus trap, Esc, return focus, ←/→, reduced motion | done `case-study/lightbox.tsx` (client) |
 | 23 | `Portrait` / `AboutContent` | About page | Portrait with alt, MDX body | existing `about/about-content.tsx` |
-| 24 | `MdxComponents` | MDX → components map | `h2`, `h3`, `p`, `ul`, `img`→`Figure`, `hr`→`Divider`, `strong` | new |
+| 24 | `MdxComponents` | MDX → components map | `h2`, `h3`, `p`, `ul`, `img`→`Figure`, `hr`→`Divider`, `strong` | done `case-study/mdx-components.tsx` |
 | 25 | `AccessibilityStatement` page | Required statement | Route `/[locale]/accessibility`, linked from footer | new |
 
-Supporting non-component work: the MDX content loader `src/lib/content.ts` (`gray-matter`) reads `content/{locale}/*.mdx` frontmatter; the homepage cards use it and `src/lib/projects.ts` is gone. Compiling MDX bodies, and replacing `src/lib/case-studies.ts`, comes with the case study page.
+Supporting non-component work: the MDX content loader `src/lib/content.ts` (`gray-matter`) reads `content/{locale}/*.mdx` frontmatter. Bodies compile with `next-mdx-remote` (`src/lib/mdx.ts`); `src/lib/remark-case-study.ts` turns plain markdown into the template: `##` blocks before the first `---` become intro rows, later `##` blocks become sections, image-only paragraphs become figure groups (1 image = single, 2 = pair), and a `###` block with one image becomes an image + text row. Image sizes are read from `public/` at build time (`src/lib/image-size.ts`).

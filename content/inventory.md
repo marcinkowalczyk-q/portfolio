@@ -78,7 +78,6 @@ Keys checked and unchanged (they already match Figma): `nav.work`, `nav.about`, 
 ### Pending cleanup (needs code changes, so not done yet)
 
 - `about.heading`, `about.para1–3` in the JSON still hold the **old** About copy. The new copy is only in `content/*/about.mdx`. Delete these keys when `about-content.tsx` reads from MDX. They're still there because deleting them now would break the typecheck.
-- `src/lib/case-studies.ts` holds an older copy of the Banner case study, and `src/lib/projects.ts` holds older card copy and the e-Delivery "case study in progress" + prototype links. Both duplicate the MDX. Replace them with an MDX loader when components are wired.
 - `project.caseStudyInProgress`, `project.statusNote`, `project.mobilePrototype`, `project.desktopPrototype`, `cs.backToWork`, `cs.label` don't appear anywhere in Figma. Either drop them or add them to the design.
 
 ## Copy issues found in Figma

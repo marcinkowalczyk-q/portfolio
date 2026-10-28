@@ -31,6 +31,9 @@
   "cs.meta.team": "Zespół",
   "cs.meta.designSystem": "Design System",
   "cs.meta.status": "Status",
+  "cs.prototype": "Zobacz prototyp w Axure",
+  "cs.prototype.desktop": "desktop",
+  "cs.prototype.mobile": "mobile",
 
   "howIWork.heading": "Jak pracuję",
   "howIWork.1.lead": "Badania i dane.",
@@ -41,6 +44,11 @@
   "howIWork.3.text": "Projektuję zgodnie z WCAG: kontrasty, typografia, czytelne stany i focus.",
   "howIWork.4.lead": "Jakość wdrożenia.",
   "howIWork.4.text": "Sprawdzam wdrożenie na środowisku testowym pod kątem zgodności z projektem, design systemem i scenariuszami.",
+
+  "lightbox.enlarge": "Powiększ obraz",
+  "lightbox.close": "Zamknij",
+  "lightbox.prev": "Poprzedni obraz",
+  "lightbox.next": "Następny obraz",
 
   "footer.contactHeading": "Kontakt",
   "footer.linkedin": "LinkedIn",

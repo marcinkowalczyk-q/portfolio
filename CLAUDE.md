@@ -31,11 +31,13 @@ src/
 │   ├── work/                  # project-list.tsx, project-card.tsx
 │   ├── how-i-work/            # how-i-work.tsx
 │   ├── about/                 # about-content.tsx
-│   └── case-study/            # case-study-header / -section / -figure
+│   └── case-study/            # header, meta-list, intro-row, section, figure, figure-group, lightbox, mdx-components
 └── lib/
     ├── content.ts             # MDX frontmatter loader (content/{locale}/*.mdx)
-    ├── site.ts                # email, LinkedIn, repo URL
-    └── case-studies.ts        # legacy Banner copy; replaced by MDX with the case study page
+    ├── mdx.ts                 # compiles case study bodies (next-mdx-remote, RSC)
+    ├── remark-case-study.ts   # markdown → IntroRow / CaseStudySection / FigureGroup
+    ├── image-size.ts          # intrinsic image size from public/
+    └── site.ts                # email, LinkedIn, repo URL
 ```
 
 Route is `/banner-configurator`. The old Webflow URL was `/baner-configurator` (one `n`); add a redirect if the old URL needs to keep working.
@@ -78,13 +80,14 @@ See **DESIGN.md**: typography scale, colours (WCAG 2.2 AA audited), spacing, lay
 - Inter + Bitter via `next/font`
 - Homepage: nav, hero, work list, two project cards, footer
 - About page with portrait + bio + LinkedIn
-- Banner Configurator case study (15 sections, 11 figures)
+- Case study template (DESIGN.md components 16–22, 24) rendered from MDX
+- Banner Configurator case study from `content/{pl,en}/banner-configurator.mdx`, images exported from Figma at 2x into `public/images/banner-configurator/`
 - Metadata + OG tags on every route
 - `next.config.ts` with `remotePatterns` for Webflow CDN
 - Production build passes (3 static routes)
 
 ### In progress
-- Awaiting first manual review (`npm run dev`) before iterating
+- Day 2 Part A (template + Configurator) awaiting review; Part B (e-Doręczenia, About from MDX, accessibility statement) next
 
 ### Next
 - Run dev server, verify look-and-feel, capture issues

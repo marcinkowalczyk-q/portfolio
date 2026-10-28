@@ -43,7 +43,7 @@
   --text-h1--letter-spacing: -0.01em;
   --text-h1--font-weight: 500;
   --text-h1-sm: 2rem;
-  --text-h1-sm--line-height: 1.25;
+  --text-h1-sm--line-height: 1.5; /* 48px, as in Figma mobile card + case study title */
   --text-h1-sm--letter-spacing: -0.01em;
   --text-h1-sm--font-weight: 500;
 
@@ -107,6 +107,14 @@
   --container-cards: 73.75rem; /* 1180px: 460 text + 48 gap + 672 image */
   --spacing-section: 5.625rem; /* 90px desktop section gap */
   --radius-card: 0.75rem; /* 12px meta card */
+
+  --animate-lightbox-in: lightbox-in 160ms ease-out;
+  @keyframes lightbox-in {
+    from {
+      opacity: 0;
+      transform: scale(0.98);
+    }
+  }
 }
 
 /* Base styles sit in the base layer so Tailwind utilities can override them */

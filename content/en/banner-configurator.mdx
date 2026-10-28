@@ -5,6 +5,7 @@ title: Dynamic Content Configurator
 eyebrow: Configurator for Wakacje.pl
 lede: An operational interface that lets business teams manage promotional banners in the listing on their own — without developer support, within the rules of the existing system.
 heroImage: /images/banner-configurator/hero.png
+heroAlt: Dynamic Content Configurator banner list on a desktop monitor
 card:
   category: Configurator
   summary: Operational interface for managing promotional banners within a production system. The project focused on translating business needs into system rules, safe states, and controlled UI behavior.
@@ -52,7 +53,7 @@ Operational issues were translated into a clearer system structure by defining b
 
 Identifying clear states, valid transitions, and configuration rules reduced developer dependency and increased predictability for users.
 
-![Diagram mapping banner states, valid transitions and configuration rules](/images/banner-configurator/system-logic.png)
+![Flowchart of the campaign logic: empty-list check, adding a campaign through the form, required-field validation and publishing](/images/banner-configurator/system-logic.png)
 
 ## Designing within the Design System
 
@@ -60,8 +61,8 @@ The project used the existing Design System from inception, extending it with ne
 
 The solution became a natural system extension, maintaining consistency and predictable behavior for dynamic content management.
 
-![Design System components used in the configurator](/images/banner-configurator/design-system-1.png)
-![New component variants added to the Design System for the configurator](/images/banner-configurator/design-system-2.png)
+![Design System component sheet: chips, button, action buttons (edit, duplicate, delete), checkbox and radio](/images/banner-configurator/design-system-1.png)
+![Measurement spec for the new large table header variant: minimum height 64px, 16px side padding and icon spacing tokens](/images/banner-configurator/design-system-2.png)
 
 ## Interaction flows as system definition
 
@@ -69,7 +70,7 @@ Flows defined system behavior rather than serving as visual screen maps, showing
 
 Diagrams included conditions, constraints, and exceptions, helping developers understand what is allowed or blocked in specific contexts.
 
-![Interaction flow diagram with conditions, constraints and exceptions](/images/banner-configurator/interaction-flows.png)
+![Annotated flow from the banner list to the confirmation dialog: switching the publish toggle activates the campaign, arrows show the return to the list](/images/banner-configurator/interaction-flows.png)
 
 ## Error prevention & operational safety
 
@@ -77,7 +78,7 @@ The interface prioritized mistake reduction through additional confirmation for 
 
 Form validation detected incorrect data before system-level changes — preventing rather than just handling errors.
 
-![Confirmation dialogs and validation states that prevent unsafe changes](/images/banner-configurator/error-prevention.png)
+![Confirmation dialog for unpublishing a banner, next to form validation errors for name length, URL format and background file format](/images/banner-configurator/error-prevention.png)
 
 ## System interface layers
 
@@ -87,19 +88,19 @@ The interface comprises connected layers supporting different stages of the mana
 
 The list view acts as a control panel for the system. Users can see all banners, their states and usage context, which supports informed operational decisions. This view enables system control, not only content browsing.
 
-![Banner list showing every banner with its state and usage context](/images/banner-configurator/banner-list.png)
+![Banner list table with name, location URL, website and mobile app channels, and a publish toggle for each banner](/images/banner-configurator/banner-list.png)
 
 ### Configuration Form (rule definition)
 
 The form is used to define how the banner should work. Users set parameters and content, but always within constraints defined by the system logic. The form is not a content creator, but an interface for defining rules.
 
-![Banner configuration form with parameters and content fields](/images/banner-configurator/configuration-form.png)
+![“Add banner” side panel over the list, with fields for name, location URL, channel, desktop and mobile background, alt text and banner copy](/images/banner-configurator/configuration-form.png)
 
 ### Preview (system feedback)
 
 The preview acts as a feedback layer. It allows users to see how the configuration will affect the actual UI behavior in the product, reducing uncertainty and the risk of unwanted results.
 
-![Live preview of a configured banner inside the offer listing](/images/banner-configurator/preview.png)
+![Preview panel showing the same Last Minute banner in the desktop/tablet and mobile layouts](/images/banner-configurator/preview.png)
 
 ## Scenarios (behavior outcomes)
 
@@ -107,11 +108,19 @@ Supporting content variants required considering multiple UI behavior scenarios,
 
 Scenarios presented different active element sets and layout impacts, predicting system reactions before implementation while serving as a team communication tool.
 
-![Listing layouts for different sets of active banners](/images/banner-configurator/scenarios.png)
+![Content scenarios mapping configurator input to the rendered banner: heading only, heading and paragraph, with a button, and with two paragraphs and a button](/images/banner-configurator/scenarios.png)
 
 ## Usability testing
 
-{/* TODO: translate from content/pl/banner-configurator.mdx (section "Testy użyteczności") */}
+Scenarios from the analysis phase became the basis for testing. I built a prototype and tested it with two people: the main person responsible for publishing banners and the person who covers for them. For an internal tool, that is in practice the whole target group.
+
+Testing led to three changes:
+
+- **A data-href field** (the banner's target link). Its absence only surfaced while working through the scenarios.
+- **A new form field order**, matching how users actually prepare banners.
+- **Optional headings and copy**, so a graphic-only banner can be published.
+
+I reviewed the final version with stakeholders and the development team, with whom I checked feasibility throughout. GA and Clarity data set the banner's position in the listing.
 
 ## Design documentation
 
@@ -119,11 +128,15 @@ Documentation covered scenarios, states, dependencies, and edge cases in Figma a
 
 It addressed system behavior and logic alongside layouts — essential for rules-based rather than visual-structure-only implementation.
 
-![Figma documentation of states, dependencies and edge cases](/images/banner-configurator/documentation.png)
+![Figma documentation of the base banner list view: UX notes on columns, sorting and lazy loading next to the annotated screen](/images/banner-configurator/documentation.png)
 
 ## Implementation review
 
-{/* TODO: translate from content/pl/banner-configurator.mdx (section "Weryfikacja wdrożenia") */}
+Once the test environment was ready, I reviewed the implementation on three levels:
+
+- **Visual accuracy:** does the build match the design pixel for pixel.
+- **Design system compliance:** are the right components used in the right variants, and do styles come from tokens rather than hard-coded values.
+- **Flow accuracy:** walking through every scenario to check it follows the agreed flow.
 
 ---
 

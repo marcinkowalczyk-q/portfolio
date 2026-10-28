@@ -31,6 +31,9 @@
   "cs.meta.team": "Team",
   "cs.meta.designSystem": "Design System",
   "cs.meta.status": "Status",
+  "cs.prototype": "View the Axure prototype",
+  "cs.prototype.desktop": "desktop",
+  "cs.prototype.mobile": "mobile",
 
   "howIWork.heading": "How I work",
   "howIWork.1.lead": "Research and data.",
@@ -41,6 +44,11 @@
   "howIWork.3.text": "I design to WCAG: contrast, typography, clear states and focus.",
   "howIWork.4.lead": "Implementation quality.",
   "howIWork.4.text": "I review builds on staging against the design, the design system and the user scenarios.",
+
+  "lightbox.enlarge": "Enlarge image",
+  "lightbox.close": "Close",
+  "lightbox.prev": "Previous image",
+  "lightbox.next": "Next image",
 
   "footer.contactHeading": "Contact",
   "footer.linkedin": "LinkedIn",

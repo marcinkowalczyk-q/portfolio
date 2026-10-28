@@ -1,44 +1,61 @@
-import Link from "next/link";
-import type { Locale } from "@/i18n";
+import Image from "next/image";
+import type { T } from "@/i18n";
+import type { CaseStudyFrontmatter } from "@/lib/content";
+import { getImageSize } from "@/lib/image-size";
+import Container from "@/components/ui/container";
+import Eyebrow from "@/components/ui/eyebrow";
+import TextLink from "@/components/ui/text-link";
 
-type Props = {
-  number: string;
-  title: string;
-  subtitle: string;
-  backLabel: string;
-  locale: Locale;
+type Props = { frontmatter: CaseStudyFrontmatter; t: T };
+
+const TINTS: Record<string, string> = {
+  "banner-configurator": "bg-[var(--color-project-configurator)]",
+  "e-doreczenia": "bg-[var(--color-project-edelivery)]",
 };
 
-export default function CaseStudyHeader({
-  number,
-  title,
-  subtitle,
-  backLabel,
-  locale,
-}: Props) {
+// Tinted header: eyebrow, h1, lede in a 460px column; device mockup bleeds off the right edge.
+// The mockup export already carries the header tint, so it sits flush with the bottom edge.
+export default function CaseStudyHeader({ frontmatter: fm, t }: Props) {
+  if (!fm.heroAlt?.trim()) throw new Error(`content/${fm.locale}/${fm.slug}.mdx: missing "heroAlt"`);
+
+  const prototypes = Object.entries(fm.prototypes ?? {}).filter(
+    (entry): entry is ["desktop" | "mobile", string] => Boolean(entry[1])
+  );
+
   return (
-    <header className="mx-auto max-w-6xl px-6 pt-20 pb-12 md:px-10 md:pt-28 md:pb-20">
-      <Link
-        href={`/${locale}`}
-        className="text-sm text-[var(--color-fg-muted)] transition-opacity hover:opacity-70"
-      >
-        {backLabel}
-      </Link>
-      <p className="mt-10 text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-fg-muted)]">
-        {number} / CASE STUDY
-      </p>
-      <h1
-        className="mt-6 text-4xl leading-[1.05] tracking-tight text-[var(--color-fg)] md:text-6xl lg:text-7xl"
-        style={{ fontWeight: 400 }}
-      >
-        <span className="block">{title}</span>
-        <span
-          className="mt-2 block text-2xl text-[var(--color-fg-muted)] md:text-3xl"
-          style={{ fontWeight: 400 }}
-        >
-          {subtitle}
-        </span>
-      </h1>
+    <header className={`relative overflow-hidden ${TINTS[fm.slug] ?? "bg-[var(--color-surface)]"}`}>
+      <Container size="content" className="pt-12 lg:flex lg:min-h-[463px] lg:items-center lg:pt-0">
+        <div className="max-w-[460px]">
+          <Eyebrow>{fm.eyebrow}</Eyebrow>
+          <h1 className="mt-2 text-h1-sm text-[var(--color-fg)] md:text-h1">
+            {fm.title}
+            {fm.titleNote && <span className="text-[var(--color-fg-secondary)]"> {fm.titleNote}</span>}
+          </h1>
+          <p className="mt-5 text-body text-[var(--color-fg-secondary)]">{fm.lede}</p>
+          {prototypes.length > 0 && (
+            <ul className="mt-6 flex flex-col gap-2 text-sm text-[var(--color-fg)]">
+              {prototypes.map(([kind, href]) => (
+                <li key={kind}>
+                  <TextLink href={href} external newTabLabel={t["a11y.newTab"]}>
+                    {t["cs.prototype"]}
+                    {prototypes.length > 1 && ` (${t[`cs.prototype.${kind}`]})`}
+                  </TextLink>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </Container>
+      <div className="mt-10 ml-auto w-[min(100%,560px)] lg:absolute lg:right-0 lg:bottom-0 lg:mt-0 lg:w-[49%] lg:max-w-[708px]">
+        <Image
+          src={fm.heroImage}
+          alt={fm.heroAlt}
+          {...getImageSize(fm.heroImage)}
+          priority
+          sizes="(min-width: 1024px) 708px, 560px"
+          className="h-auto w-full"
+        />
+      </div>
     </header>
   );
 }

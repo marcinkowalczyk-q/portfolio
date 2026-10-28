@@ -5,6 +5,7 @@ title: Dynamic Content Configurator
 eyebrow: Konfigurator dla Wakacje.pl
 lede: Interfejs operacyjny umożliwiający zespołom biznesowym samodzielne zarządzanie banerami promocyjnymi bez angażowania developerów i bez naruszania zasad istniejącego systemu.
 heroImage: /images/banner-configurator/hero.png
+heroAlt: Lista banerów Dynamic Content Configurator na monitorze
 card:
   category: Narzędzie konfiguracyjne dla Wakacje.pl
   summary: Interfejs operacyjny do zarządzania banerami promocyjnymi w systemie produkcyjnym. Projekt polegał na przełożeniu potrzeb biznesowych na reguły systemowe, bezpieczne stany i kontrolowane zachowanie interfejsu.
@@ -54,14 +55,14 @@ Problemy operacyjne zostały przełożone na bardziej uporządkowaną strukturę
 
 Schemat pomagał opisać flow, punkty styku między elementami systemu oraz konsekwencje poszczególnych akcji użytkownika. To było kluczowe, bo narzędzie miało umożliwiać samodzielną konfigurację banerów przez biznes, bez udziału developera.
 
-![Schemat stanów banera, dozwolonych przejść i reguł konfiguracji](/images/banner-configurator/system-logic.png)
+![Schemat logiki kampanii: sprawdzenie pustej listy, dodanie kampanii przez formularz, walidacja pól obowiązkowych i publikacja](/images/banner-configurator/system-logic.png)
 
 ## Projektowanie w ramach Design Systemu
 
 Projekt korzystał z istniejącego Design Systemu, ale wymagał rozszerzenia go o nowe warianty i stany dla scenariuszy, których wcześniej nie obsługiwał. Dzięki temu konfigurator mógł zachować spójność z resztą produktu, mimo że wprowadzał nowe reguły, zależności i bardziej złożone scenariusze zarządzania treścią.
 
-![Komponenty Design Systemu użyte w konfiguratorze](/images/banner-configurator/design-system-1.png)
-![Nowe warianty komponentów dodane do Design Systemu na potrzeby konfiguratora](/images/banner-configurator/design-system-2.png)
+![Arkusz komponentów Design Systemu: chipy, przycisk, przyciski akcji (edycja, duplikowanie, usuwanie), checkbox i radio](/images/banner-configurator/design-system-1.png)
+![Specyfikacja wymiarów nowego wariantu dużego nagłówka tabeli: minimalna wysokość 64 px, marginesy 16 px i tokeny odstępów ikon](/images/banner-configurator/design-system-2.png)
 
 ## Flow interakcji jako opis logiki systemu
 
@@ -69,7 +70,7 @@ Flow nie służyły jedynie jako mapa ekranów. Opisywały zachowanie systemu, p
 
 Diagramy uwzględniały warunki, ograniczenia i wyjątki, dzięki czemu zespół developerski mógł łatwiej zrozumieć, co jest dozwolone lub blokowane w konkretnych kontekstach.
 
-![Diagram flow interakcji z warunkami, ograniczeniami i wyjątkami](/images/banner-configurator/interaction-flows.png)
+![Opisany flow od listy banerów do okna potwierdzenia: przełącznik publikacji aktywuje kampanię, strzałki pokazują powrót do listy](/images/banner-configurator/interaction-flows.png)
 
 ## Zapobieganie błędom i bezpieczeństwo operacyjne
 
@@ -77,7 +78,7 @@ Interfejs ograniczał ryzyko błędnych zmian przez dodatkowe potwierdzenia dla 
 
 Walidacja formularza wykrywała błędne dane przed zapisaniem zmian w systemie. Celem było nie tylko obsłużenie błędów, ale przede wszystkim zapobieganie im, zanim wpłyną na działanie produktu.
 
-![Okna potwierdzeń i stany walidacji chroniące przed niebezpiecznymi zmianami](/images/banner-configurator/error-prevention.png)
+![Okno potwierdzenia wyłączenia publikacji banera obok błędów walidacji formularza: długość nazwy, format adresu URL i format pliku tła](/images/banner-configurator/error-prevention.png)
 
 ## Warstwy interfejsu systemowego
 
@@ -87,25 +88,25 @@ Interfejs został zaprojektowany jako zestaw powiązanych warstw wspierających 
 
 Widok listy pełni rolę panelu kontroli systemu. Użytkownik widzi wszystkie banery, ich stany oraz kontekst użycia, co wspiera podejmowanie decyzji operacyjnych. To nie jest tylko lista treści, ale narzędzie do zarządzania systemem.
 
-![Lista banerów ze stanem i kontekstem użycia każdego z nich](/images/banner-configurator/banner-list.png)
+![Tabela banerów z nazwą, adresem lokalizacji, kanałami (strona WWW, aplikacja mobilna) i przełącznikiem publikacji przy każdym banerze](/images/banner-configurator/banner-list.png)
 
 ### Formularz konfiguracji (definiowanie reguł)
 
 Formularz służy do określenia zasad działania banera. Użytkownik definiuje parametry i treść, ale zawsze w ramach ograniczeń wynikających z logiki systemu. To nie jest kreator treści, lecz interfejs do definiowania reguł.
 
-![Formularz konfiguracji banera z polami parametrów i treści](/images/banner-configurator/configuration-form.png)
+![Panel boczny „Dodaj baner” nad listą, z polami nazwy, adresu URL, kanału, tła na desktop i mobile, tekstu alternatywnego i treści banera](/images/banner-configurator/configuration-form.png)
 
 ### Podgląd (informacja zwrotna systemu)
 
 Podgląd pełni rolę warstwy informacji zwrotnej. Pozwala zobaczyć, jak konfiguracja wpłynie na rzeczywiste zachowanie interfejsu w produkcie, zmniejszając niepewność i ryzyko niepożądanych efektów.
 
-![Podgląd skonfigurowanego banera na listingu ofert](/images/banner-configurator/preview.png)
+![Panel podglądu z tym samym banerem Last Minute w widoku desktop/tablet i mobile](/images/banner-configurator/preview.png)
 
 ## Scenariusze (zachowanie systemu)
 
 Różne warianty treści wpływały nie tylko na wygląd banera, ale też na jego zachowanie w systemie. Scenariusze pomagały zobaczyć, jakie będą efekty konfiguracji w praktyce i przewidzieć reakcję interfejsu jeszcze przed wdrożeniem.
 
-![Układy listingu dla różnych zestawów aktywnych banerów](/images/banner-configurator/scenarios.png)
+![Scenariusze treści: dane z konfiguratora i wynikowy baner – sam nagłówek, nagłówek z paragrafem, z przyciskiem oraz z dwoma paragrafami i przyciskiem](/images/banner-configurator/scenarios.png)
 
 ## Testy użyteczności
 
@@ -125,7 +126,7 @@ Dokumentacja w Figmie obejmowała scenariusze, stany, zależności i przypadki b
 
 Opisywała nie tylko układy ekranów, ale też zachowanie i logikę systemu, co było kluczowe przy wdrożeniu narzędzia opartego na regułach konfiguracji.
 
-![Dokumentacja w Figmie: stany, zależności i przypadki brzegowe](/images/banner-configurator/documentation.png)
+![Dokumentacja widoku bazowego listy banerów w Figmie: notatki UX o kolumnach, sortowaniu i doładowywaniu obok opisanego ekranu](/images/banner-configurator/documentation.png)
 
 ## Weryfikacja wdrożenia
 

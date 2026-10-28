@@ -1,6 +1,8 @@
 const WIDTHS = {
   hero: "w-[178px] md:w-[268px]",
-  section: "w-full max-w-text",
+  // Case study: 232px on mobile; 478px under the meta card, 740px between topic groups
+  meta: "w-[232px] md:w-[478px]",
+  section: "w-[232px] md:w-full md:max-w-text",
   full: "w-full",
 } as const;
 

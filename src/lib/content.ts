@@ -15,6 +15,7 @@ export type CaseStudyFrontmatter = {
   eyebrow: string;
   lede: string;
   heroImage: string;
+  heroAlt?: string;
   card: {
     category: string;
     summary: string;
