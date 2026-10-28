@@ -35,7 +35,7 @@ const IMAGE_1 = {
 
 const IMAGE_2 = {
   src: "/images/edor.png",
-  alt: "Laptop and mobile phone showing the e-Doreczennia administrative panel interface",
+  alt: "Laptop and mobile phone showing the e-Doręczenia mailbox management interface",
   width: 672,
   height: 420,
 };
@@ -59,10 +59,10 @@ export function getProjects(locale: Locale): Project[] {
       id: "banner-configurator",
       number: "01",
       title: "Dynamic Content Configurator",
-      category: isPl ? "Konfigurator dla Wakacje.pl" : "Configurator for Wakacje.pl",
+      category: isPl ? "Narzędzie konfiguracyjne dla Wakacje.pl" : "Configurator",
       description: isPl
-        ? "Narzędzie operacyjne do zarządzania dynamicznymi banerami promocyjnymi w systemie produkcyjnym. Projekt polegał na przełożeniu potrzeb biznesowych na reguły systemowe, bezpieczne stany i kontrolowane zachowanie UI."
-        : "Operational interface for managing dynamic promotional banners within a production system. The project focused on translating business needs into system rules, safe states, and controlled UI behavior.",
+        ? "Interfejs operacyjny do zarządzania banerami promocyjnymi w systemie produkcyjnym. Projekt polegał na przełożeniu potrzeb biznesowych na reguły systemowe, bezpieczne stany i kontrolowane zachowanie interfejsu."
+        : "Operational interface for managing promotional banners within a production system. The project focused on translating business needs into system rules, safe states, and controlled UI behavior.",
       image: IMAGE_1,
       primaryLink: {
         label: isPl ? "Zobacz case study →" : "View case study →",
@@ -73,11 +73,11 @@ export function getProjects(locale: Locale): Project[] {
     {
       id: "panel-e-doreczenia",
       number: "02",
-      title: "e-Doręczenia",
-      category: isPl ? "Administrative interface" : "Administrative interface",
+      title: isPl ? "e-Doręczenia" : "e-Delivery",
+      category: isPl ? "Publiczna usługa cyfrowa" : "Public digital service",
       description: isPl
-        ? "Administrative interface do zarządzania usługą doręczeń elektronicznych w systemie publicznym. Projekt obejmował złożone przepływy, ograniczenia systemowe i integrację z istniejącą infrastrukturą administracji."
-        : "Administrative interface designed for managing digital delivery services within a public sector system. The project involved complex workflows, system constraints, and integration with existing government infrastructure.",
+        ? "Publiczna usługa cyfrowa do prawnie wiążącej komunikacji z urzędami. Case study skupia się na warstwie zarządzania skrzynkami: kontekstach skrzynek, rolach, uprawnieniach i ustawieniach w ekosystemie mObywatela."
+        : "A public digital service for legally binding communication with government institutions. I worked on translating complex mailbox logic, roles, permissions, and settings into a clear interface within the mObywatel ecosystem.",
       image: IMAGE_2,
       imageFirst: true,
       status: isPl ? "Case study w przygotowaniu" : "Case study in progress",

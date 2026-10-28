@@ -31,8 +31,8 @@ Kadwa and Inter Tight are removed. The few Kadwa layers in Figma were accidental
 | `label-lg` | 18 / 1.67 | −1% | serif 500 | Intro row label (Context, Challenge…) |
 | `label` | 16 / 1.875 | −1% | serif 500 | Meta label (Year, Role…) |
 | `label-sm` | 14 / 1.7 | −1% | serif 500 | Meta label, mobile |
-| `lede` | 24 / 1.5 | 0 | sans 300 | Hero intro |
-| `lede-sm` | 18 / 1.5 | 0 | sans 300 | Hero intro, mobile |
+| `lede` | 28 / 1.5 | 0 | sans 300 | Hero intro |
+| `lede-sm` | 20 / 1.5 | 0 | sans 300 | Hero intro, mobile |
 | `body` | 16 / 1.6 | 0 | sans 400 | Paragraphs, card summary, meta value |
 | `body-sm` | 14 / 1.6 | 0 | sans 400 | Meta value (mobile), captions |
 | `nav` | 14 / 1.3 | −1% | serif 500 | Nav links |
@@ -145,8 +145,8 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 
 | Component | Spec |
 |---|---|
-| **Nav** | Brand (serif 600, 14/16px) on the left; links "Work / About" (`text-nav`, 32px gap); language toggle on the right (track `surface-toggle`, 2px padding, 6px radius; active segment white, `fg-secondary`; inactive `fg-tertiary`). 1px `border-subtle` bottom border. |
-| **Hero** | Centred stack: eyebrow → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile) → lede (`lede`, max 680px). |
+| **Nav** | Brand (serif 600, 14/16px) on the left; links "Work / About" (`text-nav`, 32px gap); language toggle on the right (track `surface-toggle`, 2px padding, 6px radius; 14px labels; active segment white, `fg-primary`; inactive `fg-tertiary`). 1px `border-subtle` bottom border. |
+| **Hero** | Centred stack: eyebrow → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile) → lede (`lede`, `fg-primary`, max 680px). |
 | **Project card** | Text column (eyebrow with bold number "01", `h1` title, `body` summary, CTA) + visual. Desktop: 460px text + 672px visual, sides alternate, first card on `surface`. Mobile: stacked, text first. |
 | **CTA (secondary button)** | 1px `control-border`, 6px radius, 10/18px padding, Inter 500 14px, `fg`, arrow "→" as part of the label. |
 | **Case study header** | Project-tinted background, eyebrow + `h1` + lede in a 460px column. Visual on the right (see Changes). When the frontmatter has `prototypes` (e-Delivery: desktop + mobile Axure URLs), show them below the lede as external `TextLink`s: "Zobacz prototyp w Axure" / "View the Axure prototype", with a desktop / mobile qualifier when there are two. Labels go in `src/messages/*.json`. |

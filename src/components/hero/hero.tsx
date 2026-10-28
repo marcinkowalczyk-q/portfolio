@@ -6,29 +6,31 @@ export default function Hero({ t }: Props) {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="py-[180px] text-center"
+      className="flex flex-col items-center gap-5 px-10 py-16 text-center md:gap-[30px] md:py-24"
     >
-      <div className="mx-auto max-w-[621px] px-6">
-        <p className="text-[12px] uppercase tracking-[0.2em] text-[var(--color-fg-muted)]">
-          {t["hero.eyebrow"]}
-        </p>
-        <h1
-          id="hero-heading"
-          className="mt-1 text-[72px] leading-[1.05] tracking-tight text-[var(--color-fg-hero)]"
-        >
-          Marcin Kowalczyk
-        </h1>
-        <p className="text-base text-[var(--color-fg-muted)]">
+      <div className="flex flex-col items-center gap-3 pb-2">
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-[12px] leading-[normal] tracking-[0.2em] text-[var(--color-fg-secondary)]">
+            {t["hero.eyebrow"]}
+          </p>
+          <h1
+            id="hero-heading"
+            className="text-display-sm text-[var(--color-fg-primary)] md:text-display"
+          >
+            Marcin Kowalczyk
+          </h1>
+        </div>
+        <p className="text-base leading-[normal] text-[var(--color-fg-secondary)]">
           {t["hero.tagline"]}
         </p>
       </div>
 
       <div
-        className="mx-auto my-[30px] h-px w-[268px] bg-[var(--color-divider)]"
+        className="h-px w-[178px] bg-[var(--color-divider)] md:w-[268px]"
         aria-hidden="true"
       />
 
-      <p className="mx-auto max-w-[680px] px-6 font-light text-[20px] leading-[34px] text-[var(--color-fg-muted)]">
+      <p className="max-w-[680px] text-lede-sm text-[var(--color-fg-primary)] md:text-lede">
         {t["hero.bio"]}
       </p>
     </section>

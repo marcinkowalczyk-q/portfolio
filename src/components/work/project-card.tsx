@@ -6,18 +6,21 @@ import type { T } from "@/i18n";
 type Props = { project: Project; t: T };
 
 export default function ProjectCard({ project, t }: Props) {
+  const ctaClass =
+    "inline-flex items-center rounded-[6px] border border-[var(--color-control-border)] bg-[var(--color-bg)] px-[18px] py-[10px] text-sm leading-[normal] font-medium text-[var(--color-fg)] transition-opacity hover:opacity-70";
+
   const textCol = (
-    <div className="md:w-[460px] md:shrink-0">
-      <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--color-fg-muted)]">
-        {project.number} / {project.category.toUpperCase()}
+    <div className="w-full lg:w-[460px] lg:shrink-0">
+      <p className="text-[12px] leading-[normal] tracking-[2.4px] text-[var(--color-fg-secondary)] uppercase">
+        <span className="text-[20px] font-bold">{project.number}</span> / {project.category}
       </p>
       <h2
         id={`project-${project.id}-title`}
-        className="mt-2 text-[32px] leading-[1.2] tracking-tight text-[var(--color-fg)] md:text-[40px] md:leading-[48px]"
+        className="mt-2 text-h1-sm text-[var(--color-fg)] md:text-h1"
       >
         {project.title}
       </h2>
-      <p className="mt-5 text-base leading-relaxed text-[var(--color-fg-muted)]">
+      <p className="mt-5 text-body text-[var(--color-fg-secondary)]">
         {project.description}
       </p>
 
@@ -27,7 +30,7 @@ export default function ProjectCard({ project, t }: Props) {
         </p>
       )}
       {project.statusNote && (
-        <p className="mt-2 text-sm text-[var(--color-fg-muted)]">
+        <p className="mt-2 text-sm text-[var(--color-fg-secondary)]">
           {project.statusNote}
         </p>
       )}
@@ -36,7 +39,7 @@ export default function ProjectCard({ project, t }: Props) {
         {project.primaryLink && (
           <Link
             href={project.primaryLink.href}
-            className="inline-flex items-center rounded-[6px] border border-[var(--color-fg-subtle)] px-[18px] py-[10px] text-sm font-medium text-[var(--color-fg)] transition-opacity hover:opacity-70"
+            className={ctaClass}
           >
             {project.primaryLink.label}
           </Link>
@@ -48,7 +51,7 @@ export default function ProjectCard({ project, t }: Props) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${link.label} (opens in a new tab)`}
-            className="inline-flex items-center rounded-[6px] border border-[var(--color-fg-subtle)] px-[18px] py-[10px] text-sm font-medium text-[var(--color-fg)] transition-opacity hover:opacity-70"
+            className={ctaClass}
           >
             {link.label}
           </a>
@@ -68,8 +71,8 @@ export default function ProjectCard({ project, t }: Props) {
         alt={project.image.alt}
         width={project.image.width}
         height={project.image.height}
-        className="h-auto w-full object-contain transition-transform duration-500 hover:scale-[1.02]"
-        sizes={project.featured ? "889px" : "(min-width: 768px) 55vw, 100vw"}
+        className="h-auto w-full rounded-[6px] object-contain transition-transform duration-500 hover:scale-[1.02]"
+        sizes="(min-width: 1024px) 672px, 100vw"
         priority={project.number === "01"}
       />
     </Link>
@@ -79,42 +82,30 @@ export default function ProjectCard({ project, t }: Props) {
       alt={project.image.alt}
       width={project.image.width}
       height={project.image.height}
-      className="h-auto w-full object-contain"
-      sizes="(min-width: 768px) 55vw, 100vw"
+      className="h-auto w-full rounded-[6px] object-contain"
+      sizes="(min-width: 1024px) 672px, 100vw"
     />
   );
 
-  if (project.featured) {
-    return (
-      <article
-        aria-labelledby={`project-${project.id}-title`}
-        className="w-full bg-[var(--color-bg-featured)] py-24"
-      >
-        <div className="mx-auto flex max-w-[1180px] flex-col gap-8 px-6 md:flex-row md:items-center md:gap-12 md:px-0">
-          {textCol}
-          <div className="md:flex-1">{imageContent}</div>
-        </div>
-      </article>
-    );
-  }
-
+  // Mobile: text above image. Desktop: 460px text + 672px image, sides alternate.
   return (
     <article
       aria-labelledby={`project-${project.id}-title`}
-      className="py-24"
+      className={[
+        "px-6 py-24 md:px-10",
+        project.featured ? "bg-[var(--color-surface)]" : "",
+      ].join(" ")}
     >
-      <div className="mx-auto flex max-w-[1180px] flex-col gap-8 px-6 md:flex-row md:items-center md:gap-12 md:px-0">
-        {project.imageFirst ? (
-          <>
-            <div className="md:flex-1">{imageContent}</div>
-            {textCol}
-          </>
-        ) : (
-          <>
-            {textCol}
-            <div className="md:flex-1">{imageContent}</div>
-          </>
-        )}
+      <div className="mx-auto flex max-w-[1180px] flex-col items-center gap-12 lg:flex-row">
+        {textCol}
+        <div
+          className={[
+            "w-full lg:w-[672px] lg:shrink",
+            project.imageFirst ? "lg:order-first" : "",
+          ].join(" ")}
+        >
+          {imageContent}
+        </div>
       </div>
     </article>
   );
