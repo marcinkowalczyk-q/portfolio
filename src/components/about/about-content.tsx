@@ -21,7 +21,8 @@ export default function AboutContent({ frontmatter: fm, t, children }: Props) {
           alt={fm.portraitAlt}
           {...getImageSize(fm.portrait)}
           sizes="315px"
-          priority
+          loading="eager"
+          fetchPriority="high"
           className="h-auto w-[75%] lg:w-[83%]"
         />
       </div>

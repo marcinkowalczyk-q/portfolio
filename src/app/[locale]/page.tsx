@@ -1,9 +1,20 @@
+import type { Metadata } from "next";
 import { getT, isValidLocale, defaultLocale, type Locale } from "@/i18n";
+import { pageMetadata } from "@/lib/site";
 import SiteHeader from "@/components/layout/site-header";
 import SiteFooter from "@/components/layout/site-footer";
 import Hero from "@/components/hero/hero";
 import ProjectList from "@/components/work/project-list";
 import HowIWork from "@/components/how-i-work/how-i-work";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata({ locale: isValidLocale(locale) ? locale : defaultLocale, route: "" });
+}
 
 export default async function HomePage({
   params,

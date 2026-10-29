@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getT, isValidLocale, defaultLocale, type Locale } from "@/i18n";
 import { getCaseStudy } from "@/lib/content";
 import { renderCaseStudyBody } from "@/lib/mdx";
+import { pageMetadata, type Route } from "@/lib/site";
 import SiteHeader from "@/components/layout/site-header";
 import SiteFooter from "@/components/layout/site-footer";
 import Divider from "@/components/ui/divider";
@@ -15,15 +16,12 @@ export async function resolveLocale(params: CaseStudyParams["params"]): Promise<
   return isValidLocale(locale) ? locale : defaultLocale;
 }
 
+// The share image comes from the route's opengraph-image.tsx
 export async function caseStudyMetadata(params: CaseStudyParams["params"], slug: string): Promise<Metadata> {
-  const { frontmatter: fm } = getCaseStudy(await resolveLocale(params), slug);
+  const locale = await resolveLocale(params);
+  const { frontmatter: fm } = getCaseStudy(locale, slug);
   const title = fm.titleNote ? `${fm.title} ${fm.titleNote}` : fm.title;
-  return {
-    title,
-    description: fm.lede,
-    openGraph: { title, description: fm.lede, images: [fm.heroImage] },
-    twitter: { title, description: fm.lede, images: [fm.heroImage] },
-  };
+  return pageMetadata({ locale, route: `/${slug}` as Route, title, description: fm.lede });
 }
 
 // Shared case study route: header, meta card, MDX body

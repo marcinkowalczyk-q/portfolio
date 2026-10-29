@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getT, isValidLocale, defaultLocale, type Locale } from "@/i18n";
 import { getAbout } from "@/lib/content";
 import { renderProse } from "@/lib/mdx";
+import { pageMetadata } from "@/lib/site";
 import SiteHeader from "@/components/layout/site-header";
 import SiteFooter from "@/components/layout/site-footer";
 import AboutContent from "@/components/about/about-content";
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const locale = await resolveLocale(params);
   const { frontmatter } = getAbout(locale);
   const title = getT(locale)["about.eyebrow"];
-  return { title, description: frontmatter.title, openGraph: { title, description: frontmatter.title } };
+  return pageMetadata({ locale, route: "/about", title, description: frontmatter.title });
 }
 
 export default async function AboutPage({ params }: Params) {

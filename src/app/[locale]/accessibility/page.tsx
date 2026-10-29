@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getT, isValidLocale, defaultLocale, type Locale } from "@/i18n";
 import { getPage } from "@/lib/content";
 import { renderProse } from "@/lib/mdx";
+import { pageMetadata } from "@/lib/site";
 import SiteHeader from "@/components/layout/site-header";
 import SiteFooter from "@/components/layout/site-footer";
 import Container from "@/components/ui/container";
@@ -16,8 +17,9 @@ async function resolveLocale(params: Params["params"]): Promise<Locale> {
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { frontmatter } = getPage(await resolveLocale(params), SLUG);
-  return { title: frontmatter.title, openGraph: { title: frontmatter.title } };
+  const locale = await resolveLocale(params);
+  const { frontmatter } = getPage(locale, SLUG);
+  return pageMetadata({ locale, route: "/accessibility", title: frontmatter.title, description: frontmatter.description });
 }
 
 // Text-column layout: 740px measure, same type as case study prose

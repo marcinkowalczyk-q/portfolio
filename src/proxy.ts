@@ -11,7 +11,8 @@ export function proxy(request: NextRequest) {
 
   if (!hasLocale) {
     return NextResponse.redirect(
-      new URL(`/${defaultLocale}${pathname}`, request.url)
+      // "/" → "/pl", not "/pl/" (which would cost a second redirect)
+      new URL(`/${defaultLocale}${pathname === "/" ? "" : pathname}`, request.url)
     );
   }
 
@@ -19,5 +20,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|favicon\\.ico|.*\\..*).*)"],
+  // icon / apple-icon are generated metadata routes with no file extension
+  matcher: ["/((?!_next|api|favicon\\.ico|icon|apple-icon|.*\\..*).*)"],
 };

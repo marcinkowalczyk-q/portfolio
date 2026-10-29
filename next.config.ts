@@ -1,15 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "cdn.prod.website-files.com",
-        pathname: "/**",
-      },
-    ],
-  },
   async redirects() {
     return [
       // Old Webflow slug (one "n") → current route

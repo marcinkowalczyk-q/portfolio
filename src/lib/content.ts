@@ -51,7 +51,7 @@ export type AboutFrontmatter = {
   linkedinUrl: string;
 };
 
-export type PageFrontmatter = { title: string };
+export type PageFrontmatter = { title: string; description?: string };
 
 export type Entry<F> = { frontmatter: F; body: string };
 

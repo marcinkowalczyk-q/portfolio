@@ -58,8 +58,9 @@ export default function CaseStudyHeader({ frontmatter: fm, t }: Props) {
           src={fm.heroImage}
           alt={fm.heroAlt}
           {...getImageSize(fm.heroImage)}
-          priority
-          sizes="(min-width: 1024px) 708px, 560px"
+          loading="eager"
+          fetchPriority="high"
+          sizes="(min-width: 1024px) 708px, (min-width: 560px) 560px, 100vw"
           className="h-auto w-full"
         />
       </div>

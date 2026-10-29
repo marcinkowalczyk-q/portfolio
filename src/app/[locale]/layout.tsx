@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Inter, Bitter } from "next/font/google";
 import "../globals.css";
 import { getT, isValidLocale, locales, defaultLocale, type Locale } from "@/i18n";
+import { siteUrl } from "@/lib/site";
 import SkipLink from "@/components/layout/skip-link";
 
 // Both are variable fonts, so no weight list is needed
@@ -18,28 +19,19 @@ const bitter = Bitter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-marcin-kowalczyk.webflow.io"),
-  title: {
-    default: "Marcin Kowalczyk — UX / UI Designer",
-    template: "%s | Marcin Kowalczyk",
-  },
-  description:
-    "UX/UI designer focused on complex digital products, operational tools, and turning ambiguous problems into systems people can actually use.",
-  openGraph: {
-    type: "website",
-    siteName: "Marcin Kowalczyk — Portfolio",
-    title: "Marcin Kowalczyk — UX / UI Designer",
-    description:
-      "UX/UI designer working on complex digital products, system tools and operational interfaces.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Marcin Kowalczyk — UX / UI Designer",
-    description:
-      "UX/UI designer working on complex digital products, system tools and operational interfaces.",
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const t = getT(isValidLocale(rawLocale) ? rawLocale : defaultLocale);
+  return {
+    metadataBase: new URL(siteUrl),
+    title: { default: t["meta.title"], template: "%s | Marcin Kowalczyk" },
+    description: t["meta.description"],
+  };
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

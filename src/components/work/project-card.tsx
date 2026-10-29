@@ -44,7 +44,8 @@ export default function ProjectCard({ card, href, number, ctaLabel, featured, im
               height={420}
               className="h-auto w-full rounded-[6px] object-contain transition-transform duration-500 hover:scale-[1.02] motion-reduce:transition-none motion-reduce:hover:scale-100"
               sizes="(min-width: 1024px) 672px, 100vw"
-              priority={featured}
+              loading={featured ? "eager" : "lazy"}
+              fetchPriority={featured ? "high" : "auto"}
             />
           </Link>
         </div>

@@ -6,11 +6,11 @@ Refactor of the existing Webflow portfolio (`https://portfolio-marcin-kowalczyk.
 
 ## Stack
 
-- **Next.js 16.2.4** (App Router, React 19, Turbopack build) — note: scaffolded as the latest, but App Router conventions match Next 15
+- **Next.js 16.4.3** (App Router, React 19, Turbopack build) — note: scaffolded as the latest, but App Router conventions match Next 15
 - **TypeScript** — `strict: true`
 - **Tailwind CSS v4** — config lives in `src/app/globals.css` via the `@theme` directive (no `tailwind.config.ts` in v4)
 - **next/font** — Inter (body) + Bitter (headings), both variable
-- **next/image** — all images, with `remotePatterns` for `cdn.prod.website-files.com`
+- **next/image** — all images, served from `public/`
 - ESLint (next defaults), no test setup yet
 - Deploy target: Vercel (zero config)
 
@@ -86,18 +86,21 @@ See **DESIGN.md**: typography scale, colours (WCAG 2.2 AA audited), spacing, lay
 - Accessibility statement (`/[locale]/accessibility`)
 - Case study template (DESIGN.md components 16–22, 24) rendered from MDX
 - Banner Configurator case study from `content/{pl,en}/banner-configurator.mdx`, images exported from Figma at 2x into `public/images/banner-configurator/`
-- Metadata + OG tags on every route
-- `next.config.ts` with `remotePatterns` for Webflow CDN
-- Production build passes (5 routes × 2 locales, all static)
+- Metadata on every route via `pageMetadata()` in `src/lib/site.ts`: localized title/description, canonical, hreflang (pl/en/x-default), OG + Twitter tags
+- Generated OG cards per route and locale (`opengraph-image.tsx`, shared renderer `src/lib/og-image.tsx`, fonts from `@fontsource`), MK monogram favicon (`icon.tsx`, `apple-icon.tsx`, `favicon.ico`)
+- `sitemap.xml` + `robots.txt`; site URL from `VERCEL_PROJECT_PRODUCTION_URL` (localhost fallback)
+- Day 3 QA: axe 0 violations on all 10 URLs (desktop + mobile); Lighthouse 100 on a11y / best practices / SEO; performance 100 except case study mobile ~91 (webfont preload)
+- `npm audit`: 0 vulnerabilities (Next 16.2.4 → 16.4.3)
+- Production build passes (5 routes × 2 locales + OG images, all static)
 
 ### In progress
-- Day 2 Part B (e-Doręczenia, About, accessibility statement) awaiting review
+- Day 3 part 1 (QA + launch prep) awaiting review; manual keyboard / VoiceOver pass pending
 
 ### Next
 - Run dev server, verify look-and-feel, capture issues
 - Accessibility statement: fill in the "[publication date]" placeholder
-- Drop `remotePatterns` for the Webflow CDN once nothing references it
-- Lighthouse pass (target: 90+ across all metrics)
+- e-Doręczenia dependency diagram: re-export once the "daję" → "daje" typo fix is in Figma
+- Custom domain: set it in Vercel; metadata, sitemap and OG URLs follow automatically
 
 ## Common commands
 
