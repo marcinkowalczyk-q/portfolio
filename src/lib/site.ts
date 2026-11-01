@@ -4,6 +4,8 @@ import { getT, locales, defaultLocale, type Locale } from "@/i18n";
 export const siteConfig = {
   email: "marcinkowalczyk.design@gmail.com",
   linkedinUrl: "https://www.linkedin.com/in/marcin-kowalczyk-85569714a",
+  // Same in both languages; shown on the OG cards
+  role: "Product Designer · UX/UI",
 } as const;
 
 // Vercel sets the production domain at build time; swap in a custom domain there, not here

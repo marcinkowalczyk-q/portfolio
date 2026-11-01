@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { ImageResponse } from "next/og";
+import { siteConfig } from "@/lib/site";
 
 // Shared 1200×630 share card for every route's opengraph-image.tsx. Server only.
 // Satori can't read CSS variables, so colours are the hex values of the globals.css tokens.
@@ -115,7 +116,7 @@ export async function renderOgImage({ eyebrow, title, image }: Options) {
             <div style={{ fontFamily: "Bitter", fontWeight: 600, fontSize: 28, color: color.fgPrimary, whiteSpace: "nowrap" }}>
               Marcin Kowalczyk
             </div>
-            <div style={{ fontSize: 22, color: color.fgSecondary, whiteSpace: "nowrap" }}>UX / Product Designer</div>
+            <div style={{ fontSize: 22, color: color.fgSecondary, whiteSpace: "nowrap" }}>{siteConfig.role}</div>
           </div>
         </div>
         {image && imageSrc && (

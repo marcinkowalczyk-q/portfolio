@@ -1,7 +1,8 @@
 import { getT, isValidLocale, defaultLocale, locales } from "@/i18n";
 import { renderOgImage, ogSize, ogContentType } from "@/lib/og-image";
+import { siteConfig } from "@/lib/site";
 
-export const alt = "Marcin Kowalczyk — UX / Product Designer";
+export const alt = `Marcin Kowalczyk — ${siteConfig.role}`;
 export const size = ogSize;
 export const contentType = ogContentType;
 
