@@ -55,6 +55,9 @@ export default function SiteFooter({ locale, t }: Props) {
         <div className="flex flex-col gap-3 border-t border-[var(--color-border-subtle)] pt-6 text-small text-[var(--color-fg-secondary)] md:flex-row md:items-center md:justify-between">
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <li>
+              <TextLink href={`/${locale}/about`}>{t["nav.about"]}</TextLink>
+            </li>
+            <li>
               <TextLink href={siteConfig.footer.repoUrl} external newTabLabel={newTab} icon="github">
                 {t["footer.credit"]}
               </TextLink>

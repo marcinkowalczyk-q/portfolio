@@ -180,7 +180,7 @@ Card numbers follow the display order. The featured `surface` background goes on
 ### 5.5 Footer
 Two rows inside `container-page`:
 - **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn, **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)"). The CV link renders only when `public/cv/` contains a PDF; the size is read from the file at build time.
-- **Meta:** "Designed and coded by Marcin Kowalczyk" + a link to the GitHub repo · **Accessibility statement** link · © year.
+- **Meta:** **About** link ("O mnie" / "About", so About is reachable on mobile without opening the menu) · "Designed and coded by Marcin Kowalczyk" + a link to the GitHub repo · **Accessibility statement** link · © year.
 - External links carry `rel="noopener noreferrer"` and announce "opens in a new tab".
 - Still to supply: the CV file. The accessibility statement lives at `/[locale]/accessibility` ("Deklaracja dostępności" in PL). Email and repo URL are in `src/lib/site.ts`.
 
@@ -194,7 +194,12 @@ Two rows inside `container-page`:
 - **Alt text is required.** The MDX image component throws at build time if `alt` is empty. Purely decorative images aren't allowed in case study bodies.
 
 ### 5.7 Mobile nav
-No hamburger. Both links ("Work / About" and "Projekty / O mnie") and the language toggle stay visible on every width. At 360px: brand on the first row, links and toggle on the second if they don't fit on one.
+- **md and up:** unchanged. Brand, the two links and the language toggle in one row.
+- **Below md:** one row, brand on the left and a **Menu button** on the right. The button opens a panel under the header (full width, `bg`, top border `border-subtle`) with the two links ("Projekty / O mnie", "Work / About") as a vertical list in `label-lg` serif, then a `border-subtle` divider and the language toggle.
+- **Button:** a real `<button>`, accessible name "Menu" in both languages (`nav.menu`), `aria-expanded`, `aria-controls="mobile-menu"`. 44×44px, standard focus ring. Icon is three bars when closed and × when open, so the state change is a change of shape, not colour.
+- **Behaviour:** opening moves focus to the first link; Tab and Shift+Tab cycle through the button and the menu links only; Esc closes and returns focus to the button. A link click or a route change (including the language toggle) closes it. The page behind doesn't scroll while it's open. Widening past `md` closes it.
+- **Motion:** 160ms fade + 4px slide in (`animate-menu-in`), applied with `motion-safe:` only. Closing is instant.
+- Current page keeps `aria-current="page"` and the underline in both layouts.
 
 ### 5.8 Skip link and focus
 - A **skip link** ("Przejdź do treści" / "Skip to content") is the first focusable element. It's visually hidden until focused and targets `<main id="main" tabindex="-1">`.
@@ -211,9 +216,9 @@ The build list. "existing" means a file in `src/components` to refactor; "done" 
 |---|---|---|---|---|
 | 1 | `SkipLink` | Jump to `#main` | First in tab order, visible on focus, localized | done `layout/skip-link.tsx` |
 | 2 | `Container` | Width wrapper | `size`: text / figure / wide / content / page / cards; gutters | done `ui/container.tsx` |
-| 3 | `SiteHeader` (+ `NavLinks`) | Top nav | Brand, two links, current page `aria-current`, no hamburger | done `layout/site-header.tsx, nav-links.tsx` |
+| 3 | `SiteHeader` (+ `NavLinks`) | Top nav | Brand, two links, current page `aria-current`; below md a Menu button + panel (5.7) | done `layout/site-header.tsx, nav-links.tsx, mobile-menu.tsx` |
 | 4 | `LanguageSwitch` | PL/EN toggle | Links to the same page in the other locale, `hreflang`/`lang`, active state not by colour alone | done `layout/language-switch.tsx` |
-| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, CV download, credit + repo link, accessibility statement link | done `layout/site-footer.tsx` |
+| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, CV download, About link, credit + repo link, accessibility statement link | done `layout/site-footer.tsx` |
 | 6 | `Eyebrow` | Uppercase label | CSS uppercase, optional bold number prefix | done `ui/eyebrow.tsx` |
 | 7 | `Button` / `LinkButton` | CTA | `control-border` outline, 6px radius, works as `<a>` or `<button>` | done `ui/link-button.tsx` |
 | 8 | `TextLink` | Inline / external link | Underline, external variant with icon + "(opens in a new tab)" | done `ui/text-link.tsx` |

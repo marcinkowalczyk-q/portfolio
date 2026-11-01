@@ -4,9 +4,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Locale, T } from "@/i18n";
 
-type Props = { locale: Locale; t: T };
+type Props = { locale: Locale; t: T; variant?: "bar" | "menu" };
 
-export default function NavLinks({ locale, t }: Props) {
+const styles = {
+  bar: {
+    list: "flex items-center gap-8",
+    // after: extends the hit area to 44px without changing the nav height
+    link: "relative inline-flex items-center after:absolute after:inset-x-0 after:-inset-y-[13px] font-serif text-nav",
+  },
+  menu: {
+    list: "flex flex-col",
+    link: "flex min-h-11 items-center py-2 font-serif text-label-lg",
+  },
+};
+
+export default function NavLinks({ locale, t, variant = "bar" }: Props) {
   const pathname = usePathname();
   const aboutHref = `/${locale}/about`;
   const isAbout = pathname.startsWith(aboutHref);
@@ -20,15 +32,15 @@ export default function NavLinks({ locale, t }: Props) {
   ];
 
   return (
-    <ul className="flex items-center gap-8">
+    <ul className={styles[variant].list}>
       {links.map((link) => (
         <li key={link.href}>
           <Link
             href={link.href}
             aria-current={link.current ? "page" : undefined}
             className={[
-              // after: extends the hit area to 44px without changing the nav height
-              "relative inline-flex items-center after:absolute after:inset-x-0 after:-inset-y-[13px] font-serif text-nav text-[var(--color-fg)] decoration-1 underline-offset-[6px] transition-opacity hover:opacity-70",
+              styles[variant].link,
+              "text-[var(--color-fg)] decoration-1 underline-offset-[6px] transition-opacity hover:opacity-70",
               // Underline marks the current page, so the state isn't shown by colour alone
               link.current ? "underline" : "",
             ].join(" ")}

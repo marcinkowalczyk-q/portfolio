@@ -103,6 +103,14 @@
   --spacing-section: 5.625rem; /* 90px desktop section gap */
   --radius-card: 0.75rem; /* 12px meta card */
 
+  --animate-menu-in: menu-in 160ms ease-out;
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+
   --animate-lightbox-in: lightbox-in 160ms ease-out;
   @keyframes lightbox-in {
     from {

@@ -28,7 +28,7 @@ src/
 │   └── e-doreczenia/page.tsx  # both case studies render via CaseStudyPage
 ├── components/
 │   ├── ui/                    # container, eyebrow, link-button, text-link, icon, divider
-│   ├── layout/                # skip-link, site-header, nav-links, language-switch, site-footer
+│   ├── layout/                # skip-link, site-header, nav-links, mobile-menu, language-switch, site-footer
 │   ├── hero/                  # hero.tsx
 │   ├── work/                  # project-list.tsx, project-card.tsx
 │   ├── about/                 # about-content.tsx
