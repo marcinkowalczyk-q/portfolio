@@ -15,6 +15,8 @@ export type CaseStudyFrontmatter = {
   eyebrow: string;
   lede: string;
   heroImage: string;
+  // Desktop (lg+) crop when it differs from the mobile one
+  heroImageDesktop?: string;
   heroAlt?: string;
   card: {
     category: string;

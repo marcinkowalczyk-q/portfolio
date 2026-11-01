@@ -153,7 +153,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | **Hero** | Centred stack: eyebrow (normal case, as in Figma) → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile; 28px above / 20px below, 38 / 30px on desktop) → lede (`lede`, `fg-lede`, max 680px). |
 | **Project card** | Text column (eyebrow with bold number "01", `h1` title, `body` summary, CTA) + visual. Desktop: 460px text + 672px visual, sides alternate, first card on `surface`. Mobile: stacked, text first. |
 | **CTA (secondary button)** | 1px `control-border`, 6px radius, 10/18px padding, Inter 500 14px, `fg`, arrow "→" as part of the label. |
-| **Case study header** | Project-tinted background, eyebrow + `h1` + lede in a 460px column. Device mockup on the right (see 5.2). When the frontmatter has `prototypes` (e-Delivery: desktop + mobile Axure URLs), show them below the lede as external `TextLink`s: "Zobacz prototyp w Axure" / "View the Axure prototype", with a desktop / mobile qualifier when there are two. Labels go in `src/messages/*.json`. |
+| **Case study header** | Project-tinted background, eyebrow + `h1` + lede in a 460px column. Device mockup on the right, anchored to the content container (see 5.2). When the frontmatter has `prototypes` (e-Delivery: desktop + mobile Axure URLs), show them below the lede as external `TextLink`s: "Zobacz prototyp w Axure" / "View the Axure prototype", with a desktop / mobile qualifier when there are two. Labels go in `src/messages/*.json`. |
 | **Meta card** | 1px `divider` border, 12px radius, 12/16px padding; rows of label (112px, `label`) + value (`body`). Scope renders as a bullet list. |
 | **Intro row** | Label (160px, `label-lg`) + text (752px). Stacks on mobile. |
 | **Section** | `h2` + paragraphs (+ lists) + figure(s), inside `container-text`; figures widen to `container-figure` / `container-wide`. Dividers (`divider`, 740px) between topic groups. |
@@ -171,6 +171,14 @@ All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#6068
 - Homepage project cards and case study headers keep the **device mockups** (monitor, laptop, phone) from the existing images in `public/images/`. No browser frame.
 - Mockups are decorative. On homepage cards the project title sits right next to the image, so the `<img>` has **empty alt** (`alt=""`). The image link is a mouse shortcut only (`tabIndex=-1`, `aria-hidden`); the CTA is the single keyboard / screen reader link per card. Case study headers give the mockup a **short alt** (e.g. "e-Delivery on a laptop and a phone").
 - Inside case study bodies, figures stay frameless and carry full alt text (see 5.6).
+- **Case study header mockup (lg and up).** Text column and mockup are one group inside `container-content` (1014px, centred). The mockup box is positioned from the container's left edge and the header's top edge, never from the viewport, so the distance between the heading and the mockup is the same at every width. Whatever runs past the header's right or bottom edge is cropped by the header (`overflow: hidden`).
+
+  | Project | Box (left × top, from container / header) | Size | Header height (min) | Figma |
+  |---|---|---|---|---|
+  | Configurator | 417 × 29px | 819 × 512 (full monitor with stand, transparent) | 463px | `2004:602` → `2004:606` |
+  | e-Delivery | 539 × 30px | 606 × 606 (laptop + phone, transparent) | 471px | `2004:938` → `2004:948` (`object-contain` square in a 970 × 606 frame at 357px) |
+
+  The header has 112px padding above and below the text, with the Figma frame height as a minimum so the bottom crop stays as designed when the text is short; longer text makes the header taller and shows more of the mockup. Desktop files are `hero-desktop.png` (frontmatter `heroImageDesktop`, 2x); below lg the old `hero.png` crop stays (full header width up to 560px, flush right, under the text). One `<picture>` serves both, so only the matching file is downloaded.
 
 ### 5.3 Hero
 - Vertical padding 184px on desktop, 80px on mobile (Figma: 180 / 122–128). Mobile is scaled down so the first project card starts on the first screen.

@@ -13,6 +13,7 @@ EN and PL frames use the same images, so each row is one file with four placemen
 > | File | Masked |
 > |---|---|
 > | `e-doreczenia/hero.png` | AE address on the phone and on the laptop screen |
+> | `e-doreczenia/hero-desktop.png` | AE address on the phone and on the laptop screen (11 dots in the link colour along the slanted text line) |
 > | `e-doreczenia/inbox.png` | AE address, 3 PESEL numbers (cut off at the right edge) |
 > | `e-doreczenia/user-details.png` | AE address, 3 PESEL numbers |
 > | `e-doreczenia/layers-4.png` | 2 AE addresses, 2 PESEL numbers |
@@ -43,7 +44,8 @@ EN and PL frames use the same images, so each row is one file with four placemen
 
 | Asset | Planned path | EN desktop | EN mobile | PL desktop | PL mobile | Notes |
 |---|---|---|---|---|---|---|
-| Header mockup | `/images/banner-configurator/hero.png` | `2004:606` | `2004:759` | `2004:2236` | `2004:2389` | 889×556, overflows header to the right/bottom |
+| Header mockup | `/images/banner-configurator/hero.png` | `2004:606` | `2004:759` | `2004:2236` | `2004:2389` | mobile crop (below lg), unchanged |
+| Header mockup, desktop | `/images/banner-configurator/hero-desktop.png` | `2004:606` | — | `2004:2236` | — | 819×512 at 2x (1638×1024): the full raw fill of `2004:606` (whole monitor and stand, transparent). Exporting the node itself clips it to the 1440 frame (810×434), so use the raw image. Placement: DESIGN.md 5.2 |
 | From tasks to system logic: diagram | `/images/banner-configurator/system-logic.png` | `2004:673` | `2004:831` | `2004:2303` | `2004:2461` | 790×453 (ratio 1658/950) |
 | Design System 1 | `/images/banner-configurator/design-system-1.png` | `2004:682` | `2004:840` | `2004:2312` | `2004:2470` | ratio 1539/967; side by side on desktop |
 | Design System 2 | `/images/banner-configurator/design-system-2.png` | `2004:683` | `2004:841` | `2004:2313` | `2004:2471` | ratio 1539/1009 |
@@ -59,7 +61,8 @@ EN and PL frames use the same images, so each row is one file with four placemen
 
 | Asset | Planned path | EN desktop | EN mobile | PL desktop | PL mobile | Notes |
 |---|---|---|---|---|---|---|
-| Header device mockup ("Card/edor") | `/images/e-doreczenia/hero.png` | `2004:948` | `2070:462` | `2004:2549` | `2068:284` | 970×606, `object-contain`, overflows header |
+| Header device mockup ("Card/edor") | `/images/e-doreczenia/hero.png` | `2004:948` | `2070:462` | `2004:2549` | `2068:284` | mobile crop (below lg), unchanged |
+| Header device mockup, desktop | `/images/e-doreczenia/hero-desktop.png` | `2004:948` | — | `2004:2549` | — | 606×606 at 2x (1212×1212): the square fill shown `object-contain` in the 970×606 frame (laptop + whole phone, transparent). **Masked** (see above). Placement: DESIGN.md 5.2 |
 | Dependency diagram ("schemat_zaleznosci") | `/images/e-doreczenia/dependency-diagram.png` | `2004:1027` | `2070:535` | `2004:2628` | `2068:243` | ratio 3604/867, on `#f6f8fa` panel. PL mobile repeats it in the Dashboard section (`2070:627`). Probably a leftover, see inventory. |
 | mObywatel reference screenshot | `/images/e-doreczenia/mobywatel-reference.png` | `2004:1038` | `2070:546` | `2004:2639` | `2068:255` | **crop**: fill is 142.11% width, left-aligned |
 | e-Delivery inbox screenshot | `/images/e-doreczenia/inbox.png` | `2004:1041` | `2070:549` | `2004:2642` | `2068:259` | **crop**: fill 106.98% height, top-aligned |
