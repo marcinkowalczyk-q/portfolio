@@ -122,7 +122,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | Page gutter | 24px (`px-6`) | 40px (`px-10`) |
 | Case study section gap | 80px | 90px (`gap-[90px]`, or the `--spacing-section` token) |
 | Hero vertical padding | 80px | 184px (see Changes) |
-| Hero divider spacing (above / below) | 12px | 12px |
+| Hero divider spacing (above / below) | 28 / 20px | 38 / 30px |
 | Project card vertical padding / gap | 96 / 48px | 96 / 48px |
 | Heading → body | 16px | 16px |
 | Paragraph gap | 12px | 12px |
@@ -150,7 +150,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | Component | Spec |
 |---|---|
 | **Nav** | Brand (serif 600, 14/16px) on the left; links "Work / About" (`text-nav`, 32px gap); language toggle on the right (track `surface-toggle`, 2px padding, 6px radius; 14px labels; active segment white, `fg-primary`; inactive `fg-tertiary`). 1px `border-subtle` bottom border. |
-| **Hero** | Centred stack: eyebrow (normal case, as in Figma) → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile, 12px above and below) → lede (`lede`, `fg-lede`, max 680px). |
+| **Hero** | Centred stack: eyebrow (normal case, as in Figma) → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile; 28px above / 20px below, 38 / 30px on desktop) → lede (`lede`, `fg-lede`, max 680px). |
 | **Project card** | Text column (eyebrow with bold number "01", `h1` title, `body` summary, CTA) + visual. Desktop: 460px text + 672px visual, sides alternate, first card on `surface`. Mobile: stacked, text first. |
 | **CTA (secondary button)** | 1px `control-border`, 6px radius, 10/18px padding, Inter 500 14px, `fg`, arrow "→" as part of the label. |
 | **Case study header** | Project-tinted background, eyebrow + `h1` + lede in a 460px column. Device mockup on the right (see 5.2). When the frontmatter has `prototypes` (e-Delivery: desktop + mobile Axure URLs), show them below the lede as external `TextLink`s: "Zobacz prototyp w Axure" / "View the Axure prototype", with a desktop / mobile qualifier when there are two. Labels go in `src/messages/*.json`. |
@@ -158,7 +158,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | **Intro row** | Label (160px, `label-lg`) + text (752px). Stacks on mobile. |
 | **Section** | `h2` + paragraphs (+ lists) + figure(s), inside `container-text`; figures widen to `container-figure` / `container-wide`. Dividers (`divider`, 740px) between topic groups. |
 | **Figure** | Image + optional caption (`body-sm`, bold lead-in sentence allowed). |
-| **Footer** | `surface` background, 24px vertical padding (mobile and desktop). See Changes for the content. |
+| **Footer** | `surface` background, 24px vertical padding, 12px above and below the divider between rows (mobile and desktop). See Changes for the content. |
 
 ---
 
@@ -174,7 +174,7 @@ All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#6068
 
 ### 5.3 Hero
 - Vertical padding 184px on desktop, 80px on mobile (Figma: 180 / 122–128). Mobile is scaled down so the first project card starts on the first screen.
-- 12px between the tagline and the divider and between the divider and the intro.
+- Divider spacing: 28px above / 20px below on mobile, 38px / 30px on desktop.
 - Intro text: `lede` (20/32px) on desktop, `lede-sm` (18/28px) on mobile, weight 300, `fg-lede` `#383c44` (11.06:1 on white).
 - **No background illustration.** The hero sits on `bg`.
 
@@ -183,7 +183,7 @@ All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#6068
 Card numbers follow the display order. The featured `surface` background goes on the first card.
 
 ### 5.5 Footer
-Two rows inside `container-page`, 24px vertical padding:
+Two rows inside `container-page`, 24px vertical padding, separated by a 1px `border-subtle` divider with exactly 12px above and below it (box to border, no extra padding on either row):
 - **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn, **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)"). The CV link renders only when `public/cv/` contains a PDF; the size is read from the file at build time.
 - **Meta:** **About** link ("O mnie" / "About", so About is reachable on mobile without opening the menu) · **Accessibility statement** link · © year.
 - External links carry `rel="noopener noreferrer"` and announce "opens in a new tab".
