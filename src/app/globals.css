@@ -7,6 +7,7 @@
   --color-fg: #151515;
   --color-fg-primary: #202226;
   --color-fg-secondary: #4b5160;
+  --color-fg-lede: #383c44; /* hero intro; 11.06:1 on white */
   --color-fg-tertiary: #60687a; /* was #80889b — failed 4.5:1; ≥4.52:1 on every background */
   --color-border: #dbdbdb;
   --color-border-subtle: #e5e9f2;
@@ -69,11 +70,11 @@
   --text-label-sm--letter-spacing: -0.01em;
   --text-label-sm--font-weight: 500;
 
-  --text-lede: 1.75rem; /* 28px */
-  --text-lede--line-height: 1.5;
+  --text-lede: 1.25rem; /* 20px */
+  --text-lede--line-height: 2rem; /* 32px */
   --text-lede--font-weight: 300;
-  --text-lede-sm: 1.25rem; /* 20px */
-  --text-lede-sm--line-height: 1.5;
+  --text-lede-sm: 1.125rem; /* 18px */
+  --text-lede-sm--line-height: 1.75rem; /* 28px */
   --text-lede-sm--font-weight: 300;
 
   --text-body: 1rem;

@@ -38,7 +38,7 @@ src/
     ├── mdx.ts                 # compiles MDX bodies (next-mdx-remote, RSC): case studies + prose
     ├── remark-case-study.ts   # markdown → IntroRow / CaseStudySection / FigureGroup
     ├── image-size.ts          # intrinsic image size from public/
-    └── site.ts                # email, LinkedIn, repo URL
+    └── site.ts                # email, LinkedIn URL, pageMetadata
 ```
 
 Route is `/banner-configurator`. The old Webflow URL was `/baner-configurator` (one `n`); add a redirect if the old URL needs to keep working.

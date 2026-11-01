@@ -31,8 +31,8 @@ Kadwa and Inter Tight are removed. The few Kadwa layers in Figma were accidental
 | `label-lg` | 18 / 1.67 | −1% | serif 500 | Intro row label (Context, Challenge…) |
 | `label` | 16 / 1.875 | −1% | serif 500 | Meta label (Year, Role…) |
 | `label-sm` | 14 / 1.7 | −1% | serif 500 | Meta label, mobile |
-| `lede` | 28 / 1.5 | 0 | sans 300 | Hero intro |
-| `lede-sm` | 20 / 1.5 | 0 | sans 300 | Hero intro, mobile |
+| `lede` | 20 / 32px | 0 | sans 300 | Hero intro |
+| `lede-sm` | 18 / 28px | 0 | sans 300 | Hero intro, mobile |
 | `body` | 16 / 1.6 | 0 | sans 400 | Paragraphs, card summary, meta value |
 | `body-sm` | 14 / 1.6 | 0 | sans 400 | Meta value (mobile), captions |
 | `nav` | 14 / 1.3 | −1% | serif 500 | Nav links |
@@ -57,6 +57,7 @@ Rules:
 | `--color-fg` | `#151515` | Strongest text, nav, CTA label, focus ring | — |
 | `--color-fg-primary` | `#202226` | Headings | — |
 | `--color-fg-secondary` | `#4b5160` | Body copy | — |
+| `--color-fg-lede` | `#383c44` | Hero intro | **new** (11.06:1 on white) |
 | `--color-fg-tertiary` | `#60687a` | Meta, captions, inactive toggle, footer © | **was `#80889b`** (contrast) |
 | `--color-border` | `#dbdbdb` | Image frames, footer top border | — |
 | `--color-border-subtle` | `#e5e9f2` | Nav bottom border | merged `rgba(203,211,228,.5)` and `#e4e7f0` |
@@ -81,6 +82,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | `#151515` fg | 18.26 ✅ | 17.64 ✅ | 17.57 ✅ | 16.56 ✅ | 14.78 ✅ | 17.19 ✅ | 17.15 ✅ |
 | `#202226` fg/primary | 15.93 ✅ | 15.39 ✅ | 15.32 ✅ | 14.44 ✅ | 12.90 ✅ | 15.00 ✅ | 14.96 ✅ |
 | `#4b5160` fg/secondary | 7.94 ✅ | 7.67 ✅ | 7.64 ✅ | 7.20 ✅ | 6.43 ✅ | 7.47 ✅ | 7.46 ✅ |
+| `#383c44` fg/lede | 11.06 ✅ | 10.69 ✅ | 10.62 ✅ | 10.05 ✅ | 8.96 ✅ | 10.42 ✅ | 10.39 ✅ |
 | `#707070` title suffix (24px, large) | 4.95 ✅ | 4.78 ✅ | 4.76 ✅ | 4.49 ✅ | 4.01 ✅ | 4.66 ✅ | 4.65 ✅ |
 | **`#80889b` fg/tertiary** | **3.55 ❌** | **3.43 ❌** | **3.42 ❌** | **3.22 ❌** | **2.87 ❌** | **3.34 ❌** | **3.34 ❌** |
 | **`#838383` old code `fg-subtle`** | **3.79 ❌** | **3.66 ❌** | **3.65 ❌** | **3.44 ❌** | **3.07 ❌** | **3.57 ❌** | **3.56 ❌** |
@@ -119,7 +121,8 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 |---|---|---|
 | Page gutter | 24px (`px-6`) | 40px (`px-10`) |
 | Case study section gap | 80px | 90px (`gap-[90px]`, or the `--spacing-section` token) |
-| Hero vertical padding | 64px | 96px (**was 180px**, see Changes) |
+| Hero vertical padding | 80px | 184px (see Changes) |
+| Hero divider spacing (above / below) | 12px | 12px |
 | Project card vertical padding / gap | 96 / 48px | 96 / 48px |
 | Heading → body | 16px | 16px |
 | Paragraph gap | 12px | 12px |
@@ -147,7 +150,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | Component | Spec |
 |---|---|
 | **Nav** | Brand (serif 600, 14/16px) on the left; links "Work / About" (`text-nav`, 32px gap); language toggle on the right (track `surface-toggle`, 2px padding, 6px radius; 14px labels; active segment white, `fg-primary`; inactive `fg-tertiary`). 1px `border-subtle` bottom border. |
-| **Hero** | Centred stack: eyebrow (normal case, as in Figma) → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile) → lede (`lede`, `fg-primary`, max 680px). |
+| **Hero** | Centred stack: eyebrow (normal case, as in Figma) → name (`display`) → tagline (`body`, `fg-secondary`) → 268px divider (178px mobile, 12px above and below) → lede (`lede`, `fg-lede`, max 680px). |
 | **Project card** | Text column (eyebrow with bold number "01", `h1` title, `body` summary, CTA) + visual. Desktop: 460px text + 672px visual, sides alternate, first card on `surface`. Mobile: stacked, text first. |
 | **CTA (secondary button)** | 1px `control-border`, 6px radius, 10/18px padding, Inter 500 14px, `fg`, arrow "→" as part of the label. |
 | **Case study header** | Project-tinted background, eyebrow + `h1` + lede in a 460px column. Device mockup on the right (see 5.2). When the frontmatter has `prototypes` (e-Delivery: desktop + mobile Axure URLs), show them below the lede as external `TextLink`s: "Zobacz prototyp w Axure" / "View the Axure prototype", with a desktop / mobile qualifier when there are two. Labels go in `src/messages/*.json`. |
@@ -155,7 +158,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | **Intro row** | Label (160px, `label-lg`) + text (752px). Stacks on mobile. |
 | **Section** | `h2` + paragraphs (+ lists) + figure(s), inside `container-text`; figures widen to `container-figure` / `container-wide`. Dividers (`divider`, 740px) between topic groups. |
 | **Figure** | Image + optional caption (`body-sm`, bold lead-in sentence allowed). |
-| **Footer** | `surface` background. See Changes for the new content. |
+| **Footer** | `surface` background, 24px vertical padding (mobile and desktop). See Changes for the content. |
 
 ---
 
@@ -170,7 +173,9 @@ All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#6068
 - Inside case study bodies, figures stay frameless and carry full alt text (see 5.6).
 
 ### 5.3 Hero
-- Lower height: 96px vertical padding on desktop, 64px on mobile (was 180 / 122–128).
+- Vertical padding 184px on desktop, 80px on mobile (Figma: 180 / 122–128). Mobile is scaled down so the first project card starts on the first screen.
+- 12px between the tagline and the divider and between the divider and the intro.
+- Intro text: `lede` (20/32px) on desktop, `lede-sm` (18/28px) on mobile, weight 300, `fg-lede` `#383c44` (11.06:1 on white).
 - **No background illustration.** The hero sits on `bg`.
 
 ### 5.4 Homepage order
@@ -178,11 +183,11 @@ All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#6068
 Card numbers follow the display order. The featured `surface` background goes on the first card.
 
 ### 5.5 Footer
-Two rows inside `container-page`:
-- **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn, GitHub (repo of this site, external), **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)"). The CV link renders only when `public/cv/` contains a PDF; the size is read from the file at build time.
+Two rows inside `container-page`, 24px vertical padding:
+- **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn, **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)"). The CV link renders only when `public/cv/` contains a PDF; the size is read from the file at build time.
 - **Meta:** **About** link ("O mnie" / "About", so About is reachable on mobile without opening the menu) · **Accessibility statement** link · © year.
 - External links carry `rel="noopener noreferrer"` and announce "opens in a new tab".
-- Still to supply: the CV file. The accessibility statement lives at `/[locale]/accessibility` ("Deklaracja dostępności" in PL). Email and repo URL are in `src/lib/site.ts`.
+- Still to supply: the CV file. The accessibility statement lives at `/[locale]/accessibility` ("Deklaracja dostępności" in PL). Email and LinkedIn URL are in `src/lib/site.ts`.
 
 ### 5.6 Case study images: click to enlarge
 - Every case study image is a button ("Enlarge image: {alt}") that opens a **lightbox**:
@@ -218,13 +223,13 @@ The build list. "existing" means a file in `src/components` to refactor; "done" 
 | 2 | `Container` | Width wrapper | `size`: text / figure / wide / content / page / cards; gutters | done `ui/container.tsx` |
 | 3 | `SiteHeader` (+ `NavLinks`) | Top nav | Brand, two links, current page `aria-current`; below md a Menu button + panel (5.7) | done `layout/site-header.tsx, nav-links.tsx, mobile-menu.tsx` |
 | 4 | `LanguageSwitch` | PL/EN toggle | Links to the same page in the other locale, `hreflang`/`lang`, active state not by colour alone | done `layout/language-switch.tsx` |
-| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, GitHub repo link, CV download, About link, accessibility statement link | done `layout/site-footer.tsx` |
+| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, CV download, About link, accessibility statement link | done `layout/site-footer.tsx` |
 | 6 | `Eyebrow` | Uppercase label | CSS uppercase, optional bold number prefix | done `ui/eyebrow.tsx` |
 | 7 | `Button` / `LinkButton` | CTA | `control-border` outline, 6px radius, works as `<a>` or `<button>` | done `ui/link-button.tsx` |
 | 8 | `TextLink` | Inline / external link | Underline, external variant with icon + "(opens in a new tab)" | done `ui/text-link.tsx` |
-| 9 | `Icon` | SVG icons | LinkedIn, GitHub, external, download, close, arrows; `aria-hidden` by default | done `ui/icon.tsx` |
+| 9 | `Icon` | SVG icons | LinkedIn, mail, external, download, menu, close, arrows; `aria-hidden` by default | done `ui/icon.tsx` |
 | 10 | `Divider` | Section separator | Decorative `<hr>`, width variants | done `ui/divider.tsx` |
-| 11 | `Hero` | Homepage intro | Shorter, no background image | done `hero/hero.tsx` |
+| 11 | `Hero` | Homepage intro | No background image; 184 / 80px padding, `lede` intro in `fg-lede` | done `hero/hero.tsx` |
 | 13 | `ProjectCard` | Homepage card | Reads `card:` frontmatter, alternating layout, decorative device mockup (`alt=""`) | done `work/project-card.tsx` |
 | 14 | `ProjectList` | Ordered cards | Order: e-Delivery, Configurator; numbering by position | done `work/project-list.tsx` |
 | 16 | `CaseStudyHeader` | Case study top | Tinted bg per project, eyebrow, `h1`, lede, device mockup (short alt from frontmatter `heroAlt`), optional Axure prototype links from frontmatter `prototypes` | done `case-study/case-study-header.tsx` |

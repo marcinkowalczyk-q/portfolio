@@ -8,9 +8,9 @@ export default function Hero({ t }: Props) {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="flex flex-col items-center gap-5 px-10 py-16 text-center md:gap-[30px] md:py-24"
+      className="flex flex-col items-center gap-3 px-10 py-20 text-center md:py-[184px]"
     >
-      <div className="flex flex-col items-center gap-3 pb-2">
+      <div className="flex flex-col items-center gap-3">
         <div className="flex flex-col items-center gap-2">
           <Eyebrow uppercase={false}>{t["hero.eyebrow"]}</Eyebrow>
           <h1
@@ -27,7 +27,7 @@ export default function Hero({ t }: Props) {
 
       <Divider width="hero" />
 
-      <p className="max-w-[680px] text-lede-sm text-[var(--color-fg-primary)] md:text-lede">
+      <p className="max-w-[680px] text-lede-sm text-[var(--color-fg-lede)] md:text-lede">
         {t["hero.bio"]}
       </p>
     </section>
