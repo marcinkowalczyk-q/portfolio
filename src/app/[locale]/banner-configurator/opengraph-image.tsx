@@ -2,7 +2,7 @@ import { locales } from "@/i18n";
 import { caseStudyOgImage } from "@/components/case-study/case-study-og-image";
 import { ogSize, ogContentType } from "@/lib/og-image";
 
-export const alt = "Dynamic Content Configurator — case study by Marcin Kowalczyk";
+export const alt = "Banner Configurator — case study by Marcin Kowalczyk";
 export const size = ogSize;
 export const contentType = ogContentType;
 

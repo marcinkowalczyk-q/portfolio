@@ -39,7 +39,7 @@ EN and PL frames use the same images, so each row is one file with four placemen
 | Portrait | `/images/about/portrait.png` | `2004:1289` | `2004:1319` | `2004:2863` | `2004:2893` | 315×315 image centred in a 380×475 frame (`2004:1288`) |
 | LinkedIn icon (SVG) | icon, inline SVG | `2004:1299` | `2004:1315` | `2004:2873` | `2004:2889` | 20×20 |
 
-## Case study: Dynamic Content Configurator (`banner-configurator`)
+## Case study: Banner Configurator (`banner-configurator`)
 
 | Asset | Planned path | EN desktop | EN mobile | PL desktop | PL mobile | Notes |
 |---|---|---|---|---|---|---|

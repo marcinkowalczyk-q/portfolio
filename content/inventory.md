@@ -11,7 +11,7 @@ The `Language bar` frames (`2004:227`, `2004:2222`) and `Page bar` frames (`2004
 | View | Route (current) | EN desktop | EN mobile | PL desktop | PL mobile |
 |---|---|---|---|---|---|
 | Homepage | `/[locale]` | `2004:131` | `2004:145` | `2004:2188` | `2004:2202` |
-| Case study: Dynamic Content Configurator | `/[locale]/banner-configurator` | `2004:602` | `2004:750` | `2004:2232` | `2004:2380` |
+| Case study: Banner Configurator | `/[locale]/banner-configurator` | `2004:602` | `2004:750` | `2004:2232` | `2004:2380` |
 | Case study: e-Delivery / e-Doręczenia | none yet (suggested `/[locale]/e-doreczenia`) | `2004:938` | `2070:446` | `2004:2539` | `2004:2700` |
 | About | `/[locale]/about` | `2004:1285` | `2004:1303` | `2004:2859` | `2004:2877` |
 
