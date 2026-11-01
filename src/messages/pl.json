@@ -43,8 +43,8 @@
 
   "footer.contactHeading": "Kontakt",
   "footer.linkedin": "LinkedIn",
+  "footer.github": "GitHub",
   "footer.cv": "CV (PDF, {size})",
   "footer.accessibility": "Deklaracja dostępności",
-  "footer.credit": "Projekt i kod: Marcin Kowalczyk",
   "footer.copy": "© 2026"
 }

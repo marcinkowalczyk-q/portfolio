@@ -179,8 +179,8 @@ Card numbers follow the display order. The featured `surface` background goes on
 
 ### 5.5 Footer
 Two rows inside `container-page`:
-- **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn, **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)"). The CV link renders only when `public/cv/` contains a PDF; the size is read from the file at build time.
-- **Meta:** **About** link ("O mnie" / "About", so About is reachable on mobile without opening the menu) · "Designed and coded by Marcin Kowalczyk" + a link to the GitHub repo · **Accessibility statement** link · © year.
+- **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn, GitHub (repo of this site, external), **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)"). The CV link renders only when `public/cv/` contains a PDF; the size is read from the file at build time.
+- **Meta:** **About** link ("O mnie" / "About", so About is reachable on mobile without opening the menu) · **Accessibility statement** link · © year.
 - External links carry `rel="noopener noreferrer"` and announce "opens in a new tab".
 - Still to supply: the CV file. The accessibility statement lives at `/[locale]/accessibility` ("Deklaracja dostępności" in PL). Email and repo URL are in `src/lib/site.ts`.
 
@@ -218,7 +218,7 @@ The build list. "existing" means a file in `src/components` to refactor; "done" 
 | 2 | `Container` | Width wrapper | `size`: text / figure / wide / content / page / cards; gutters | done `ui/container.tsx` |
 | 3 | `SiteHeader` (+ `NavLinks`) | Top nav | Brand, two links, current page `aria-current`; below md a Menu button + panel (5.7) | done `layout/site-header.tsx, nav-links.tsx, mobile-menu.tsx` |
 | 4 | `LanguageSwitch` | PL/EN toggle | Links to the same page in the other locale, `hreflang`/`lang`, active state not by colour alone | done `layout/language-switch.tsx` |
-| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, CV download, About link, credit + repo link, accessibility statement link | done `layout/site-footer.tsx` |
+| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, GitHub repo link, CV download, About link, accessibility statement link | done `layout/site-footer.tsx` |
 | 6 | `Eyebrow` | Uppercase label | CSS uppercase, optional bold number prefix | done `ui/eyebrow.tsx` |
 | 7 | `Button` / `LinkButton` | CTA | `control-border` outline, 6px radius, works as `<a>` or `<button>` | done `ui/link-button.tsx` |
 | 8 | `TextLink` | Inline / external link | Underline, external variant with icon + "(opens in a new tab)" | done `ui/text-link.tsx` |

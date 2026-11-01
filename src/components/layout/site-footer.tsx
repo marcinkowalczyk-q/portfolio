@@ -42,6 +42,11 @@ export default function SiteFooter({ locale, t }: Props) {
                 {t["footer.linkedin"]}
               </TextLink>
             </li>
+            <li>
+              <TextLink href={siteConfig.repoUrl} external newTabLabel={newTab} icon="github">
+                {t["footer.github"]}
+              </TextLink>
+            </li>
             {cv && (
               <li>
                 <TextLink href={cv.href} download icon="download">
@@ -56,11 +61,6 @@ export default function SiteFooter({ locale, t }: Props) {
           <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <li>
               <TextLink href={`/${locale}/about`}>{t["nav.about"]}</TextLink>
-            </li>
-            <li>
-              <TextLink href={siteConfig.footer.repoUrl} external newTabLabel={newTab} icon="github">
-                {t["footer.credit"]}
-              </TextLink>
             </li>
             <li>
               <TextLink href={`/${locale}/accessibility`}>{t["footer.accessibility"]}</TextLink>
