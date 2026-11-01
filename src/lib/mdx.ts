@@ -19,7 +19,7 @@ export function renderCaseStudyBody(source: string, t: T) {
   return renderMdx(source, getMdxComponents(t), true);
 }
 
-// Plain prose (About, Accessibility statement); `overrides` adjusts per-page spacing
+// Plain prose (About, Accessibility); `overrides` adjusts per-page spacing
 export function renderProse(source: string, t: T, overrides: MDXComponents = {}) {
   return renderMdx(source, { ...getMdxComponents(t), ...overrides }, false);
 }

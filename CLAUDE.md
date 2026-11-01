@@ -82,7 +82,7 @@ See **DESIGN.md**: typography scale, colours (WCAG 2.2 AA audited), spacing, lay
 - Homepage: nav, hero, work list, two project cards, footer
 - About page from `content/{pl,en}/about.mdx` (portrait exported from Figma)
 - e-Doręczenia case study (`/[locale]/e-doreczenia`) with Axure prototype links
-- Accessibility statement (`/[locale]/accessibility`)
+- Accessibility page (`/[locale]/accessibility`, "Dostępność" / "Accessibility")
 - Case study template (DESIGN.md components 16–22, 24) rendered from MDX
 - Banner Configurator case study from `content/{pl,en}/banner-configurator.mdx`, images exported from Figma at 2x into `public/images/banner-configurator/`
 - Metadata on every route via `pageMetadata()` in `src/lib/site.ts`: localized title/description, canonical, hreflang (pl/en/x-default), OG + Twitter tags
@@ -97,7 +97,6 @@ See **DESIGN.md**: typography scale, colours (WCAG 2.2 AA audited), spacing, lay
 
 ### Next
 - Run dev server, verify look-and-feel, capture issues
-- Accessibility statement: fill in the "[publication date]" placeholder
 - e-Doręczenia dependency diagram: re-export once the "daję" → "daje" typo fix is in Figma
 - Custom domain: set it in Vercel; metadata, sitemap and OG URLs follow automatically
 

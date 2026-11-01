@@ -2,7 +2,7 @@ import { isValidLocale, defaultLocale, locales } from "@/i18n";
 import { getPage } from "@/lib/content";
 import { renderOgImage, ogSize, ogContentType } from "@/lib/og-image";
 
-export const alt = "Marcin Kowalczyk — Accessibility statement";
+export const alt = "Marcin Kowalczyk — Accessibility";
 export const size = ogSize;
 export const contentType = ogContentType;
 

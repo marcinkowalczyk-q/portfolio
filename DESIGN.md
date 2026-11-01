@@ -193,9 +193,9 @@ Card numbers follow the display order. The featured `surface` background goes on
 ### 5.5 Footer
 Two rows inside `container-page`, 24px vertical padding, separated by a 1px `border-subtle` divider with exactly 12px above and below it (box to border, no extra padding on either row):
 - **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn, **CV download** (PDF, `download` attribute, label states the file type and size, e.g. "CV (PDF, 120 KB)"). The CV link renders only when `public/cv/` contains a PDF; the size is read from the file at build time.
-- **Meta:** **About** link ("O mnie" / "About", so About is reachable on mobile without opening the menu) · **Accessibility statement** link · © year.
+- **Meta:** **About** link ("O mnie" / "About", so About is reachable on mobile without opening the menu) · **Accessibility** link ("Dostępność" / "Accessibility") · © year.
 - External links carry `rel="noopener noreferrer"` and announce "opens in a new tab".
-- Still to supply: the CV file. The accessibility statement lives at `/[locale]/accessibility` ("Deklaracja dostępności" in PL). Email and LinkedIn URL are in `src/lib/site.ts`.
+- Still to supply: the CV file. The accessibility page lives at `/[locale]/accessibility`: an informal note (WCAG 2.2 AA target, how it was tested, known limitations, contact), not a formal legal statement, so it has no preparation date. Email and LinkedIn URL are in `src/lib/site.ts`.
 
 ### 5.6 Case study images: click to enlarge
 - Every case study image is a button ("Enlarge image: {alt}") that opens a **lightbox**:
@@ -233,7 +233,7 @@ The build list. "existing" means a file in `src/components` to refactor; "done" 
 | 2 | `Container` | Width wrapper | `size`: text / figure / wide / content / page / cards; gutters | done `ui/container.tsx` |
 | 3 | `SiteHeader` (+ `NavLinks`) | Top nav | Brand, two links, current page `aria-current`; below md a Menu button + panel (5.7) | done `layout/site-header.tsx, nav-links.tsx, mobile-menu.tsx` |
 | 4 | `LanguageSwitch` | PL/EN toggle | Links to the same page in the other locale, `hreflang`/`lang`, active state not by colour alone | done `layout/language-switch.tsx` |
-| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, CV download, About link, accessibility statement link | done `layout/site-footer.tsx` |
+| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, CV download, About link, accessibility page link | done `layout/site-footer.tsx` |
 | 6 | `Eyebrow` | Uppercase label | CSS uppercase, optional bold number prefix | done `ui/eyebrow.tsx` |
 | 7 | `Button` / `LinkButton` | CTA | `control-border` outline, 6px radius, works as `<a>` or `<button>` | done `ui/link-button.tsx` |
 | 8 | `TextLink` | Inline / external link | Underline, external variant with icon + "(opens in a new tab)" | done `ui/text-link.tsx` |
@@ -251,6 +251,6 @@ The build list. "existing" means a file in `src/components` to refactor; "done" 
 | 22 | `Lightbox` | Enlarged image | `<dialog>`, focus trap, Esc, return focus, ←/→, reduced motion, focusable scroll area for images wider than the viewport | done `case-study/lightbox.tsx` (client) |
 | 23 | `Portrait` / `AboutContent` | About page | Portrait with alt, MDX body | done `about/about-content.tsx` |
 | 24 | `MdxComponents` | MDX → components map | `h2`, `h3`, `p`, `ul`, `img`→`Figure`, `hr`→`Divider`, `strong` | done `case-study/mdx-components.tsx` |
-| 25 | `AccessibilityStatement` page | Required statement | Route `/[locale]/accessibility`, linked from footer | done `app/[locale]/accessibility/page.tsx` |
+| 25 | Accessibility page | Informal accessibility note ("Dostępność" / "Accessibility") | Route `/[locale]/accessibility`, linked from footer, content in `content/{pl,en}/accessibility.mdx` | done `app/[locale]/accessibility/page.tsx` |
 
 Supporting non-component work: the MDX content loader `src/lib/content.ts` (`gray-matter`) reads `content/{locale}/*.mdx` frontmatter. Bodies compile with `next-mdx-remote` (`src/lib/mdx.ts`); `src/lib/remark-case-study.ts` turns plain markdown into the template: `##` blocks before the first `---` become intro rows, later `##` blocks become sections, image-only paragraphs become figure groups (1 image = single, 2 = pair), a `###` block with one image becomes an image + text row, and a `**Label**` paragraph before an image becomes a labelled figure (two in a row form a comparison pair). Layouts markdown can't express use an explicit wrapper: `<FigureGroup variant="panel">` (diagram on `surface-muted`) or `<FigureGroup variant="overlay">` (desktop shot + phone). A caption goes in the image title: `![alt](src "**Lead.** Rest")`. Image sizes are read from `public/` at build time (`src/lib/image-size.ts`).
