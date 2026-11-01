@@ -10,7 +10,12 @@ export default function CaseStudySection({ heading, id, t, children }: Props) {
   return (
     <section aria-labelledby={id} className="px-6 md:px-10">
       <Lightbox
-        labels={{ close: t["lightbox.close"], prev: t["lightbox.prev"], next: t["lightbox.next"] }}
+        labels={{
+          close: t["lightbox.close"],
+          prev: t["lightbox.prev"],
+          next: t["lightbox.next"],
+          pan: t["lightbox.pan"],
+        }}
         className="flex flex-col items-center"
       >
         {/* 4px + the first paragraph's 12px top margin = 16px heading → body */}

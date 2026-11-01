@@ -1,4 +1,4 @@
-import type { Heading, Image, Paragraph, Root, RootContent } from "mdast";
+import type { Heading, Image, Link, Paragraph, Root, RootContent } from "mdast";
 import type { MdxJsxAttribute, MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 
 // Shapes a case study body so the MDX files stay plain markdown:
@@ -8,6 +8,7 @@ import type { MdxJsxAttribute, MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 // - `### X` + text + one image paragraph   → <FigureGroup variant="row"> (image beside text)
 // - a `**Label**` paragraph + one image     → <Figure label="Label">; consecutive ones form a pair
 // - an explicit <FigureGroup variant="…">  → its images become <Figure>s sized for that variant
+// - [![alt](thumb.png)](full.png "Hint") → the lightbox opens full.png; "Hint" shows under the thumbnail
 // `---` stays a thematic break and renders as a divider.
 
 // Rendered widths per layout, for next/image `sizes`
@@ -53,17 +54,37 @@ function slugify(text: string): string {
     .replace(/^-|-$/g, "");
 }
 
-function imagesOnly(node: RootContent | undefined): Image[] | null {
-  if (!node || node.type !== "paragraph") return null;
-  const kids = (node as Paragraph).children.filter((c) => !(c.type === "text" && c.value.trim() === ""));
-  if (kids.length === 0 || !kids.every((c) => c.type === "image")) return null;
-  return kids as Image[];
+// An image, optionally wrapped in a link to a larger version for the lightbox
+type Pic = { image: Image; fullSrc?: string; hint?: string };
+
+function toPic(node: Paragraph["children"][number]): Pic | null {
+  if (node.type === "image") return { image: node };
+  if (node.type !== "link") return null;
+  const kids = (node as Link).children.filter((c) => !(c.type === "text" && c.value.trim() === ""));
+  if (kids.length !== 1 || kids[0].type !== "image") return null;
+  return { image: kids[0], fullSrc: node.url, hint: node.title ?? undefined };
 }
 
-function figure(image: Image, variant: Variant, index = 0, label?: string): MdxJsxFlowElement {
+function imagesOnly(node: RootContent | undefined): Pic[] | null {
+  if (!node || node.type !== "paragraph") return null;
+  const kids = (node as Paragraph).children.filter((c) => !(c.type === "text" && c.value.trim() === ""));
+  const pics = kids.map(toPic);
+  if (pics.length === 0 || pics.some((pic) => pic === null)) return null;
+  return pics as Pic[];
+}
+
+function figure({ image, fullSrc, hint }: Pic, variant: Variant, index = 0, label?: string): MdxJsxFlowElement {
   return jsx(
     "Figure",
-    { src: image.url, alt: image.alt ?? "", caption: image.title ?? undefined, label, sizes: sizesFor(variant, index) },
+    {
+      src: image.url,
+      alt: image.alt ?? "",
+      caption: image.title ?? undefined,
+      label,
+      fullSrc,
+      hint,
+      sizes: sizesFor(variant, index),
+    },
     []
   );
 }

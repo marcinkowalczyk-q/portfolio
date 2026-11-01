@@ -8,6 +8,10 @@ type Props = {
   caption?: string;
   // Short label above the image, e.g. one side of a comparison
   label?: string;
+  // Larger or different image for the lightbox; the thumbnail stays `src`
+  fullSrc?: string;
+  // Visible line under the thumbnail, e.g. "Click to view the full diagram"
+  hint?: string;
   sizes?: string;
   enlargeLabel: string;
 };
@@ -23,11 +27,12 @@ function Caption({ text }: { text: string }) {
 }
 
 // The button is picked up by the section's Lightbox (event delegation, no client JS here)
-export default function Figure({ src, alt, caption, label, sizes = "100vw", enlargeLabel }: Props) {
+export default function Figure({ src, alt, caption, label, fullSrc, hint, sizes = "100vw", enlargeLabel }: Props) {
   if (!alt?.trim()) {
     throw new Error(`Figure ${src}: alt text is required (decorative images aren't allowed in case studies)`);
   }
   const { width, height } = getImageSize(src);
+  const full = fullSrc ? { src: fullSrc, ...getImageSize(fullSrc) } : null;
 
   return (
     <figure className="w-full">
@@ -37,16 +42,18 @@ export default function Figure({ src, alt, caption, label, sizes = "100vw", enla
       <button
         type="button"
         data-lightbox=""
-        data-src={src}
+        data-src={full?.src ?? src}
         data-alt={alt}
         data-caption={caption}
-        data-width={width}
-        data-height={height}
+        data-width={full?.width ?? width}
+        data-height={full?.height ?? height}
+        data-full={full ? "" : undefined}
         aria-label={`${enlargeLabel}: ${alt}`}
         className="block w-full cursor-zoom-in rounded-md"
       >
         <Image src={src} alt={alt} width={width} height={height} sizes={sizes} className="h-auto w-full rounded-md" />
       </button>
+      {hint && <p className="mt-2 text-body-sm text-[var(--color-fg-tertiary)]">{hint}</p>}
       {caption && !label && (
         <figcaption className="mt-3.5 text-body-sm text-[var(--color-fg-secondary)]">
           <Caption text={caption} />

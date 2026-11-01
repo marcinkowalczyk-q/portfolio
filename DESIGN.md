@@ -201,7 +201,9 @@ Two rows inside `container-page`, 24px vertical padding, separated by a 1px `bor
 - Every case study image is a button ("Enlarge image: {alt}") that opens a **lightbox**:
   - native `<dialog>` with `showModal()`, so focus is trapped and the background is inert;
   - closes with **Esc**, a visible close button, or a backdrop click; focus returns to the image that opened it;
-  - shows the image at its natural size (up to 100vw/100vh with padding) plus its caption; when a section has several images, ←/→ move between them;
+  - shows the image at its natural size (half its pixel size, the files are 2x) plus its caption. If that still fits the viewport width it is scaled to fit as before (up to 100vw/100vh with padding); if it is **wider than the viewport** it opens in a **scroll area** at that size instead of being shrunk: `role="region"`, focusable (`tabindex=0`, focus ring), named "Obraz w pełnym rozmiarze, przewijaj strzałkami: {alt}" / "Full-size image, scroll with the arrow keys: {alt}" (`lightbox.pan`), arrow keys scroll it, touch can pan and pinch-zoom (browser zoom; `touch-action` stays `auto`). On phones this applies to most screenshots;
+  - when a section has several images, ←/→ move between them, except while focus is in the scroll area (there the arrows scroll); the prev / next buttons always work;
+  - **separate lightbox file:** wrap the image in a link, `[![alt](thumb.png)](full.png "Hint")`. The thumbnail stays on the page, the lightbox opens `full.png` (Figure `fullSrc`) unoptimized at full resolution, shown at a quarter of its pixel size so there is some overview to start from (touch can only zoom in from there). The link title is a visible hint under the thumbnail (`body-sm`, `fg-tertiary`), e.g. "Kliknij, aby zobaczyć pełny schemat" / "Click to view the full diagram". Used for the Configurator "Od zadań do logiki systemu" diagram (`system-logic-full.png`, FigJam PDF rendered at 2x, 12310 × 5536);
   - respects `prefers-reduced-motion` (no zoom animation);
   - the lightbox has an accessible name: the caption, or else the alt text.
 - **Alt text is required.** The MDX image component throws at build time if `alt` is empty. Purely decorative images aren't allowed in case study bodies.
@@ -244,9 +246,9 @@ The build list. "existing" means a file in `src/components` to refactor; "done" 
 | 17 | `MetaList` | Year / role / scope / team / DS / status | `<dl>`, labels from `cs.meta.*`, scope as `<ul>` | done `case-study/meta-list.tsx` |
 | 18 | `IntroRow` | Context / Challenge / Constraints | Label + text, stacks on mobile | done `case-study/intro-row.tsx` |
 | 19 | `CaseStudySection` | H2 block | Wraps MDX section, container widths | done `case-study/case-study-section.tsx` |
-| 20 | `Figure` | Image + caption | Required alt (build error if empty), opens `Lightbox` | done `case-study/figure.tsx` |
+| 20 | `Figure` | Image + caption | Required alt (build error if empty), opens `Lightbox`; optional `fullSrc` (separate lightbox file) + `hint` | done `case-study/figure.tsx` |
 | 21 | `FigureGroup` | Pairs, 2×2 grids, labelled comparisons, image + text rows | Stacks on mobile, shared lightbox gallery | done `case-study/figure-group.tsx` (single, pair / 2×2, row, panel, overlay) |
-| 22 | `Lightbox` | Enlarged image | `<dialog>`, focus trap, Esc, return focus, ←/→, reduced motion | done `case-study/lightbox.tsx` (client) |
+| 22 | `Lightbox` | Enlarged image | `<dialog>`, focus trap, Esc, return focus, ←/→, reduced motion, focusable scroll area for images wider than the viewport | done `case-study/lightbox.tsx` (client) |
 | 23 | `Portrait` / `AboutContent` | About page | Portrait with alt, MDX body | done `about/about-content.tsx` |
 | 24 | `MdxComponents` | MDX → components map | `h2`, `h3`, `p`, `ul`, `img`→`Figure`, `hr`→`Divider`, `strong` | done `case-study/mdx-components.tsx` |
 | 25 | `AccessibilityStatement` page | Required statement | Route `/[locale]/accessibility`, linked from footer | done `app/[locale]/accessibility/page.tsx` |
