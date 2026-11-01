@@ -5,7 +5,6 @@ import SiteHeader from "@/components/layout/site-header";
 import SiteFooter from "@/components/layout/site-footer";
 import Hero from "@/components/hero/hero";
 import ProjectList from "@/components/work/project-list";
-import HowIWork from "@/components/how-i-work/how-i-work";
 
 export async function generateMetadata({
   params,
@@ -32,7 +31,6 @@ export default async function HomePage({
       <main id="main" tabIndex={-1} className="focus:outline-none">
         <Hero t={t} />
         <ProjectList locale={locale} t={t} />
-        <HowIWork t={t} />
       </main>
       <SiteFooter locale={locale} t={t} />
     </>

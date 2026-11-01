@@ -31,7 +31,6 @@ src/
 │   ├── layout/                # skip-link, site-header, nav-links, language-switch, site-footer
 │   ├── hero/                  # hero.tsx
 │   ├── work/                  # project-list.tsx, project-card.tsx
-│   ├── how-i-work/            # how-i-work.tsx
 │   ├── about/                 # about-content.tsx
 │   └── case-study/            # case-study-page, header, meta-list, intro-row, section, figure, figure-group, lightbox, mdx-components
 └── lib/
