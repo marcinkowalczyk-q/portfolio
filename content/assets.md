@@ -65,7 +65,7 @@ EN and PL frames use the same images, so each row is one file with four placemen
 | e-Delivery inbox screenshot | `/images/e-doreczenia/inbox.png` | `2004:1041` | `2070:549` | `2004:2642` | `2068:259` | **crop**: fill 106.98% height, top-aligned |
 | Dashboard (desktop screenshot) | `/images/e-doreczenia/dashboard-desktop.png` | `2004:1049` | `2070:633` | `2004:2650` | `2070:629` | 644×405; overlaid by the phone mockup below |
 | Dashboard (phone mockup) | `/images/e-doreczenia/dashboard-mobile.png` | `2004:1050` | `2070:634` | `2004:2651` | `2070:630` | 299×373, overlaps the desktop shot. The layer is named "ChatGPT Image May 4, 2026"; check that it's the final asset. |
-| Permissions: folder configuration | `/images/e-doreczenia/permissions-folder.png` | `2004:1059` | `2070:613` | `2004:2660` | `2068:262` | 790×637, has caption |
+| Permissions: edit folder "Ważne" | `/images/e-doreczenia/permissions-folder.png` | `2004:1059` | `2070:613` | `2004:2660` | `2068:262` | 790×607, has caption. **Not a Figma export:** supplied screenshot (1408×1082) with the technical label placeholder "8LoremIpsum_-" replaced by "wazne". Re-exporting the nodes brings back the old "Dodaj folder" screen |
 | User details | `/images/e-doreczenia/user-details.png` | `2004:1067` | `2070:566` | `2004:2668` | `2068:265` | 790×497 |
 | Notification settings | `/images/e-doreczenia/notification-settings.png` | `2004:1074` | `2070:573` | `2004:2675` | `2068:274` | 790×498 |
 | System layers 1 (02.20.33) | `/images/e-doreczenia/layers-1.png` | `2004:1084` | `2070:584` | `2004:2685` | `2068:278` | 2×2 grid on desktop |
