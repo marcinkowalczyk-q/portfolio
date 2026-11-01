@@ -8,7 +8,6 @@ type Props = {
   // Visually hidden suffix for external links, e.g. "opens in a new tab"
   newTabLabel?: string;
   icon?: IconName;
-  download?: boolean;
   className?: string;
   children: ReactNode;
 };
@@ -18,7 +17,6 @@ export default function TextLink({
   external = false,
   newTabLabel = "opens in a new tab",
   icon,
-  download,
   className = "",
   children,
 }: Props) {
@@ -36,10 +34,10 @@ export default function TextLink({
     );
   }
 
-  // mailto:, downloads and same-site files don't go through the router
-  if (download || !href.startsWith("/")) {
+  // mailto: and other non-route links don't go through the router
+  if (!href.startsWith("/")) {
     return (
-      <a href={href} download={download} className={cls}>
+      <a href={href} className={cls}>
         {leading}
         <span>{children}</span>
       </a>

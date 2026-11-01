@@ -1,24 +1,10 @@
-import fs from "node:fs";
-import path from "node:path";
 import type { Locale, T } from "@/i18n";
 import { siteConfig } from "@/lib/site";
 import TextLink from "@/components/ui/text-link";
 
 type Props = { locale: Locale; t: T };
 
-// The CV link only shows once a PDF is dropped into public/cv/
-function findCv(): { href: string; size: string } | null {
-  const dir = path.join(process.cwd(), "public", "cv");
-  if (!fs.existsSync(dir)) return null;
-  const file = fs.readdirSync(dir).find((name) => name.toLowerCase().endsWith(".pdf"));
-  if (!file) return null;
-  const bytes = fs.statSync(path.join(dir, file)).size;
-  const size = bytes >= 1024 * 1024 ? `${(bytes / 1024 / 1024).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
-  return { href: `/cv/${encodeURIComponent(file)}`, size };
-}
-
 export default function SiteFooter({ locale, t }: Props) {
-  const cv = findCv();
   const newTab = t["a11y.newTab"];
 
   return (
@@ -42,13 +28,6 @@ export default function SiteFooter({ locale, t }: Props) {
                 {t["footer.linkedin"]}
               </TextLink>
             </li>
-            {cv && (
-              <li>
-                <TextLink href={cv.href} download icon="download">
-                  {t["footer.cv"].replace("{size}", cv.size)}
-                </TextLink>
-              </li>
-            )}
           </ul>
         </div>
 
