@@ -3,10 +3,9 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 import { siteConfig } from "@/lib/site";
 
-// Shared 1200×630 share card for every route's opengraph-image.tsx. Server only.
+// Shared 1200×630 share card, rendered by app/[locale]/og/[page]/route.tsx. Server only.
 // Satori can't read CSS variables, so colours are the hex values of the globals.css tokens.
 export const ogSize = { width: 1200, height: 630 };
-export const ogContentType = "image/png";
 
 const color = {
   surface: "#fafbfd", // --color-surface

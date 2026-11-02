@@ -16,7 +16,7 @@ export async function resolveLocale(params: CaseStudyParams["params"]): Promise<
   return isValidLocale(locale) ? locale : defaultLocale;
 }
 
-// The share image comes from the route's opengraph-image.tsx
+// The share image (with its alt) comes from pageMetadata(): /{locale}/og/{slug}
 export async function caseStudyMetadata(params: CaseStudyParams["params"], slug: string): Promise<Metadata> {
   const locale = await resolveLocale(params);
   const { frontmatter: fm } = getCaseStudy(locale, slug);

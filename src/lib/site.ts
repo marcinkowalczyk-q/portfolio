@@ -19,6 +19,23 @@ export type Route = (typeof routes)[number];
 
 const ogLocale: Record<Locale, string> = { pl: "pl_PL", en: "en_US" };
 
+// Share card per route, served at /{locale}/og/{page} by app/[locale]/og/[page]/route.tsx
+export const ogPages = {
+  "": "home",
+  "/about": "about",
+  "/banner-configurator": "banner-configurator",
+  "/e-doreczenia": "e-doreczenia",
+} as const satisfies Record<Route, string>;
+export type OgPage = (typeof ogPages)[Route];
+
+// Alt text in the page language, e.g. "e-Doręczenia — case study, Marcin Kowalczyk"
+function ogAlt(locale: Locale, route: Route, title?: string): string {
+  const t = getT(locale);
+  if (route === "") return `Marcin Kowalczyk — ${siteConfig.role}`;
+  if (route === "/about") return t["og.aboutAlt"];
+  return t["og.caseStudyAlt"].replace("{title}", title ?? "");
+}
+
 // Canonical + hreflang links for one route; x-default goes to the default locale
 export function alternatesFor(locale: Locale, route: Route): NonNullable<Metadata["alternates"]> {
   return {
@@ -46,6 +63,13 @@ export function pageMetadata({
   const t = getT(locale);
   const desc = description ?? t["meta.description"];
   const ogTitle = title ? `${title} | Marcin Kowalczyk` : t["meta.title"];
+  const image = {
+    url: `/${locale}/og/${ogPages[route]}`,
+    width: 1200,
+    height: 630,
+    type: "image/png",
+    alt: ogAlt(locale, route, title),
+  };
   return {
     title: title ?? { absolute: t["meta.title"] },
     description: desc,
@@ -58,7 +82,8 @@ export function pageMetadata({
       url: `/${locale}${route}`,
       title: ogTitle,
       description: desc,
+      images: [image],
     },
-    twitter: { card: "summary_large_image", title: ogTitle, description: desc },
+    twitter: { card: "summary_large_image", title: ogTitle, description: desc, images: [image] },
   };
 }

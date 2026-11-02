@@ -84,7 +84,7 @@ See **DESIGN.md**: typography scale, colours (WCAG 2.2 AA audited), spacing, lay
 - Case study template (DESIGN.md components 16–22, 24) rendered from MDX
 - Banner Configurator case study from `content/{pl,en}/banner-configurator.mdx`, images exported from Figma at 2x into `public/images/banner-configurator/`
 - Metadata on every route via `pageMetadata()` in `src/lib/site.ts`: localized title/description, canonical, hreflang (pl/en/x-default), OG + Twitter tags
-- Generated OG cards per route and locale (`opengraph-image.tsx`, shared renderer `src/lib/og-image.tsx`, fonts from `@fontsource`), MK monogram favicon (`icon.tsx`, `apple-icon.tsx`, `favicon.ico`)
+- Generated OG cards per route and locale, prerendered by the route handler `src/app/[locale]/og/[page]/route.tsx` (shared renderer `src/lib/og-image.tsx`, fonts from `@fontsource`); `pageMetadata()` links them with alt text in the page language (`og.*` message keys), MK monogram favicon (`icon.tsx`, `apple-icon.tsx`, `favicon.ico`)
 - `sitemap.xml` + `robots.txt`; site URL from `VERCEL_PROJECT_PRODUCTION_URL` (localhost fallback)
 - Day 3 QA: axe 0 violations on all 10 URLs (desktop + mobile); Lighthouse 100 on a11y / best practices / SEO; performance 100 except case study mobile ~91 (webfont preload)
 - `npm audit`: 0 vulnerabilities (Next 16.2.4 → 16.4.3)

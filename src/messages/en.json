@@ -36,6 +36,9 @@
   "cs.prototype.desktop": "desktop",
   "cs.prototype.mobile": "mobile",
 
+  "og.caseStudyAlt": "{title} — case study by Marcin Kowalczyk",
+  "og.aboutAlt": "About — Marcin Kowalczyk",
+
   "lightbox.enlarge": "Enlarge image",
   "lightbox.close": "Close",
   "lightbox.prev": "Previous image",
