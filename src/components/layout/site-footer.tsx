@@ -36,9 +36,6 @@ export default function SiteFooter({ locale, t }: Props) {
             <li>
               <TextLink href={`/${locale}/about`}>{t["nav.about"]}</TextLink>
             </li>
-            <li>
-              <TextLink href={`/${locale}/accessibility`}>{t["footer.accessibility"]}</TextLink>
-            </li>
           </ul>
           <p className="text-[var(--color-fg-tertiary)]">{t["footer.copy"]}</p>
         </div>

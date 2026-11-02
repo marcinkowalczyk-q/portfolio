@@ -22,8 +22,7 @@ export default function NavLinks({ locale, t, variant = "bar" }: Props) {
   const pathname = usePathname();
   const aboutHref = `/${locale}/about`;
   const isAbout = pathname.startsWith(aboutHref);
-  // The accessibility page (footer link) belongs to neither section
-  const isWork = !isAbout && !pathname.startsWith(`/${locale}/accessibility`);
+  const isWork = !isAbout;
 
   // Work covers the homepage and the case studies; About is its own page
   const links = [

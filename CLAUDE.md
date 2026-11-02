@@ -23,7 +23,6 @@ src/
 │   ├── page.tsx               # home: nav + hero + work + footer
 │   ├── globals.css            # Tailwind import + design tokens (@theme)
 │   ├── about/page.tsx         # from content/{locale}/about.mdx
-│   ├── accessibility/page.tsx # from content/{locale}/accessibility.mdx
 │   ├── banner-configurator/page.tsx
 │   └── e-doreczenia/page.tsx  # both case studies render via CaseStudyPage
 ├── components/
@@ -82,7 +81,6 @@ See **DESIGN.md**: typography scale, colours (WCAG 2.2 AA audited), spacing, lay
 - Homepage: nav, hero, work list, two project cards, footer
 - About page from `content/{pl,en}/about.mdx` (portrait exported from Figma)
 - e-Doręczenia case study (`/[locale]/e-doreczenia`) with Axure prototype links
-- Accessibility page (`/[locale]/accessibility`, "Dostępność" / "Accessibility")
 - Case study template (DESIGN.md components 16–22, 24) rendered from MDX
 - Banner Configurator case study from `content/{pl,en}/banner-configurator.mdx`, images exported from Figma at 2x into `public/images/banner-configurator/`
 - Metadata on every route via `pageMetadata()` in `src/lib/site.ts`: localized title/description, canonical, hreflang (pl/en/x-default), OG + Twitter tags
@@ -90,7 +88,7 @@ See **DESIGN.md**: typography scale, colours (WCAG 2.2 AA audited), spacing, lay
 - `sitemap.xml` + `robots.txt`; site URL from `VERCEL_PROJECT_PRODUCTION_URL` (localhost fallback)
 - Day 3 QA: axe 0 violations on all 10 URLs (desktop + mobile); Lighthouse 100 on a11y / best practices / SEO; performance 100 except case study mobile ~91 (webfont preload)
 - `npm audit`: 0 vulnerabilities (Next 16.2.4 → 16.4.3)
-- Production build passes (5 routes × 2 locales + OG images, all static)
+- Production build passes (4 routes × 2 locales + OG images, all static)
 
 ### In progress
 - Day 3 part 1 (QA + launch prep) awaiting review; manual keyboard / VoiceOver pass pending

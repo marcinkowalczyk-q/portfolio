@@ -14,7 +14,7 @@ export const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
   : "http://localhost:3000";
 
 // Every indexable route, without the locale prefix ("" = home)
-export const routes = ["", "/banner-configurator", "/e-doreczenia", "/about", "/accessibility"] as const;
+export const routes = ["", "/banner-configurator", "/e-doreczenia", "/about"] as const;
 export type Route = (typeof routes)[number];
 
 const ogLocale: Record<Locale, string> = { pl: "pl_PL", en: "en_US" };
