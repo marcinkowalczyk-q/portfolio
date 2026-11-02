@@ -2,19 +2,19 @@
 slug: banner-configurator
 locale: pl
 title: Konfigurator banerów
-eyebrow: Konfigurator dla Wakacje.pl
-lede: Interfejs operacyjny umożliwiający zespołom biznesowym samodzielne zarządzanie banerami promocyjnymi bez angażowania developerów i bez naruszania zasad istniejącego systemu.
+eyebrow: Narzędzie wewnętrzne / Wakacje.pl
+lede: "Wewnętrzne narzędzie, dzięki któremu zespół biznesowy sam publikuje banery promocyjne, bez angażowania programistów i w ramach reguł chroniących układ strony, SEO i wydajność serwisu."
 heroImage: /images/banner-configurator/hero.png
 heroImageDesktop: /images/banner-configurator/hero-desktop.png
 heroAlt: Lista banerów w Konfiguratorze banerów na monitorze
 card:
-  category: Narzędzie konfiguracyjne dla Wakacje.pl
+  category: "Narzędzie wewnętrzne dla Wakacje.pl"
   summary: "Wewnętrzne narzędzie Wakacje.pl, które umożliwia zespołowi biznesowemu dodawanie i publikowanie banerów promocyjnych na stronie bez angażowania programistów. Zaprojektowałem je samodzielnie: od analizy, przez testy użyteczności, po weryfikację wdrożenia."
   image: /images/configurator.png
 meta:
   year: "2026"
   role: Product Designer
-  team: Współpraca z PO, developerami, UX Writerem, interesariuszami biznesowymi oraz przyszłymi użytkownikami narzędzia po stronie wewnętrznych zespołów operacyjnych
+  team: Współpraca z PO, deweloperami, UX Writerem, interesariuszami biznesowymi oraz przyszłymi użytkownikami narzędzia po stronie wewnętrznych zespołów operacyjnych
   designSystem: Istniejący Design System, rozszerzony o nowe komponenty i warianty
   status: Wdrożone produkcyjnie
 figma:
@@ -24,19 +24,19 @@ figma:
 
 ## Kontekst
 
-Zespół biznesowy potrzebował samodzielnie zarządzać banerami promocyjnymi na listingu ofert. Wcześniej każda zmiana wymagała wsparcia developerów, co spowalniało działania operacyjne.
+Zespół biznesowy potrzebował samodzielnie zarządzać banerami promocyjnymi na listingu ofert. Wcześniej każda zmiana wymagała wsparcia deweloperów, co spowalniało działania operacyjne.
 
 Banery pojawiały się w kluczowych miejscach produktu i musiały działać w ramach istniejącej architektury konfiguratorów, Design Systemu oraz ograniczeń SEO i wydajnościowych.
 
 ## Wyzwanie projektowe
 
-Zaprojektować interfejs, który pozwoli użytkownikom nietechnicznym kontrolować dynamiczne elementy UI bez naruszania zasad działania systemu.
+Zaprojektować interfejs, dzięki któremu osoby nietechniczne samodzielnie zarządzą banerami, nie psując przy tym układu strony, SEO ani wydajności.
 
 Rozwiązanie musiało łączyć szybkość pracy biznesu, bezpieczeństwo operacyjne, integrację z istniejącą architekturą oraz wymagania Design Systemu, SEO i wydajności.
 
 ## Projektowanie w ramach ograniczeń
 
-Interfejs musiał zostać zintegrowany z istniejącym hubem konfiguratorów, korzystać z obecnego Design Systemu i nie generować dodatkowego obciążenia developerskiego.
+Interfejs musiał zostać zintegrowany z istniejącym hubem konfiguratorów, korzystać z obecnego Design Systemu i nie generować dodatkowego obciążenia deweloperskiego.
 
 Każde rozwiązanie wymagało uwzględnienia wpływu na SEO, listing ofert oraz wydajność produktu.
 
@@ -46,7 +46,7 @@ Każde rozwiązanie wymagało uwzględnienia wpływu na SEO, listing ofert oraz 
 
 Analiza sposobu zarządzania banerami pokazała, że głównym problemem nie był wygląd interfejsu, ale brak kontroli i jasno określonej odpowiedzialności.
 
-Nie istniał centralny widok banerów, stany systemu nie były zdefiniowane, brakowało mechanizmów zapobiegania błędom, a każda zmiana wymagała zaangażowania developera.
+Nie istniał centralny widok banerów, stany systemu nie były zdefiniowane, brakowało mechanizmów zapobiegania błędom, a każda zmiana wymagała zaangażowania dewelopera.
 
 ---
 
@@ -54,7 +54,7 @@ Nie istniał centralny widok banerów, stany systemu nie były zdefiniowane, bra
 
 Problemy operacyjne zostały przełożone na bardziej uporządkowaną strukturę systemu poprzez zdefiniowanie jego zachowania w różnych sytuacjach.
 
-Schemat pomagał opisać flow, punkty styku między elementami systemu oraz konsekwencje poszczególnych akcji użytkownika. To było kluczowe, bo narzędzie miało umożliwiać samodzielną konfigurację banerów przez biznes, bez udziału developera.
+Schemat pomagał opisać flow, punkty styku między elementami systemu oraz konsekwencje poszczególnych akcji użytkownika. To było kluczowe, bo narzędzie miało umożliwiać samodzielną konfigurację banerów przez biznes, bez udziału dewelopera.
 
 [![Schemat logiki kampanii: sprawdzenie pustej listy, dodanie kampanii przez formularz, walidacja pól obowiązkowych i publikacja](/images/banner-configurator/system-logic.png)](/images/banner-configurator/system-logic-full.png "Kliknij, aby zobaczyć pełny schemat")
 
@@ -69,7 +69,7 @@ Projekt korzystał z istniejącego Design Systemu, ale wymagał rozszerzenia go 
 
 Flow nie służyły jedynie jako mapa ekranów. Opisywały zachowanie systemu, pokazując zależności między akcjami użytkownika, stanami banera i konsekwencjami dla produktu.
 
-Diagramy uwzględniały warunki, ograniczenia i wyjątki, dzięki czemu zespół developerski mógł łatwiej zrozumieć, co jest dozwolone lub blokowane w konkretnych kontekstach.
+Diagramy uwzględniały warunki, ograniczenia i wyjątki, dzięki czemu zespół deweloperski mógł łatwiej zrozumieć, co jest dozwolone lub blokowane w konkretnych kontekstach.
 
 ![Opisany flow od listy banerów do okna potwierdzenia: przełącznik publikacji aktywuje kampanię, strzałki pokazują powrót do listy](/images/banner-configurator/interaction-flows.png)
 
@@ -123,7 +123,7 @@ Ostateczną wersję skonsultowałem z interesariuszami i zespołem deweloperskim
 
 ## Dokumentacja projektowa
 
-Dokumentacja w Figmie obejmowała scenariusze, stany, zależności i przypadki brzegowe, dzięki czemu mogła pełnić rolę źródła wiedzy dla zespołu developerskiego.
+Dokumentacja w Figmie obejmowała scenariusze, stany, zależności i przypadki brzegowe, dzięki czemu mogła pełnić rolę źródła wiedzy dla zespołu deweloperskiego.
 
 Opisywała nie tylko układy ekranów, ale też zachowanie i logikę systemu, co było kluczowe przy wdrożeniu narzędzia opartego na regułach konfiguracji.
 
