@@ -30,7 +30,9 @@ export default function ProjectCard({ card, href, number, ctaLabel, featured, im
           </h2>
           <p className="mt-5 text-body text-[var(--color-fg-secondary)]">{card.summary}</p>
           <div className="mt-8">
-            <LinkButton href={href}>{ctaLabel}</LinkButton>
+            <LinkButton href={href} srSuffix={card.title}>
+              {ctaLabel}
+            </LinkButton>
           </div>
         </div>
 
