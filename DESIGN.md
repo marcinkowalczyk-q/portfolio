@@ -37,7 +37,7 @@ Kadwa and Inter Tight are removed. The few Kadwa layers in Figma were accidental
 | `body-sm` | 14 / 1.6 | 0 | sans 400 | Meta value (mobile), captions |
 | `nav` | 14 / 1.3 | −1% | serif 500 | Nav links |
 | `eyebrow` | 12 / 1.5 | +20%, uppercase | sans 400 | Eyebrows, card category |
-| `small` | 13 / 1.5 | 0 | sans 400 | Footer meta |
+| `small` | 13 / 1.5 | 0 | sans 400 | Footer © |
 
 Rules:
 - One `h1` per page. Case study sections are `h2`, sub-sections `h3`.
@@ -158,7 +158,7 @@ Thresholds: **4.5:1** for normal text, **3:1** for large text (≥ 24px regular 
 | **Intro row** | Label (160px, `label-lg`) + text (752px). Stacks on mobile. |
 | **Section** | `h2` + paragraphs (+ lists) + figure(s), inside `container-text`; figures widen to `container-figure` / `container-wide`. Dividers (`divider`, 740px) between topic groups. |
 | **Figure** | Image + optional caption (`body-sm`, bold lead-in sentence allowed). |
-| **Footer** | `surface` background, 24px vertical padding, 12px above and below the divider between rows (mobile and desktop). See Changes for the content. |
+| **Footer** | `surface` background, one row, 24px vertical padding (mobile and desktop). See Changes for the content. |
 
 ---
 
@@ -191,9 +191,11 @@ All text tokens meet WCAG 2.2 AA (see the audit above). `fg-tertiary` → `#6068
 Card numbers follow the display order. The featured `surface` background goes on the first card.
 
 ### 5.5 Footer
-Two rows inside `container-page`, 24px vertical padding, separated by a 1px `border-subtle` divider with exactly 12px above and below it (box to border, no extra padding on either row):
-- **Contact:** email (shown as visible text + `mailto:` link, value in `src/lib/site.ts`), LinkedIn. No CV download.
-- **Meta:** **About** link ("O mnie" / "About", so About is reachable on mobile without opening the menu) · © year. No accessibility page.
+**One row**, 24px vertical padding (mobile and desktop), 1px `border` top edge, no inner divider:
+- **Left:** name (serif 600, 14px, `fg-secondary`).
+- **Right:** email (visible text + `mailto:` link) · LinkedIn (external) · © year (`small`, `fg-tertiary`), 24px apart. The email and LinkedIn form the "Kontakt" / "Contact" list.
+- **Mobile (below md):** name and © share the first line (© right-aligned); the email and LinkedIn go underneath, wrapping as needed (12px below the first line, 8px between wrapped links). Three lines at 360px.
+- No About link (it's in the main nav), no CV download, no accessibility page.
 - External links carry `rel="noopener noreferrer"` and announce "opens in a new tab".
 - Email and LinkedIn URL are in `src/lib/site.ts`.
 
@@ -233,7 +235,7 @@ The build list. "existing" means a file in `src/components` to refactor; "done" 
 | 2 | `Container` | Width wrapper | `size`: text / figure / wide / content / page / cards; gutters | done `ui/container.tsx` |
 | 3 | `SiteHeader` (+ `NavLinks`) | Top nav | Brand, two links, current page `aria-current`; below md a Menu button + panel (5.7) | done `layout/site-header.tsx, nav-links.tsx, mobile-menu.tsx` |
 | 4 | `LanguageSwitch` | PL/EN toggle | Links to the same page in the other locale, `hreflang`/`lang`, active state not by colour alone | done `layout/language-switch.tsx` |
-| 5 | `SiteFooter` | Contact + meta | Email, LinkedIn, About link | done `layout/site-footer.tsx` |
+| 5 | `SiteFooter` | Name + contact | One row: name; email, LinkedIn, © | done `layout/site-footer.tsx` |
 | 6 | `Eyebrow` | Uppercase label | CSS uppercase, optional bold number prefix | done `ui/eyebrow.tsx` |
 | 7 | `Button` / `LinkButton` | CTA | `control-border` outline, 6px radius, works as `<a>` or `<button>` | done `ui/link-button.tsx` |
 | 8 | `TextLink` | Inline / external link | Underline, external variant with icon + "(opens in a new tab)" | done `ui/text-link.tsx` |

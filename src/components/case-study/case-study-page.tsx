@@ -48,7 +48,7 @@ export default async function CaseStudyPage({ params, slug }: CaseStudyParams & 
           </div>
         </article>
       </main>
-      <SiteFooter locale={locale} t={t} />
+      <SiteFooter t={t} />
     </>
   );
 }

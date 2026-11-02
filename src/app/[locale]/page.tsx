@@ -32,7 +32,7 @@ export default async function HomePage({
         <Hero t={t} />
         <ProjectList locale={locale} t={t} />
       </main>
-      <SiteFooter locale={locale} t={t} />
+      <SiteFooter t={t} />
     </>
   );
 }

@@ -38,7 +38,7 @@ export default async function AboutPage({ params }: Params) {
           {content}
         </AboutContent>
       </main>
-      <SiteFooter locale={locale} t={t} />
+      <SiteFooter t={t} />
     </>
   );
 }
